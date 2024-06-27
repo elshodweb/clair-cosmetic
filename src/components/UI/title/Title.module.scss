@@ -1,0 +1,11 @@
+.title_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.title {
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 130%;
+  font-size: min(8vw, 80px);
+}

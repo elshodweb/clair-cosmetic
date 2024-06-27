@@ -1,0 +1,10 @@
+.wrapper {
+  width: 100%;
+  min-height: 99.9vh;
+  display: flex;
+  flex-direction: column;
+}
+.main {
+  flex: 1 1 auto;
+  height: 100%;
+}
