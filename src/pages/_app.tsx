@@ -1,4 +1,3 @@
-import Loyaut from "@/components/loyaut/Loyaut";
 import "@/styles/globals.scss";
 import type { AppProps } from "next/app";
 import { Inter } from "next/font/google";
@@ -9,9 +8,7 @@ export default function App({ Component, pageProps }: AppProps) {
   if (isAuth) {
     return (
       <div className={inter.className}>
-        <Loyaut>
-          <Component {...pageProps} />
-        </Loyaut>
+        <Component {...pageProps} />
       </div>
     );
   }

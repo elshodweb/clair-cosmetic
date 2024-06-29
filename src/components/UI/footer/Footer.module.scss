@@ -1,0 +1,98 @@
+@import "./../../../styles/variables.scss";
+
+.phone {
+  color: $white;
+  font-size: 40px;
+  line-height: 48px;
+}
+.footer {
+  background: $darkGray;
+  padding: 40px 28px 46px;
+  border-radius: 20px 20px 0 0;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+.socials {
+  display: flex;
+  gap: 0;
+}
+.license {
+  color: $white;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.bottom {
+  margin-top: 84px;
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+.download {
+  display: block;
+  padding: 24px;
+  background: $yellow;
+  width: 270px;
+  height: 105px;
+  border-radius: 30px;
+  position: relative;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  color: $darkGray;
+  &::before {
+    content: "";
+    position: absolute;
+    right: -25px;
+    top: -54px;
+    display: block;
+    width: 151px;
+    height: 110px;
+    background: url(./../../../../public/images/footer/eye.png) center/ cover
+      no-repeat;
+  }
+}
+@media (max-width: 900px) {
+  .license {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .phone {
+    font-size: 26px;
+  }
+}
+@media (max-width: 600px) {
+  .download {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .top {
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+  .socials {
+    display: none;
+  }
+  .logo {
+    img {
+      width: 70px;
+      height: 22px;
+    }
+  }
+  .bottom {
+    gap: 0;
+    justify-content: end;
+  }
+  .license {
+    font-size: 12px;
+    text-align: right;
+  }
+  .phone {
+    font-size: 20px;
+  }
+}

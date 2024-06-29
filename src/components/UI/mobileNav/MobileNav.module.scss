@@ -1,0 +1,61 @@
+@import "./../../../styles/variables.scss";
+
+.wrapper {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  height: max-content;
+  z-index: 2;
+  background: $pink;
+  left: 0;
+  top: 0;
+  display: none;
+  padding: 17px 0;
+  padding-bottom: 34px;
+}
+.open {
+  display: block;
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 37px;
+  margin: 0 auto;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+}
+.link {
+  color: $darkGray;
+  width: 100%;
+  font-size: 40px;
+  font-weight: 500;
+  padding: 26px 10px;
+  border-bottom: 2px solid #000;
+}
+.bottom {
+  display: flex;
+  align-self: start;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 65px;
+}
+@media (max-width: 500px) {
+  .wrapper {
+    padding: 5px 0px;
+  }
+  .row {
+    padding: 5px 21px;
+  }
+  .logoLink {
+    img {
+      width: 70px;
+      height: 22px;
+    }
+  }
+}

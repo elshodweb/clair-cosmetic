@@ -1,0 +1,62 @@
+@import "./../../../styles/variables.scss";
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  padding-right: 56px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 30px;
+  border: 2px solid #000;
+  background: transparent;
+  color: $darkGray;
+  position: relative;
+  img {
+    border-radius: 50%;
+    left: 0;
+  }
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 33px;
+    height: 2px;
+    border-radius: 2px;
+    right: 17px;
+    display: block;
+    background: #000;
+  }
+  &::after {
+    bottom: 13px;
+  }
+  &::before {
+    top: 13px;
+  }
+}
+.stick {
+  width: 33px;
+  height: 2px;
+  border-radius: 2px;
+  background: #000;
+  position: absolute;
+  right: 17px;
+}
+@media (max-width: 500px) {
+  .btn {
+    padding: 3px;
+    padding-right: 56px;
+    font-size: 12px;
+    img {
+      width: 26px;
+      height: 26px;
+    }
+    &::after {
+      bottom: 8px;
+    }
+    &::before {
+      top: 8px;
+    }
+  }
+}

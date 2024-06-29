@@ -30,6 +30,7 @@ body {
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  background: #000;
 }
 input,
 button,
@@ -50,7 +51,6 @@ button::-moz-focus-inner {
 a,
 a:visited {
   text-decoration: none;
-  color: inherit;
 }
 a:hover {
   text-decoration: none;
