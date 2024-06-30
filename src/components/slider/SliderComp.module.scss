@@ -1,0 +1,46 @@
+@import "./../../styles/variables.scss";
+
+.slide {
+  position: relative;
+
+  height: 420px;
+  border-radius: 30px;
+  overflow: hidden;
+  padding: 25px 20px;
+  margin-bottom: 54px;
+  display: flex;
+  justify-content: center;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  max-width: 281px;
+  position: absolute;
+  object-fit: contain;
+}
+.name {
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 36px;
+  color: $white;
+  text-shadow: 1px 1px 10px $darkGray;
+  text-transform: uppercase;
+}
+.btn {
+  display: block;
+  width: 53px;
+  height: 26px;
+  border: 2px solid $white;
+  border-radius: 17px;
+  background: transparent;
+  text-align: right;
+  padding-right: 3px;
+}
+.img {
+  position: relative;
+  display: block;
+  object-fit: contain;
+  top: -25px;
+  z-index: -1;
+}

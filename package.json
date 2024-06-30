@@ -9,11 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.21",
     "classnames": "^2.5.1",
     "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18",
-    "sass": "^1.77.6"
+    "sass": "^1.77.6",
+    "swiper": "^11.1.4"
   },
   "devDependencies": {
     "@types/node": "^20",

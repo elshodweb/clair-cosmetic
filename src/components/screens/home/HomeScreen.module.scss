@@ -2,3 +2,19 @@
 .wrapper {
   background: $pink;
 }
+.hi {
+  background: url(./../../../../public/images/mainBackground/rainbow.png) right
+    10px / auto 100% no-repeat;
+  // padding-bottom: 20px;
+  margin: 0;
+  margin-top: 34px;
+}
+.space {
+  display: block;
+  margin-left: min(180px, 15vw);
+}
+@media (max-width: 500px) {
+  .hi {
+    margin-top: 17px;
+  }
+}

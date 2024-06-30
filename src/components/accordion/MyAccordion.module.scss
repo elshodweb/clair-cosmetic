@@ -1,0 +1,20 @@
+.container {
+  width: 100%;
+  margin-bottom: 1.71vw;
+  margin-top: 20px;
+}
+.services_inner {
+  background: linear-gradient(180deg, #ffffff 0%, #ffedff 100%);
+  // background: #000;
+}
+
+@media (min-width: 375px) {
+  .services_inner {
+    border-radius: 2.14vw;
+  }
+}
+@media (max-width: 375px) {
+  .services_inner {
+    border-radius: 8.02vw;
+  }
+}
