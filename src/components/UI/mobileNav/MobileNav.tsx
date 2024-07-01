@@ -2,10 +2,10 @@ import React, { FC } from "react";
 import style from "./MobileNav.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-import IconButton from "@/components/buttons/iconButton/IconButton";
+import IconButton from "@/components/UI/buttons/iconButton/IconButton";
 import cn from "classnames";
-import BlackButton from "@/components/buttons/blackButton/BlackButton";
-import OutlineButton from "@/components/buttons/outlineButton/OutlineButton";
+import BlackButton from "@/components/UI/buttons/blackButton/BlackButton";
+import OutlineButton from "@/components/UI/buttons/outlineButton/OutlineButton";
 interface MobileNavPorps {
   isOpenNav: boolean;
   setIsOpenNav: React.Dispatch<React.SetStateAction<boolean>>;

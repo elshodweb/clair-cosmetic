@@ -1,0 +1,44 @@
+@import "./../../../styles/variables.scss";
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  align-items: center;
+  max-width: max-content;
+  overflow-x: auto;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  overflow-y: hidden;
+  &::-webkit-scrollbar {
+    background: transparent;
+    height: 13px;
+  }
+  &:hover::-webkit-scrollbar {
+    height: 13px;
+    background: $white;
+    border: 1px solid $darkGray;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 5px;
+    background: $darkGray;
+  }
+}
+
+.filter_item {
+  display: block;
+  text-align: center;
+  font-weight: 600;
+  border: min(0.15vw, 2px) solid black;
+  font-size: 16px;
+  line-height: 19px;
+  border-radius: 5vw;
+  transition: all 0.2s;
+  padding: 12px 20px;
+  background: transparent;
+  white-space: nowrap;
+}
+

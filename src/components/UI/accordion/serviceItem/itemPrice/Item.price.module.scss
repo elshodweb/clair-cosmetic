@@ -3,48 +3,48 @@
 .price_button {
   font-weight: 600;
 }
-
+.title {
+  font-size: 20px;
+}
 .list_item {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 50px;
   .text {
     opacity: 0.3;
     margin-top: 4px;
   }
 }
 .list_item:not(:last-child) {
-  margin-bottom: 2.36vw;
+  margin-bottom: max(2.36vw,16px);
 }
 .price_button {
   white-space: nowrap;
-  aspect-ratio: 3.14;
+  padding: 8px 20px;
 }
 
-@media (min-width: 375px) {
+@media (min-width: 850px) {
   .price_button {
-    border: min(0.15vw, 2px) solid #1b1b1a;
-    height: min(2.5vw, 35px);
+    border: 1px solid #1b1b1a;
     border-radius: 2.14vw;
   }
   .title {
-    font-size: min(1.43vw, 20px);
+    // font-size: 20px;
     line-height: 24px;
     font-weight: 500;
   }
 
   .text,
   .price_button {
-    font-size: min(1.14vw, 16px);
-    font-size: 16px;
+    // font-size: 16px;
     line-height: 19px;
     font-weight: 500;
   }
 }
-@media (max-width: 374px) {
+@media (max-width: 850px) {
   .price_button {
-    border: 0.54vw solid black;
-    height: 9.36vw;
+    border: 1px solid black;
     border-radius: 8vw;
   }
   .text {

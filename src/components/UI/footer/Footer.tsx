@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Footer.module.scss";
 import Link from "next/link";
-import SocialButton from "@/components/buttons/socialButton/SocialButton";
+import SocialButton from "@/components/UI/buttons/socialButton/SocialButton";
 import Image from "next/image";
 const Footer = () => {
   return (

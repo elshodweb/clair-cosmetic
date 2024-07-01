@@ -60,6 +60,8 @@ const ServiceItem: FC<props> = ({
             <ItemPrice />
             <ItemPrice />
             <ItemPrice />
+            <ItemPrice />
+            <ItemPrice />
             <div className={styles.button_container}>
               <Link href="/face">
                 <button className={styles.showAll_button}>

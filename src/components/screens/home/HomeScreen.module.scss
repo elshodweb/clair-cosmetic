@@ -13,6 +13,15 @@
   display: block;
   margin-left: min(180px, 15vw);
 }
+.services {
+  padding-bottom: 54px;
+}
+.row {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
 @media (max-width: 500px) {
   .hi {
     margin-top: 17px;

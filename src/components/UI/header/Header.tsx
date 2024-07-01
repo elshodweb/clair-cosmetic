@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import style from "./Header.module.scss";
-import BlackButton from "@/components/buttons/blackButton/BlackButton";
-import IconButton from "@/components/buttons/iconButton/IconButton";
-import ProfileButton from "@/components/buttons/profileButton/ProfileButton";
-import MobileButton from "@/components/buttons/mobileButton/MobileButton";
+import BlackButton from "@/components/UI/buttons/blackButton/BlackButton";
+import IconButton from "@/components/UI/buttons/iconButton/IconButton";
+import ProfileButton from "@/components/UI/buttons/profileButton/ProfileButton";
+import MobileButton from "@/components/UI/buttons/mobileButton/MobileButton";
 import MobileNav from "../mobileNav/MobileNav";
 
 const navs = [

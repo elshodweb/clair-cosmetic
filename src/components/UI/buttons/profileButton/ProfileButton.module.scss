@@ -1,4 +1,4 @@
-@import "./../../../styles/variables.scss";
+@import "./../../../../styles/variables.scss";
 
 .btn {
   display: flex;
@@ -28,7 +28,7 @@
   }
   &::after {
     z-index: 2;
-    background: url(./../../../../public/images/header/arrow.svg) center / 19px
+    background: url(./../../../../../public/images/header/arrow.svg) center / 19px
       16px no-repeat;
   }
 }

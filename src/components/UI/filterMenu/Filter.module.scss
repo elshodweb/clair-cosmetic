@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    border: min(0.15vw, 2px) solid black;
+    border-radius: 5vw;
+    width: min-content;
+    .filter_item {
+        text-align: center;
+        width: min(11.86vw, 166px);
+        height: min(3.07vw, 43px);
+        font-weight: 600;
+        padding: 2.1% 0;
+        transition: all .2s;
+    }
+    .filter_item:not(:last-child) {
+        border-right: min(0.15vw, 2px) solid black;
+    }
+    .filter_item:first-child {
+        border-radius: 5vw 0 0 5vw;
+    }
+    .filter_item:last-child {
+        border-radius: 0 5vw 5vw 0;
+    }
+}
+
+@media (min-width: 375px) {
+    .filter_item {
+        font-size: min(1.14vw, 16px);
+    }
+}
+
+@media (max-width: 374px) {
+    .container {
+        border-radius: 8vw;
+        font-size: 4.28vw;
+    }
+    .filter_item:first-child {
+        border-radius: 8vw 0 0 8vw;
+    }
+    .filter_item:last-child {
+        border-radius: 0 8vw 8vw 0;
+    }
+}

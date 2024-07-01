@@ -3,7 +3,7 @@ import Header from "../UI/header/Header";
 import Footer from "../UI/footer/Footer";
 import style from "./Loyaut.module.scss";
 import { OnlyChildrenProps } from "@/types/children.interface";
-import Container from "./../UI/container/Container";
+import Container from "../container/Container";
 
 const Loyaut: FC<OnlyChildrenProps> = ({ children }) => {
   return (

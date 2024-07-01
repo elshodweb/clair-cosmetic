@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 /*Обнуление*/
 * {
   padding: 0;
@@ -31,6 +33,18 @@ body {
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   background: #000;
+  &::-webkit-scrollbar {
+    width: 25px;
+    background: $white;
+    border: 1px solid $darkGray;
+    transition: all 0.3s ease-in-out;
+    border-radius: 15px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 15px;
+    background: $darkGray;
+    cursor: pointer;
+  }
 }
 input,
 button,
