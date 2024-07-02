@@ -1,0 +1,23 @@
+.wrapper {
+  .highlight {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .pink {
+    background-color: #f78ffa !important;
+    color: #1b1b1a;
+  }
+
+  .blue {
+    background-color: #48a8dd !important;
+    color: #fff;
+  }
+
+  .black {
+    color: #fff;
+    background-color: #1b1b1a !important;
+  }
+}
