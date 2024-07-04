@@ -10,6 +10,16 @@
   border-radius: 50px;
   color: $darkGray;
   position: relative;
+
+  &:hover {
+    background: $darkGray;
+    color: $white;
+    &::after {
+      background: url(./../../../../public/images/UI/arrow-light.svg) center /
+        cover no-repeat;
+    }
+  }
+
   &::after {
     content: "";
     position: absolute;
@@ -21,14 +31,14 @@
   }
 }
 
-@media (max-width:500px) {
-  .link{
+@media (max-width: 500px) {
+  .link {
     padding: 18px 30px;
-    &::after{
+    &::after {
       width: 24px;
       height: 19px;
-      background: url(./../../../../public/images/UI/arrowMobile.svg) center / cover
-        no-repeat;
+      background: url(./../../../../public/images/UI/arrowMobile.svg) center /
+        cover no-repeat;
     }
   }
 }

@@ -12,6 +12,10 @@
   background: transparent;
   color: $darkGray;
   position: relative;
+  &:hover{
+    transition: all .1s ease-in-out;
+    transform: scale(1.06);
+  }
   &::before,
   &::after {
     content: "";

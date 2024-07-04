@@ -11,4 +11,8 @@
   border-radius: 30px;
   background: transparent;
   color: $white;
+  &:hover {
+    transition: all 0.1s ease-in-out;
+    transform: scale(1.2);
+  }
 }

@@ -7,7 +7,6 @@ interface TabProps {
 const MyTabs: FC<TabProps> = ({ data, filterListener }) => {
   const [currentFilter, setCurentFilter] = useState(3);
 
-
   const changeFilter = (index: number) => {
     setCurentFilter(index);
   };
@@ -23,7 +22,7 @@ const MyTabs: FC<TabProps> = ({ data, filterListener }) => {
           key={index}
           style={{
             backgroundColor: `${index === currentFilter ? "#1B1B1A" : ""}`,
-            color: `${index === currentFilter ? "#fff" : "#000"}`,
+            color: `${index === currentFilter ? "#fff" : ""}`,
           }}
           className={styles.filter_item}
           onClick={() => {

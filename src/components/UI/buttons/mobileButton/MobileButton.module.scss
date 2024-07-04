@@ -13,6 +13,11 @@
   background: transparent;
   color: $darkGray;
   position: relative;
+  
+  &:hover{
+    transition: all .1s ease-in-out;
+    transform: scale(1.06);
+  }
   img {
     border-radius: 50%;
     left: 0;

@@ -17,13 +17,17 @@
   margin-bottom: 16px;
   min-width: auto;
   width: 100%;
+  outline: none;
+  &:focus{
+    transition: all .1s ease-in-out;
+   box-shadow: 5px 5px 10px $darkGray;
+  }
 }
 .tabs {
   margin-top: 4px;
   max-width: 100%;
   width: 100%;
   display: flex;
-
 }
 @media (max-width: 730px) {
   .input {
@@ -32,10 +36,5 @@
     background-size: 36px;
     font-size: 30px;
     line-height: 32px;
-  }
-}
-@media (max-width:700px) {
-  .tabs{
-    
   }
 }

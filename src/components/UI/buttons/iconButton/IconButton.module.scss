@@ -12,6 +12,10 @@
   border: 2px solid #000;
   background: transparent;
   color: $darkGray;
+  &:hover{
+    transition: all .1s ease-in-out;
+    transform: scale(1.1);
+  }
 }
 @media (max-width: 500px) {
   .btn {

@@ -35,6 +35,7 @@
 }
 
 .filter_item {
+  cursor: pointer;
   display: block;
   text-align: center;
   font-weight: 600;
@@ -46,4 +47,9 @@
   padding: 12px 20px;
   background: transparent;
   white-space: nowrap;
+  
+  &:hover {
+    background: $darkGray;
+    color: $white;
+  }
 }

@@ -22,6 +22,11 @@
 .price_button {
   white-space: nowrap;
   padding: 8px 20px;
+  &:hover{
+    transition: all .1s ease-in-out;
+   background: #000;
+   color: #fff;
+  }
 }
 
 @media (min-width: 850px) {

@@ -39,6 +39,11 @@
   padding: 12px 20px;
   background: transparent;
   white-space: nowrap;
+  
+  &:hover {
+    background: $darkGray;
+    color: $white;
+  }
 }
 @media (max-width: 730px) {
   .container {

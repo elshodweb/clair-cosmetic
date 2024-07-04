@@ -22,6 +22,11 @@
   font-weight: 500;
   font-size: 16px;
   color: $black;
+  border-bottom: 2px solid transparent;
+  &:hover {
+    transition: all 0.1s ease-in-out;
+    border-bottom: 2px solid $darkGray;
+  }
 }
 .right {
   display: flex;
@@ -33,6 +38,12 @@
 .header .callBtn,
 .header .mobileBtn {
   display: none;
+}
+.logoLink {
+  &:hover {
+    transition: all 0.1s ease-in-out;
+    transform: scale(1.06);
+  }
 }
 
 @media (max-width: 940px) {

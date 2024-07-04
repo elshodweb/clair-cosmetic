@@ -22,7 +22,7 @@ const CardsTab: FC<TabProps> = ({ data, filterListener }) => {
           key={index}
           style={{
             backgroundColor: `${index === currentFilter ? "#1B1B1A" : ""}`,
-            color: `${index === currentFilter ? "#fff" : "#000"}`,
+            color: `${index === currentFilter ? "#fff" : ""}`,
           }}
           className={styles.filter_item}
           onClick={() => {

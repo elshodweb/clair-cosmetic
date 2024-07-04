@@ -4,6 +4,11 @@
   color: $white;
   font-size: 40px;
   line-height: 48px;
+  border-bottom: 2px solid transparent;
+  &:hover {
+    transition: all 0.1s ease-in-out;
+    border-bottom: 2px solid $white;
+  }
 }
 .footer {
   background: $darkGray;
@@ -26,6 +31,10 @@
   line-height: 24px;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+  span:last-of-type {
+    border-bottom: 2px solid $white;
+  }
 }
 .bottom {
   margin-top: 84px;
@@ -55,6 +64,12 @@
     height: 110px;
     background: url(./../../../../public/images/footer/eye.png) center/ cover
       no-repeat;
+  }
+}
+.logo {
+  &:hover {
+    transition: all 0.1s ease-in-out;
+    transform: scale(1.06);
   }
 }
 @media (max-width: 900px) {
