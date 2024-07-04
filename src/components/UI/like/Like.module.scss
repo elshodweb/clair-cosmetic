@@ -1,0 +1,37 @@
+@import "./../../../styles/variables.scss";
+
+.like {
+  background: $darkGray;
+  width: 70px;
+  height: 35px;
+  border-radius: 30px;
+  border: 2px solid #000;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    width: 29px;
+    height: 29px;
+    background: $white;
+    top: 1px;
+    right: 1px;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    background: url("./../../../../public/images/shop/cart_icon-added.svg")
+      center no-repeat;
+  }
+}
+.liked {
+  background: $white;
+  transition: all 0.5s ease-in-out;
+
+  &::after {
+    background: url("./../../../../public/images/shop/cart_icon.svg") center
+      no-repeat;
+    left: 2px;
+    transition: all 0.3s ease-in-out;
+  }
+}

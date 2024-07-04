@@ -27,6 +27,11 @@
     background: $darkGray;
   }
 }
+@media (max-width: 600px) {
+  .container::-webkit-scrollbar {
+    display: none;
+  }
+}
 
 .filter_item {
   display: block;
@@ -41,4 +46,3 @@
   background: transparent;
   white-space: nowrap;
 }
-

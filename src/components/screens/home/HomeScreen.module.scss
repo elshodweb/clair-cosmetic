@@ -22,6 +22,11 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+.shop,
+.masters {
+  margin-bottom: 56px;
+}
+
 @media (max-width: 500px) {
   .hi {
     margin-top: 17px;
