@@ -40,15 +40,12 @@
   background: transparent;
   white-space: nowrap;
 }
-// @media (max-width: 730px) {
-//   .container {
-//     display: flex;
-//     flex-wrap: nowrap;
-//     overflow-y: auto;
-//   }
-// }
-// @media (max-width: 600px) {
-//   .container::-webkit-scrollbar {
-//     display: none;
-//   }
-// }
+@media (max-width: 730px) {
+  .container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-y: auto;
+    max-width: 90vw;
+  }
+}
+

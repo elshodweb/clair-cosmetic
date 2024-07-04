@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./Header.module.scss";
 import BlackButton from "@/components/UI/buttons/blackButton/BlackButton";
 import IconButton from "@/components/UI/buttons/iconButton/IconButton";
@@ -16,7 +16,16 @@ const navs = [
 ];
 const Header = () => {
   const [isOpenNav, setIsOpenNav] = useState<boolean>(false);
-
+  useEffect(() => {
+    if (isOpenNav) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [isOpenNav]);
   return (
     <header className={style.header}>
       <div className={style.left}>

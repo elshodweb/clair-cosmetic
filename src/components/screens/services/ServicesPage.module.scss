@@ -1,8 +1,6 @@
 @import "./../../../styles/variables.scss";
 .wrapper {
-  background: url(./../../../../public/images/servicesbg/filterBG.png) -250px 790px /
-      auto no-repeat,
-    $green;
+  background: $green;
 }
 .filters {
   max-width: 663px;
@@ -23,6 +21,8 @@
   justify-content: space-between;
   align-items: stretch;
   padding-bottom: 56px;
+  background: url(./../../../../public/images/servicesbg/filterBG.png) -260px bottom  /
+    auto no-repeat;
 }
 
 @media (max-width: 1320px) {
@@ -35,6 +35,7 @@
     padding-top: 26px;
   }
   .wrapper {
+    overflow: hidden;
     background: url(./../../../../public/images/servicesbg/mirror.png) right 0%
         no-repeat,
       url(./../../../../public/images/servicesbg/hand.png) left
@@ -53,6 +54,9 @@
       background: url(./../../../../public/images/servicesbg/parfume.png) center /
         auto no-repeat;
     }
+  }
+  .row{
+    background: none;
   }
 }
 @media (max-width: 660px) {
