@@ -2,15 +2,14 @@
 
 .container {
   display: flex;
-  justify-content: space-between;
+  margin-top: 4px;
+  justify-content: start;
   gap: 4px;
-  align-items: center;
-  max-width: max-content;
-  width: 100%;
-  overflow-x: auto;
+  align-items: start;
+  flex-wrap: wrap;
   margin-bottom: 20px;
   padding-bottom: 10px;
-  overflow-y: hidden;
+
   &::-webkit-scrollbar {
     background: transparent;
     height: 13px;
@@ -28,12 +27,6 @@
     background: $darkGray;
   }
 }
-@media (max-width: 600px) {
-  .container::-webkit-scrollbar {
-    display: none;
-  }
-}
-
 .filter_item {
   display: block;
   text-align: center;
@@ -47,3 +40,15 @@
   background: transparent;
   white-space: nowrap;
 }
+// @media (max-width: 730px) {
+//   .container {
+//     display: flex;
+//     flex-wrap: nowrap;
+//     overflow-y: auto;
+//   }
+// }
+// @media (max-width: 600px) {
+//   .container::-webkit-scrollbar {
+//     display: none;
+//   }
+// }

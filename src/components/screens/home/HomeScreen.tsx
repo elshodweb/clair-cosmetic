@@ -11,6 +11,8 @@ import MasterContainer from "@/components/UI/masters/MasterContainer/MasterConta
 import NewsDecor from "@/components/UI/news/NewsDecor/NewsDecor";
 import NewsCards from "@/components/UI/news/NewsCards/NewsCards";
 import Salon from "@/components/UI/salon/Salon";
+import Link from "next/link";
+import DownloadApp from "@/components/UI/buttons/DownloadApp/DownloadApp";
 
 const dataShops = [
   { title: "Персональные предложения" },
@@ -45,6 +47,7 @@ const HomeScreen = () => {
         </div>
         <div className={style.trends}>
           <SwiperComp />
+          <DownloadApp />
         </div>
         <div className={style.services}>
           <Title>Услуги</Title>

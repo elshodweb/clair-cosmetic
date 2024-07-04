@@ -1,0 +1,59 @@
+@import "./../../../../styles/variables.scss";
+
+.download {
+  display: block;
+  padding: 20px;
+  background: $lightYellow;
+  border-radius: 30px;
+  position: relative;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  color: $darkGray;
+  width: 100%;
+  margin-bottom: 20px;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+    display: block;
+    width: 100px;
+    height: 70px;
+    background: url(./../../../../../public/images/footer/eye.png) center/ cover
+      no-repeat;
+    @media (max-width: 390px) {
+      background-size: 70px;
+      left: 10px;
+    }
+  }
+}
+.title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+}
+.subtitle {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.4px;
+  margin-bottom: 24px;
+}
+.btn {
+  height: 43px;
+  padding: 12px 30px;
+  border-radius: 30px;
+  background: $darkGray;
+  color: $white;
+  margin-left: auto;
+  display: block;
+
+  @media (max-width: 390px) {
+    padding: 12px 20px;
+  }
+}
+@media (min-width: 600px) {
+  .download {
+    display: none;
+  }
+}
