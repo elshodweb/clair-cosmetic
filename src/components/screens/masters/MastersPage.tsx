@@ -1,21 +1,17 @@
 import React from "react";
-import style from "./ServicesPage.module.scss";
+import style from "./MastersPage.module.scss";
 import Loyaut from "@/components/loyaut/Loyaut";
 import Title from "@/components/UI/title/Title";
 import SwiperComp from "@/components/UI/slider/SwiperComp";
 import Filters from "@/components/UI/filters/Filters";
 import ServiceCard from "./components/ServiceCard";
 
-const ServicesPage = () => {
+const MastersPage = () => {
   return (
     <div className={style.wrapper}>
       <Loyaut>
-        <div className={style.title}>
-          <Title>Услуги</Title>
-        </div>
-        <div className={style.slider}>
-          <SwiperComp />
-        </div>
+        <Title>Услуги</Title>
+        <SwiperComp />
         <div className={style.row}>
           <div className={style.filters}>
             <Filters />
@@ -35,4 +31,4 @@ const ServicesPage = () => {
   );
 };
 
-export default ServicesPage;
+export default MastersPage;

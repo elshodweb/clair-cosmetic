@@ -1,0 +1,27 @@
+@import "./../../../styles/variables.scss";
+.wrapper {
+  background: $green;
+}
+.filters {
+  max-width: 663px;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  // width: 100%;
+  margin: 0 auto;
+}
+.row {
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+  padding-bottom: 56px;
+}
+
+@media (max-width: 1320px) {
+  .row {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

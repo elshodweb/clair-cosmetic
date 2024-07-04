@@ -1,6 +1,8 @@
 @import "./../../../styles/variables.scss";
 .wrapper {
-  background: $green;
+  background: url(./../../../../public/images/servicesbg/filterBG.png) -250px 790px /
+      auto no-repeat,
+    $green;
 }
 .filters {
   max-width: 663px;
@@ -9,13 +11,17 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  // width: 100%;
   margin: 0 auto;
+}
+.title {
+  padding-top: 137px;
+  padding-bottom: 12px;
 }
 .row {
   display: flex;
   gap: 14px;
   justify-content: space-between;
+  align-items: stretch;
   padding-bottom: 56px;
 }
 
@@ -23,5 +29,43 @@
   .row {
     flex-wrap: wrap;
     justify-content: center;
+    padding-bottom: 220px;
+  }
+  .title {
+    padding-top: 26px;
+  }
+  .wrapper {
+    background: url(./../../../../public/images/servicesbg/mirror.png) right 0%
+        no-repeat,
+      url(./../../../../public/images/servicesbg/hand.png) left
+        calc(100% - 240px) / auto no-repeat,
+      $green;
+
+    position: relative;
+    &::before {
+      content: "";
+      z-index: 2;
+      width: 185px;
+      height: 306px;
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      background: url(./../../../../public/images/servicesbg/parfume.png) center /
+        auto no-repeat;
+    }
+  }
+}
+@media (max-width: 660px) {
+  .slider {
+    display: none;
+  }
+}
+@media (max-width: 599px) {
+  .wrapper {
+    background: url(./../../../../public/images/servicesbg/mirror.png) right 0%
+        no-repeat,
+      url(./../../../../public/images/servicesbg/hand.png) left
+        calc(100% - 140px) / auto no-repeat,
+      $green;
   }
 }
