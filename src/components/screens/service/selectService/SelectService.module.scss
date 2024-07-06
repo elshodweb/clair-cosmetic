@@ -1,0 +1,49 @@
+@import "./../../../../styles/variables.scss";
+
+.wrapper {
+  background: $white;
+  padding: 45px;
+  border-radius: 30px;
+  display: flex;
+  gap: 60px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  max-width: max-content;
+}
+.descr {
+  max-width: 560px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.basket {
+  flex: 0 0 50%;
+}
+.selects {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 150px;
+}
+.basket {
+}
+@media (max-width: 1200px) {
+  .wrapper {
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 20px auto;
+    gap: 20px;
+  }
+  .descr {
+  }
+  .selects{
+    
+  margin-bottom: 40px;
+  }
+}
+@media (max-width: 580px) {
+.wrapper{
+  padding: 30px 20px;
+}
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./ServiceCard.module.scss";
+import Link from "next/link";
 const ServiceCard = () => {
   return (
     <div className={styles.service}>
@@ -23,7 +24,7 @@ const ServiceCard = () => {
         </div>
         <div className={styles.mobPrice}>от 1000 ₽</div>
 
-        <button className={styles.btn}>Записаться</button>
+        <Link href={'/services/'+"asd"} className={styles.btn}>Записаться</Link>
       </div>
     </div>
   );

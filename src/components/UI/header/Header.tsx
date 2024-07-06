@@ -6,7 +6,7 @@ import BlackButton from "@/components/UI/buttons/blackButton/BlackButton";
 import IconButton from "@/components/UI/buttons/iconButton/IconButton";
 import ProfileButton from "@/components/UI/buttons/profileButton/ProfileButton";
 import MobileButton from "@/components/UI/buttons/mobileButton/MobileButton";
-import MobileNav from "../mobileNav/MobileNav";
+import MobileNav from "./mobileNav/MobileNav";
 
 const navs = [
   { path: "/services", name: "Услуги" },

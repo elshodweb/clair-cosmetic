@@ -1,0 +1,50 @@
+@import "./../../../../styles/variables.scss";
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  text-align: left;
+  padding: 12px 90px 12px 30px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 30px;
+  border: 2px solid #000;
+  background: $darkGray;
+  color: $white;
+  position: relative;
+  &:hover {
+    transition: all 0.1s ease-in-out;
+    transform: scale(1.06);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 19px;
+    border-radius: 50%;
+    display: block;
+    right: 33px;
+  }
+  &::after {
+    z-index: 2;
+    background: url(./../../../../../public/images/UI/arrow-light.svg) center /
+      100% no-repeat;
+  }
+}
+@media (max-width: 580px) {
+  .btn {
+    background: $white;
+    color: $black;
+    padding-right: 60px;
+    max-width: max-content;
+    margin-left: auto;
+    &::after {
+      right: 0px;
+      z-index: 2;
+      background: url(./../../../../../public/images/header/arrow.svg) center /
+        24px 19px no-repeat;
+    }
+  }
+}

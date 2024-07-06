@@ -3,7 +3,7 @@ import style from "./MastersPage.module.scss";
 import Loyaut from "@/components/loyaut/Loyaut";
 import Title from "@/components/UI/title/Title";
 import Filters from "@/components/UI/filters/Filters";
-import MastersCards from "@/components/UI/masters/MastersCards/MastersCards";
+import MastersCards from "@/components/screens/home/masters/MastersCards/MastersCards";
 
 const MastersPage = () => {
   return (

@@ -1,4 +1,4 @@
-@import "./../../../../styles/variables.scss";
+@import "./../../../../../styles/variables.scss";
 
 .row {
   margin-bottom: 24px;
@@ -14,7 +14,7 @@
   position: relative;
   padding-right: 200px;
   width: 100%;
-  background: url(./../../../../../public/images/news/1.png) right bottom
+  background: url(./../../../../../../public/images/news/1.png) right bottom
       no-repeat,
     $white;
   &::after {
@@ -26,7 +26,7 @@
     height: 43px;
     border: 2px solid #1b1b1a;
     border-radius: 30px;
-    background: url(./../../../../../public/images/UI/arrow.svg) center
+    background: url(./../../../../../../public/images/UI/arrow.svg) center
       no-repeat;
   }
 }
@@ -71,16 +71,16 @@
     height: 43px;
     border: 2px solid #1b1b1a;
     border-radius: 30px;
-    background: url(./../../../../../public/images/UI/arrow.svg) center
+    background: url(./../../../../../../public/images/UI/arrow.svg) center
       no-repeat;
   }
   &:first-of-type {
-    background: url(./../../../../../public/images/news/2.png) right bottom
+    background: url(./../../../../../../public/images/news/2.png) right bottom
         no-repeat,
       $white;
   }
   &:last-of-type {
-    background: url(./../../../../../public/images/news/3.png) right bottom
+    background: url(./../../../../../../public/images/news/3.png) right bottom
         no-repeat,
       $white;
     & .title {

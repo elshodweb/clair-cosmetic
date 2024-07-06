@@ -1,0 +1,22 @@
+@import "./../../../styles/variables.scss";
+.wrapper {
+  background: url(./../../../../public/images/servicesbg/cloud.png) right 80px /
+      auto no-repeat,
+    url(./../../../../public/images/servicesbg/lips.png) right bottom / auto
+      no-repeat,
+    $green;
+}
+.subtitle {
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 32px;
+  margin-top: 86px;
+}
+.masters {
+}
+@media (max-width: 580px) {
+  .subtitle {
+    font-size: 20px;
+    margin-top: 50px;
+  }
+}
