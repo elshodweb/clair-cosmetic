@@ -21,8 +21,8 @@ const MyTabs: FC<TabProps> = ({ data, filterListener }) => {
         <button
           key={index}
           style={{
-            backgroundColor: `${index === currentFilter ? "#1B1B1A" : ""}`,
-            color: `${index === currentFilter ? "#fff" : ""}`,
+            backgroundColor: `${index === currentFilter ? "#1B1B1A;" : ";"}`,
+            color: `${index === currentFilter ? "#fff;" : ";"}`,
           }}
           className={styles.filter_item}
           onClick={() => {

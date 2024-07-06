@@ -1,17 +1,18 @@
 import Image from "next/image";
 import React, { FC } from "react";
-import styles from "./MasterItem.module.scss";
+import styles from "./ServiceMasterItem.module.scss";
 
 interface master {
   id: number;
   name: string;
   profession: string;
   img: string;
+  address: string;
 }
 interface MasterProps {
   data: master;
 }
-const MasterItem: FC<MasterProps> = ({ data }) => {
+const ServiceMasterItem: FC<MasterProps> = ({ data }) => {
   return (
     <div className={styles.wrapper}>
       <Image
@@ -23,15 +24,13 @@ const MasterItem: FC<MasterProps> = ({ data }) => {
       />
       <button className={styles.like}></button>
 
-      <div className={styles.row}>
-        <div className={styles.info}>
-          <div className={styles.name}>{data.name}</div>
-          <div className={styles.profession}>{data.profession}</div>
-        </div>
-        <button className={styles.btn}>Запись</button>
+      <div className={styles.info}>
+        <div className={styles.name}>{data.name}</div>
+        <div className={styles.profession}>{data.profession}</div>
+        <div className={styles.address}>{data.address}</div>
       </div>
     </div>
   );
 };
 
-export default MasterItem;
+export default ServiceMasterItem;

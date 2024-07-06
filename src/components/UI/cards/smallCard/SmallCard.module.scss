@@ -42,7 +42,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: flex-end;
 }
 .price {
   font-size: 20px;
@@ -70,7 +70,7 @@
     display: none;
   }
   .row {
-    justify-content: end;
+    justify-content: flex-end;
   }
   .img {
     position: relative;

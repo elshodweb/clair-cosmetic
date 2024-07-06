@@ -39,7 +39,7 @@ const Header = () => {
         </Link>
         <nav className={style.nav}>
           {navs.map((i) => (
-            <Link className={style.link} id={i.path} href={i.path}>
+            <Link key={i.path} className={style.link} id={i.path} href={i.path}>
               {i.name}
             </Link>
           ))}

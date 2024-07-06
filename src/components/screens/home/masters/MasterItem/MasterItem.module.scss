@@ -1,9 +1,9 @@
 @import "./../../../../../styles/variables.scss";
 
 .wrapper {
+  position: relative;
   margin: 0 auto;
   max-width: 324px;
-  position: relative;
 }
 .like {
   position: absolute;

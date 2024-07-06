@@ -16,6 +16,7 @@ const SmallCard = () => {
           alt="product img"
           height={240}
           width={160}
+          
         />
       </div>
       <div className={styles.row}>

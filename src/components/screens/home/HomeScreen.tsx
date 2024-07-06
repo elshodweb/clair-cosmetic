@@ -31,10 +31,8 @@ const dataMasters = [
 ];
 const HomeScreen = () => {
   function filterListener(params: string) {
-    console.log(params);
   }
   function filterListenerMaster(params: string) {
-    console.log(params);
   }
   return (
     <div className={style.wrapper}>

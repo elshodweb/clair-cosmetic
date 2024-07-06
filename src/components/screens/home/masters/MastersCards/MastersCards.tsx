@@ -49,7 +49,7 @@ const MastersCards = () => {
   return (
     <div className={styles.row}>
       {data.map((i) => (
-        <MasterItem data={i} />
+        <MasterItem key={i.id} data={i} />
       ))}
     </div>
   );

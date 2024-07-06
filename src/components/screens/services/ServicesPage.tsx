@@ -4,7 +4,7 @@ import Loyaut from "@/components/loyaut/Loyaut";
 import Title from "@/components/UI/title/Title";
 import SwiperComp from "@/components/UI/slider/SwiperComp";
 import Filters from "@/components/UI/filters/Filters";
-import ServiceCard from "./components/ServiceCard";
+import ServiceCard from "../../UI/serviceCard/ServiceCard";
 
 const ServicesPage = () => {
   return (

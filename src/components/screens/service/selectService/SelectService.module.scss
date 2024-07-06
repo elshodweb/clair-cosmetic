@@ -26,8 +26,6 @@
   width: 100%;
   margin-bottom: 150px;
 }
-.basket {
-}
 @media (max-width: 1200px) {
   .wrapper {
     flex-wrap: wrap;
@@ -35,15 +33,12 @@
     margin: 20px auto;
     gap: 20px;
   }
-  .descr {
-  }
-  .selects{
-    
-  margin-bottom: 40px;
+  .selects {
+    margin-bottom: 40px;
   }
 }
 @media (max-width: 580px) {
-.wrapper{
-  padding: 30px 20px;
-}
+  .wrapper {
+    padding: 30px 20px;
+  }
 }

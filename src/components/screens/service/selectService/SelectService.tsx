@@ -22,13 +22,12 @@ const SelectService = () => {
       <div className={styles.basket}>
         <div className={styles.selects}>
           {array &&
-            array.map((i) => (
+            array.map((i,index) => (
               <MyInput
-                key={i.name}
+                key={index}
                 name={i.name}
                 price={i.price}
                 onChange={(i) => {
-                  console.log(i);
                 }}
               />
             ))}

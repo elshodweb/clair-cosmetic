@@ -16,6 +16,7 @@ const BigCard = () => {
           alt="product img"
           height={240}
           width={160}
+          priority
         />
       </div>
       <div className={styles.row}>

@@ -56,6 +56,7 @@ const SwiperComp = () => {
             alt="trends"
             width={324}
             height={420}
+            priority
           />
         </SwiperSlide>
       ))}

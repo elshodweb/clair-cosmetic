@@ -1,4 +1,4 @@
-@import "./../../../../styles/variables.scss";
+@import "./../../../styles/variables.scss";
 
 .service {
   max-width: 663px;
@@ -39,7 +39,7 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  align-items: end;
+  align-items: flex-end;
 }
 .btn {
   padding: 12px 60px;
@@ -47,10 +47,10 @@
   border-radius: 30px;
   background: $white;
   border: 2px solid #000;
-  &:hover{
-    transition: all .1s ease-in-out;
-   background: #000;
-   color: #fff;
+  &:hover {
+    transition: all 0.1s ease-in-out;
+    background: #000;
+    color: #fff;
   }
 }
 .tags,

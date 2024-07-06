@@ -4,6 +4,7 @@ import Title from "@/components/UI/title/Title";
 import SelectService from "./selectService/SelectService";
 import Loyaut from "@/components/loyaut/Loyaut";
 import SmallTitle from "@/components/UI/smallTitle/SmallTitle";
+import Masters from "./masters/Masters";
 const SingleServicePage = () => {
   return (
     <div className={styles.wrapper}>
@@ -13,7 +14,10 @@ const SingleServicePage = () => {
         <SelectService />
         <div className={styles.masters}>
           <SmallTitle>Кто делает</SmallTitle>
-          
+          <Masters />
+        </div>
+        <div className={styles.take}>
+          <SmallTitle>Возьми вместе</SmallTitle>
         </div>
       </Loyaut>
     </div>

@@ -3,9 +3,9 @@
 .container {
   display: flex;
   margin-top: 4px;
-  justify-content: start;
+  justify-content: flex-start;
   gap: 4px;
-  align-items: start;
+  align-items: flex-start;
   flex-wrap: wrap;
   margin-bottom: 20px;
   padding-bottom: 10px;
