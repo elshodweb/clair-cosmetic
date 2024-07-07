@@ -10,8 +10,9 @@ interface master {
 }
 interface MasterProps {
   data: master;
+  setMaster: (id: number | null) => void;
 }
-const MasterItem: FC<MasterProps> = ({ data }) => {
+const MasterItem: FC<MasterProps> = ({ data,setMaster }) => {
   return (
     <div className={styles.wrapper}>
       <Image
@@ -28,7 +29,7 @@ const MasterItem: FC<MasterProps> = ({ data }) => {
           <div className={styles.name}>{data.name}</div>
           <div className={styles.profession}>{data.profession}</div>
         </div>
-        <button className={styles.btn}>Запись</button>
+        <button onClick={()=>{setMaster(data.id)}} className={styles.btn}>Запись</button>
       </div>
     </div>
   );

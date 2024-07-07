@@ -30,10 +30,8 @@ const dataMasters = [
   { title: "Парикмахеры" },
 ];
 const HomeScreen = () => {
-  function filterListener(params: string) {
-  }
-  function filterListenerMaster(params: string) {
-  }
+  function filterListener(params: string) {}
+  function filterListenerMaster(params: string) {}
   return (
     <div className={style.wrapper}>
       <Loyaut>
@@ -50,7 +48,7 @@ const HomeScreen = () => {
         <div className={style.services}>
           <Title>Услуги</Title>
           <AccordionUsage />
-          <ArrowLink href="/">Посмотреть магазин</ArrowLink>
+          <ArrowLink href="/services">Все услуги</ArrowLink>
         </div>
         <div className={style.shop}>
           <div className={style.row}>
@@ -58,7 +56,7 @@ const HomeScreen = () => {
             <MyTabs filterListener={filterListener} data={dataShops} />
           </div>
           <ShopCards />
-          <ArrowLink href="/" children="Посмотреть магазин" />
+          <ArrowLink href="/shop" children="Посмотреть магазин" />
         </div>
         <div className={style.masters}>
           <div className={style.row}>
@@ -66,12 +64,12 @@ const HomeScreen = () => {
             <MyTabs filterListener={filterListenerMaster} data={dataMasters} />
           </div>
           <MasterContainer />
-          <ArrowLink href="/" children="Все мастера" />
+          <ArrowLink href="/masters" children="Все мастера" />
         </div>
         <div className={style.masters}>
           <NewsDecor />
           <NewsCards />
-          <ArrowLink href="/" children="Все новости" />
+          <ArrowLink href="/news" children="Все новости" />
         </div>
         <div className={style.salon}>
           <Title>салоны</Title>

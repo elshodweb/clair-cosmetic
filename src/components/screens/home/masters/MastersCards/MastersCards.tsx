@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MasterItem from "../MasterItem/MasterItem";
 import styles from "./MastersCards.module.scss";
+import MasterModal from "@/components/UI/masterModal/MasterModal";
 const data = [
   {
     id: 1,
@@ -46,11 +47,26 @@ const data = [
   },
 ];
 const MastersCards = () => {
+  const [id, setId] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (id !== null) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [id]);
+
   return (
     <div className={styles.row}>
       {data.map((i) => (
-        <MasterItem key={i.id} data={i} />
+        <MasterItem key={i.id} setMaster={setId} data={i} />
       ))}
+      <MasterModal id={id} setMaster={setId} />
     </div>
   );
 };

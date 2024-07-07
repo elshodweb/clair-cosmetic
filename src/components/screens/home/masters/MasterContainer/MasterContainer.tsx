@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./MasterContainer.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
-import Image from "next/image";
 import MasterItem from "../MasterItem/MasterItem";
+import MasterModal from "@/components/UI/masterModal/MasterModal";
 const data = [
   {
     id: 1,
@@ -48,7 +48,9 @@ const data = [
     img: "/images/masters/master.png",
   },
 ];
+
 const MasterContainer = () => {
+  const [id, setId] = useState<number | null>(null);
   return (
     <div className={styles.wrapper}>
       <Swiper
@@ -74,9 +76,11 @@ const MasterContainer = () => {
       >
         {data.map((i) => (
           <SwiperSlide className={styles.slide} key={i.id}>
-            <MasterItem data={i} />
+            <MasterItem setMaster={setId} data={i} />
           </SwiperSlide>
         ))}
+
+        <MasterModal id={id} setMaster={setId} />
       </Swiper>
     </div>
   );
