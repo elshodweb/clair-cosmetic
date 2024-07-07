@@ -101,3 +101,25 @@
   overflow: visible;
   transform: scale(1) translate(0px, 0);
 }
+@media (max-width: 580px) {
+  .name {
+    font-size: 16px;
+  }
+  .price {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 350px) {
+  .name {
+    font-size: 14px;
+  }
+  .price {
+    font-size: 15px;
+  }
+  .btn {
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+  }
+}

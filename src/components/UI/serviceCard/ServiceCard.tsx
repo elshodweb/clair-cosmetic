@@ -1,13 +1,19 @@
-import React from "react";
+import React, { FC } from "react";
 import styles from "./ServiceCard.module.scss";
 import Link from "next/link";
-const ServiceCard = () => {
+import cn from "classnames";
+interface ServiceCardProps {
+  greenTitle?: boolean;
+}
+const ServiceCard: FC<ServiceCardProps> = ({ greenTitle }) => {
   return (
     <div className={styles.service}>
       <div className={styles.row}>
         <div className={styles.info}>
           <div className={styles.name}>Уход за кожей</div>
-          <div className={styles.subName}>косметология</div>
+          <div className={cn(styles.subName, greenTitle ? styles.green : "")}>
+            косметология
+          </div>
           <div className={styles.mobTags}>
             <span>HydraFacial</span>
             <span>Icoone Laser</span>
@@ -24,7 +30,9 @@ const ServiceCard = () => {
         </div>
         <div className={styles.mobPrice}>от 1000 ₽</div>
 
-        <Link href={'/services/'+"asd"} className={styles.btn}>Записаться</Link>
+        <Link href={"/services/" + "asd"} className={styles.btn}>
+          Записаться
+        </Link>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import SingleServicePage from "@/components/screens/service/SingleServicePage";
+import SingleServicePage from "@/components/screens/singleService/SingleServicePage";
 import { useRouter } from "next/router";
 
 export default function service() {

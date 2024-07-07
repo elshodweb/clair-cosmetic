@@ -40,5 +40,9 @@
       background: url(./../../../../public/images/UI/arrowMobile.svg) center /
         cover no-repeat;
     }
+    &:hover::after {
+      background: url(./../../../../public/images/UI/arrowMobile-light.svg)
+        center / cover no-repeat;
+    }
   }
 }

@@ -1,0 +1,9 @@
+.row {
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+.slide {
+  & > * {
+    margin: 0 auto;
+  }
+}
