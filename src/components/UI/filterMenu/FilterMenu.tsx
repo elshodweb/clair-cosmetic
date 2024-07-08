@@ -22,8 +22,8 @@ const FilterMenu: FC<props> = ({ data, filterListener }) => {
           <div
             key={index}
             style={{
-              backgroundColor: `${index == currentFilter ? "#1B1B1A;" : ";"}`,
-              color: `${index == currentFilter ? "#fff;" : ";"}`,
+              backgroundColor: `${index == currentFilter ? "#1B1B1A" : "transparent"}`,
+              color: `${index == currentFilter ? "#fff" : "#000"}`,
             }}
             className={styles.filter_item}
             onClick={() => {

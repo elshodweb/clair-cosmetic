@@ -19,8 +19,8 @@
   font-weight: 500;
   line-height: 19.2px;
   &:hover {
-    background: $darkGray;
-    color: $white;
+    background: $darkGray !important;
+    color: $white !important;
   }
 }
 .filter_item:not(:last-child) {

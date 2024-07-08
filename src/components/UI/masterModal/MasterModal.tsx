@@ -4,8 +4,7 @@ import BlackButton from "../buttons/blackButton/BlackButton";
 import IconButton from "../buttons/iconButton/IconButton";
 import Image from "next/image";
 import cn from "classnames";
-import Like from "../like/Like";
-import classNames from "classnames";
+import MySmallInput from "../mySmallInput/MySmallInput";
 interface MasterModalProps {
   id: number | null;
   setMaster: (id: number | null) => void;
@@ -13,8 +12,13 @@ interface MasterModalProps {
 const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
   return (
-    <div className={cn(styles.wrapper, id ? styles.opened : "")}>
-      <div className={styles.screen}>
+    <div
+      onClick={(e) => {
+        setMaster(null);
+      }}
+      className={cn(styles.wrapper, id ? styles.opened : "")}
+    >
+      <div onClick={(e) => e.stopPropagation()} className={styles.screen}>
         <div className={styles.content}>
           <div className={styles.head}>
             <div className={styles.about}>О мастере</div>
@@ -40,7 +44,7 @@ const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
               alt="master image"
             />
             <button
-              className={classNames(styles.like, isLiked ? styles.liked : "")}
+              className={cn(styles.like, isLiked ? styles.liked : "")}
               onClick={() => {
                 setIsLiked(!isLiked);
               }}
@@ -53,10 +57,97 @@ const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
             клиентов только комплименты. Отметим, заслуженные. Пока вы это
             читаете, Саша услышал ещё один комплимент.
           </p>
+          <div className={styles.location}>
+            <div className={styles.locationImg}>
+              <Image
+                src={"/images/masters/location.png"}
+                alt="location img"
+                width={66}
+                height={66}
+              />
+            </div>
+            <div className={styles.locationName}>
+              <strong>Воронеж</strong>
+              <span>Проспект Патриотов, дом 4А</span>
+            </div>
+          </div>
+          <h3 className={styles.title} style={{ marginBottom: 16 }}>
+            Услуги
+          </h3>
+          <p className={styles.descr}>
+            Услуги, которые делает мастер Анастасия
+          </p>
+          <div className={styles.selects}>
+            <MySmallInput
+              small={true}
+              name="HydraFacial Базовый сервис"
+              price="5250 ₽"
+              onChange={(e) => {
+                console.log(e);
+              }}
+            />
+            <MySmallInput
+              small={true}
+              name="HydraFacial Базовый сервис"
+              price="5250 ₽"
+              onChange={(e) => {
+                console.log(e);
+              }}
+            />
+            <MySmallInput
+              small={true}
+              name="HydraFacial Базовый сервис"
+              price="5250 ₽"
+              onChange={(e) => {
+                console.log(e);
+              }}
+            />
+            <MySmallInput
+              small={true}
+              name="HydraFacial Базовый сервис"
+              price="5250 ₽"
+              onChange={(e) => {
+                console.log(e);
+              }}
+            />
+            <MySmallInput
+              small={true}
+              name="HydraFacial Базовый сервис"
+              price="5250 ₽"
+              onChange={(e) => {
+                console.log(e);
+              }}
+            />
+            <MySmallInput
+              small={true}
+              name="HydraFacial Базовый сервис"
+              price="5250 ₽"
+              onChange={(e) => {
+                console.log(e);
+              }}
+            />
+            <MySmallInput
+              small={true}
+              name="HydraFacial Базовый сервис"
+              price="5250 ₽"
+              onChange={(e) => {
+                console.log(e);
+              }}
+            />
+          </div>
+          <h3 className={styles.title} style={{ marginBottom: 16 }}>
+            Квалификация:
+          </h3>
+          <p className={styles.descr}>
+            УЦ Akzent, обучение медицинскому аппаратному педикюру, маникюру и
+            наращиванию ногтей 2017 г. УЦ Akzent, обучение медицинскому
+            аппаратному педикюру, маникюру и наращиванию ногтей 2017 г.
+          </p>
         </div>
-        <div className={styles.btn}>
-          <BlackButton>Записаться к мастеру</BlackButton>
-        </div>
+      </div>
+
+      <div onClick={(e) => e.stopPropagation()} className={styles.btn}>
+        <BlackButton>Записаться к мастеру</BlackButton>
       </div>
     </div>
   );

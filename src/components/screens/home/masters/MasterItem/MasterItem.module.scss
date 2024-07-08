@@ -4,6 +4,7 @@
   position: relative;
   margin: 0 auto;
   max-width: 324px;
+  width: 100%;
 }
 .like {
   position: absolute;
@@ -25,6 +26,8 @@
 .img {
   border-radius: 30px;
   overflow: hidden;
+  width: 100%;
+  height: auto;
 }
 .row {
   display: flex;

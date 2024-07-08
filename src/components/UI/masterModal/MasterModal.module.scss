@@ -4,10 +4,11 @@
   position: fixed;
   right: 0;
   top: 0;
-  height: 100%;
+  height: 100vh;
   background: $darkGrayOpacity;
   width: 0;
-  z-index: 60000;
+  z-index: 2;
+  overflow-y: auto;
 }
 .screen {
   background: $white;
@@ -15,7 +16,7 @@
   margin-left: auto;
   min-height: 100%;
   padding: 45px 55px;
-  z-index: 60000;
+  z-index: 2;
   position: relative;
   opacity: 0;
   visibility: hidden;
@@ -31,6 +32,35 @@
   transform: scale(1) translate(0vw, 0);
   transition: all 0.3s ease-in-out;
 }
+.btn {
+  position: fixed;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    #ffffff 50%,
+    #ffffff 100%
+  );
+  width: 100%;
+  max-width: 473px;
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  right: 0;
+  z-index: 200;
+  padding-top: 100px;
+  padding-bottom: 65px;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(100vw, 0);
+}
+.opened .btn {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0vw, 0);
+  transition: all 0.3s ease-in-out;
+}
 .head {
   display: flex;
   justify-content: space-between;
@@ -39,11 +69,18 @@
   margin-bottom: 16px;
   position: relative;
   margin-top: 16px;
+  img {
+    width: 100%;
+    height: auto;
+  }
 }
 .about {
   font-size: 30px;
   font-weight: 500;
   line-height: 36px;
+}
+.content {
+  margin-bottom: 130px;
 }
 
 .like {
@@ -62,4 +99,42 @@
 }
 .like.liked {
   background-image: url(./../../../../public/images/masters/favourite-fill.png);
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 32px;
+  margin-bottom: 8px;
+}
+.prof {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 38px;
+}
+.descr {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 16px;
+}
+.location {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.locationImg {
+}
+.locationName {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+}
+@media (max-width: 400px) {
+  .screen {
+    padding: 40px 20px;
+  }
 }

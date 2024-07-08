@@ -41,8 +41,8 @@
   white-space: nowrap;
   
   &:hover {
-    background: $darkGray;
-    color: $white;
+    background: $darkGray !important;
+    color: $white !important;
   }
 }
 @media (max-width: 730px) {
