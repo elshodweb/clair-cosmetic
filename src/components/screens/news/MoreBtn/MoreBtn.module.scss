@@ -1,0 +1,50 @@
+@import "./../../../../styles/variables.scss";
+
+.link {
+  display: block;
+  border: 2px solid $darkGray;
+  padding: 30px 50px;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  border-radius: 50px;
+  color: $darkGray;
+  position: relative;
+  width: 100%;
+  background: transparent;
+  text-align: left;
+  margin-bottom: 30px;
+  &:hover {
+    background: $darkGray;
+    color: $white;
+    &::after {
+      background: url(./../../../../../public/images/UI/arrowMobile-light.svg)
+        center / cover no-repeat;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 50px;
+    width: 25px;
+    height: 20px;
+    transform: rotate(90deg);
+    background: url(./../../../../../public/images/UI/arrowMobile.svg) center /
+      cover no-repeat;
+  }
+}
+
+@media (max-width: 500px) {
+  .link {
+    padding: 18px 30px;
+    &::after {
+      top: 50%;
+      transform: translate(0, -50%) rotate(90deg);
+      width: 20px;
+      height: 15px;
+    }
+    &:hover::after {
+    }
+  }
+}

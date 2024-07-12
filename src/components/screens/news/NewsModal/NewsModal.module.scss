@@ -1,0 +1,114 @@
+@import "./../../../../styles/variables.scss";
+
+.wrapper {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  background: $darkGrayOpacity;
+  width: 0;
+  z-index: 5;
+  overflow-y: auto;
+}
+.screen {
+  background: $white;
+  max-width: 660px;
+  border-radius: 30px;
+  margin: 0 auto;
+  min-height: 100%;
+  padding: 45px 60px;
+
+  z-index: 2;
+  position: relative;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(100vw, 0);
+  transition: all 0.3s ease-in-out;
+}
+.opened {
+  width: 100%;
+  padding: 40px;
+}
+.opened .screen {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translate(0vw, 0);
+  transition: all 0.3s ease-in-out;
+}
+.exitBtn {
+  position: absolute;
+  top: 36px;
+  right: 32px;
+  width: 32px;
+  height: 32px;
+}
+.title {
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 40px;
+  margin-bottom: 30px;
+}
+.subtitle {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  margin-bottom: 16px;
+}
+.descr {
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.date {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  margin-top: 30px;
+  display: block;
+  text-align: right;
+}
+.img {
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+@media (max-width: 710px) {
+  .wrapper {
+    padding: 0;
+    margin: 0;
+  }
+  .screen {
+    max-width: 100%;
+    border-radius: 0px;
+    padding-top: 70px;
+  }
+}
+@media (max-width: 600px) {
+  .title {
+    font-size: 30px;
+    line-height: 32px;
+  }
+
+  .screen {
+    padding: 30px;
+    padding-top: 70px;
+  }
+}
+
+@media (max-width: 460px) {
+  .title {
+    font-size: 22px;
+    line-height: 32px;
+  }
+  .subtitle,
+  .descr {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .screen {
+    padding: 30px;
+    padding-top: 70px;
+  }
+}

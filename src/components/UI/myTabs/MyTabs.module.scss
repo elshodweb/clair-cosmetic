@@ -18,7 +18,7 @@
   &:hover::-webkit-scrollbar {
     height: 13px;
     background: $white;
-    border: 1px solid $darkGray;
+    border: 2px solid $darkGray;
     transition: all 0.3s ease-in-out;
     border-radius: 5px;
   }
@@ -39,7 +39,7 @@
   display: block;
   text-align: center;
   font-weight: 600;
-  border: min(0.15vw, 2px) solid black;
+  border: 2px solid black;
   font-size: 16px;
   line-height: 19px;
   border-radius: 5vw;
@@ -47,7 +47,7 @@
   padding: 12px 20px;
   background: transparent;
   white-space: nowrap;
-  
+
   &:hover {
     background: $darkGray;
     color: $white;

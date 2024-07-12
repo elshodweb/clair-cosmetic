@@ -1,0 +1,80 @@
+@import "./../../../../styles/variables.scss";
+.wrapper {
+  background: #fff;
+  padding: 50px;
+  margin: 10px;
+  border-radius: 30px;
+}
+.title {
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 40px;
+  margin-bottom: 24px;
+}
+.subtitle {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  margin-bottom: 16px;
+}
+.descr {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  pointer-events: none;
+  margin-bottom: 18px;
+  &::after {
+    content: "";
+    display: block;
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      #ffffff 100%
+    );
+  }
+}
+.botom {
+  button {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
+.img {
+  width: 100%;
+  border-radius: 30px;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+@media (max-width: 1200px) {
+  .title {
+    font-size: 28px;
+    line-height: 28px;
+  }
+}
+@media (max-width: 500px) {
+  .wrapper {
+    padding: 30px;
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .wrapper {
+    padding: 20px;
+    margin: 5px 0;
+  }
+}
