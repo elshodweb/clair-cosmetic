@@ -1,0 +1,35 @@
+@import "./../../../../styles/variables.scss";
+
+.row {
+  display: flex;
+  gap: 8px;
+  padding-bottom: 5px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+
+  // max-width: 100%;
+  // overflow-x: auto;
+  // overflow-y: visible !important;
+  &::-webkit-scrollbar {
+    background: transparent;
+    height: 13px;
+  }
+  &:hover::-webkit-scrollbar {
+    height: 13px;
+    background: $white;
+    border: 1px solid $darkGray;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 5px;
+    background: $darkGray;
+  }
+}
+
+@media (max-width:1398.5px) {
+  .row{
+    justify-content: center;
+  }
+}

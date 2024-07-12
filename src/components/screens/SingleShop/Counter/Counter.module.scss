@@ -1,0 +1,25 @@
+.counter {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  border-radius: 30px;
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  padding: 6px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.2px;
+  width: 108px;
+
+  button {
+    background: transparent;
+    transition: all 0.1s;
+    &:hover {
+      transform: scale(1.5);
+    }
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+}

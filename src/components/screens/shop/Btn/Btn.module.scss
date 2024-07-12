@@ -1,0 +1,16 @@
+@import "./../../../../styles/variables.scss";
+
+.btn {
+  padding: 12px 30px;
+  border: 2px solid #000;
+  border-radius: 30px;
+  background-color: transparent;
+  max-width: max-content;
+  text-wrap: nowrap;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.2px;
+}
+.on.btn {
+  background-color: $yellow;
+}

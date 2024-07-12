@@ -1,0 +1,81 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: max-content;
+  max-width: 240px;
+  width: 100%;
+
+  z-index: 2;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.2px;
+  user-select: none;
+  &__button {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border: 2px solid #1b1b1a;
+    padding: 12px 35px;
+    display: block;
+    border-radius: 21px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .text {
+      align-items: center;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 100%;
+      flex: 0 1 auto;
+    }
+    &.active {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      background: #fff;
+    }
+  }
+  .icon {
+    flex: 0 0 auto;
+    width: 17px;
+    height: 9px;
+    display: block;
+    background: url(./../../../../../public/images/UI/dropdown/arrow.svg) center /
+      cover no-repeat;
+
+    transform: rotate(180deg);
+    transition: all 0.2s ease-in-out;
+  }
+  .rotate.icon {
+    transform: rotate(0deg);
+  }
+  &__menu {
+    position: absolute;
+    display: block;
+    background-color: white;
+    border: 1px solid #ccc;
+    border: 2px solid #1b1b1a;
+    border-radius: 0 0 20px 20px;
+    border-top: none;
+    width: 100%;
+    z-index: 1;
+    width: 100%;
+    overflow: hidden;
+    &__item {
+      padding: 10px 35px;
+      width: 100%;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f1f1f1;
+      }
+
+      &.selected {
+        font-weight: bold;
+      }
+    }
+  }
+}

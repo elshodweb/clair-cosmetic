@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import styles from "./SmallCard.module.scss";
 import Image from "next/image";
 import Like from "../../like/Like";
+import Link from "next/link";
 const SmallCard = () => {
   const [isLiked, setIsLike] = useState<boolean>(false);
   return (
     <div className={styles.wrapper}>
       <div className={styles.titles}>
-        <h4 className={styles.title}>Holiday.Plumping</h4>
+        <Link href={'/shop/asd'} className={styles.title}>Holiday.Plumping</Link>
         <h5 className={styles.subtitle}>KEVIN MURPHY </h5>
       </div>
-      <div className={styles.img}>
+      <Link href={'/shop/asd'} className={styles.img}>
         <Image
           src={"/images/products/1.png"}
           alt="product img"
@@ -18,7 +19,7 @@ const SmallCard = () => {
           width={160}
           
         />
-      </div>
+      </Link>
       <div className={styles.row}>
         <div className={styles.price}>
           <strong>8 800 ₽ </strong>

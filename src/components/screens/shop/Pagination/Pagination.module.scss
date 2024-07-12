@@ -1,0 +1,44 @@
+@import "./../../../../styles/variables.scss";
+.wrapper {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+  margin-bottom: 56px;
+  margin-left: auto;
+  max-width: max-content;
+}
+.page {
+  width: 43px;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: transparent;
+  color: $darkGray;
+  border: 2px solid #000;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.2px;
+  &:hover{
+    transition: all .1s ease-in-out;
+    transform: scale(1.06);
+  }
+}
+
+.selected {
+  background: $darkGray;
+  color: $white;
+}
+.next {
+  width: 128px;
+  height: 43px;
+  background: url(./../../../../../public/images/UI/arrow.svg) center no-repeat;
+  border-radius: 30px;
+  color: $darkGray;
+  border: 2px solid #000;
+  &:hover{
+    transition: all .1s ease-in-out;
+    transform: scale(1.06);
+  }
+}
