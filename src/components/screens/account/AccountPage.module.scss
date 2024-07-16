@@ -1,0 +1,144 @@
+@import "./../../../styles/variables.scss";
+.wrapper {
+  background: $blue;
+}
+.title {
+  margin-top: 130px;
+}
+.profile {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 60px;
+}
+.profileInfo {
+  width: 50%;
+  background: $white;
+  padding: 40px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  button {
+    margin-bottom: 8px;
+  }
+}
+.name {
+  font-size: 50px;
+  font-weight: 500;
+  line-height: 52px;
+  margin-bottom: 12px;
+}
+.rank {
+  color: $blue;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  margin-bottom: 24px;
+}
+.btns{
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 0 auto;
+  width: 100%;
+  & button{
+    width: 100%;
+  }
+}
+.profileBalance {
+  background: $white;
+  padding: 40px;
+  padding-top: 0px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 50%;
+  button {
+    text-wrap: nowrap;
+  }
+}
+.amount {
+  font-size: 80px;
+  font-weight: 500;
+  line-height: 90px;
+}
+.label {
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 32px;
+  margin-bottom: 24px;
+}
+.balanceImg {
+  overflow: hidden;
+  transform: translate(10px, 0);
+  flex: 0 0 auto;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+@media (max-width: 1370px) {
+  .profile {
+    margin-top: 10px;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    & > * {
+      width: 100%;
+      max-width: 660px;
+    }
+  }
+}
+@media (max-width: 700px) {
+  .profileInfo {
+    position: relative;
+  }
+  .img {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 97px;
+    height: auto;
+  }
+  .name {
+    font-size: 30px;
+    line-height: 32px;
+    padding-right: 90px;
+  }
+  .rank{
+    margin-bottom: 47px;
+    padding-right: 90px;
+  }
+  .info{
+    width: 100%;
+    margin: 0 auto;
+  }
+  .profileBalance {
+    padding: 50px 30px;
+    position: relative;
+  }
+  .balanceImg {
+    display: none;
+  }
+  .amount {
+    font-size: 50px;
+    line-height: 52px;
+  }
+  .label {
+    font-size: 16px;
+    line-height: 19px;
+  }
+  .balance {
+    width: 100%;
+  }
+  .profileBalance button {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+  }
+}
