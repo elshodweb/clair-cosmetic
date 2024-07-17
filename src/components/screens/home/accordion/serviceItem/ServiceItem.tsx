@@ -36,7 +36,7 @@ const ServiceItem: FC<props> = ({
 
   return (
     <div
-      className={styles.container}
+      className={`${styles.container} ${isOpen ? styles.activeContainer : ""}`}
       style={{
         background: `linear-gradient(180deg, #FFF 0%, ${
           index == isOpen ? "#FFEDFF" : "#FFEDFF"
@@ -84,8 +84,6 @@ const ServiceItem: FC<props> = ({
           </div>
 
           <div className={styles.price_list}>
-            <ItemPrice />
-            <ItemPrice />
             <ItemPrice />
             <ItemPrice />
             <ItemPrice />

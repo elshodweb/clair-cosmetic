@@ -16,25 +16,25 @@ const trends = [
 const SwiperComp = () => {
   return (
     <Swiper
-        spaceBetween={12}
-        slidesPerView={"auto"}
-        modules={[FreeMode]}
-        freeMode={true}
-        breakpoints={{
-          0: {
-            freeMode: false,
-            slidesPerView: 1,
-          },
-          768: {
-            slidesPerView: 2,
-          },
-          1080: {
-            slidesPerView: 3,
-          },
-          1440: {
-            slidesPerView: 4,
-          },
-        }}
+      spaceBetween={12}
+      slidesPerView={"auto"}
+      modules={[FreeMode]}
+      freeMode={true}
+      breakpoints={{
+        0: {
+          freeMode: false,
+          slidesPerView: 1,
+        },
+        800: {
+          slidesPerView: 2.3,
+        },
+        1120: {
+          slidesPerView: 3.2,
+        },
+        1440: {
+          slidesPerView: 4.2,
+        },
+      }}
     >
       {trends.map((i) => (
         <SwiperSlide className={style.slide} key={i.id}>

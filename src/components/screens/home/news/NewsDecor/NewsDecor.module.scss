@@ -1,7 +1,7 @@
 @import "./../../../../../styles/variables.scss";
 .decoration {
   background: url("./../../../../../../public/images/mainBackground/girl.png")
-    bottom right / 450px auto no-repeat;
+    calc(100% - 30px) bottom  / 450px auto no-repeat;
 }
 .decoration_title {
   font-size: 80px;

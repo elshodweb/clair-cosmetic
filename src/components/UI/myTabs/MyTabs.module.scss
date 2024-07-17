@@ -8,8 +8,6 @@
   max-width: max-content;
   width: 100%;
   overflow-x: auto;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
   overflow-y: hidden;
   &::-webkit-scrollbar {
     background: transparent;
@@ -28,11 +26,7 @@
     background: $darkGray;
   }
 }
-@media (max-width: 600px) {
-  .container::-webkit-scrollbar {
-    display: none;
-  }
-}
+
 
 .filter_item {
   cursor: pointer;
@@ -42,7 +36,7 @@
   border: 2px solid black;
   font-size: 16px;
   line-height: 19px;
-  border-radius: 5vw;
+  border-radius: 30px;
   transition: all 0.2s;
   padding: 12px 20px;
   background: transparent;
@@ -51,5 +45,10 @@
   &:hover {
     background: $darkGray;
     color: $white;
+  }
+}
+@media (max-width: 600px) {
+  .container::-webkit-scrollbar {
+    display: none;
   }
 }

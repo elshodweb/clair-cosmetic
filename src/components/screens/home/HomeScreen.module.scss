@@ -3,8 +3,8 @@
   background: $pink;
 }
 .hi {
-  background: url(./../../../../public/images/mainBackground/rainbow.png) right
-    10px / auto 100% no-repeat;
+  background: url(./../../../../public/images/mainBackground/rainbow.png)
+    calc(100% - 80px) 10px / auto 100% no-repeat;
   // padding-bottom: 20px;
   margin: 0;
   margin-top: 34px;
@@ -20,7 +20,9 @@
   display: flex;
   gap: 10px;
   justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
+  margin-bottom: 5px;
 }
 .shop,
 .masters {
@@ -30,5 +32,10 @@
 @media (max-width: 500px) {
   .hi {
     margin-top: 17px;
+  }
+}
+@media (max-width:420px) {
+  .hi{
+    background-position: calc(100% - 20px) 10px ;
   }
 }

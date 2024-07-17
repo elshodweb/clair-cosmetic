@@ -16,7 +16,7 @@ const data = [
     id: 2,
     name: "Анастасия",
     isLiked: false,
-    profession: "Визажист",
+    profession: "Мастер по маникюру",
     img: "/images/masters/master.png",
   },
   {
@@ -54,23 +54,26 @@ const MasterContainer = () => {
   return (
     <div className={styles.wrapper}>
       <Swiper
-        spaceBetween={12}
+        spaceBetween={8}
         slidesPerView={"auto"}
         modules={[FreeMode]}
         freeMode={true}
         breakpoints={{
           0: {
-            freeMode: false,
-            slidesPerView: 1,
+            slidesPerView: 1.1,
+          },
+
+          460: {
+            slidesPerView: 1.3,
           },
           768: {
-            slidesPerView: 2,
+            slidesPerView: 2.2,
           },
           1080: {
-            slidesPerView: 3,
+            slidesPerView: 3.2,
           },
           1440: {
-            slidesPerView: 4,
+            slidesPerView: 4.2,
           },
         }}
       >

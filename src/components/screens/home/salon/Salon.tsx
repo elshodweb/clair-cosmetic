@@ -20,13 +20,17 @@ const Salon = () => {
       freeMode={true}
       breakpoints={{
         0: {
-          freeMode: false,
-          slidesPerView: 1,
-          centeredSlides: true,
+          slidesPerView: 1.1,
         },
-        1400: {
+        650: {
+          slidesPerView: 1.5,
+        },
+        1040: {
           slidesPerView: 2,
-          centeredSlides: false,
+        },
+
+        1400: {
+          slidesPerView: 2.2,
         },
       }}
     >

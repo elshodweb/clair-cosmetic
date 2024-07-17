@@ -3,6 +3,7 @@ import BigCard from "../bigCard/BigCard";
 import styles from "./ShopCards.module.scss";
 import SmallCard from "../smallCard/SmallCard";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode } from "swiper/modules";
 
 const ShopCards = () => {
   const [isClient, setIsClient] = useState(false);
@@ -39,9 +40,21 @@ const ShopCards = () => {
     </div>
   ) : (
     <Swiper
-      spaceBetween={12}
-      slidesPerView={1}
-      centeredSlides={true}
+      spaceBetween={8}
+      centeredSlides={false}
+      modules={[FreeMode]}
+      freeMode={true}
+      breakpoints={{
+        0: {
+          slidesPerView: 1.1,
+        },
+        360: {
+          slidesPerView: 1.2,
+        },
+        500: {
+          slidesPerView: 1.4,
+        },
+      }}
       style={{ marginBottom: 12 }}
     >
       <SwiperSlide>
