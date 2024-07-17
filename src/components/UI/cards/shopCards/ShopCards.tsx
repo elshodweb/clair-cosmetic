@@ -3,7 +3,6 @@ import BigCard from "../bigCard/BigCard";
 import styles from "./ShopCards.module.scss";
 import SmallCard from "../smallCard/SmallCard";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 
 const ShopCards = () => {
   const [isClient, setIsClient] = useState(false);

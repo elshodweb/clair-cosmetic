@@ -5,6 +5,10 @@ import Title from "@/components/UI/title/Title";
 import Image from "next/image";
 import OutlineButton from "@/components/UI/buttons/outlineButton/OutlineButton";
 import SmallTitle from "@/components/UI/smallTitle/SmallTitle";
+import SliderContainer from "./sliderContainer/SliderContainer";
+import NoteCard from "./noteCard/NoteCard";
+import { SwiperSlide } from "swiper/react";
+import ArrowLink from "@/components/UI/arrowLink/ArrowLink";
 const AccountPage = () => {
   return (
     <div className={styles.wrapper}>
@@ -46,9 +50,28 @@ const AccountPage = () => {
             </div>
           </div>
         </div>
-
         <SmallTitle>Мои записи</SmallTitle>
-        
+        <SliderContainer>
+          <SwiperSlide>
+            <NoteCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <NoteCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <NoteCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <NoteCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <NoteCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            <NoteCard />
+          </SwiperSlide>
+        </SliderContainer>
+        <ArrowLink className={styles.arrowLink} href="/appointments" children="Все записи" />
       </Loyaut>
     </div>
   );

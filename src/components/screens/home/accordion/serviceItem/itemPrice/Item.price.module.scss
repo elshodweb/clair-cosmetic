@@ -17,39 +17,39 @@
   }
 }
 .list_item:not(:last-child) {
-  margin-bottom: max(2.36vw,16px);
+  margin-bottom: max(2.36vw, 16px);
 }
 .price_button {
   white-space: nowrap;
   padding: 8px 20px;
-  &:hover{
-    transition: all .1s ease-in-out;
-   background: #000;
-   color: #fff;
+  &:hover {
+    transition: all 0.1s ease-in-out;
+    background: #000;
+    color: #fff;
   }
 }
 
 @media (min-width: 850px) {
   .price_button {
-    border: 1px solid #1b1b1a;
+    border: 2px solid #1b1b1a;
     border-radius: 2.14vw;
   }
   .title {
     // font-size: 20px;
     line-height: 24px;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .text,
   .price_button {
     // font-size: 16px;
     line-height: 19px;
-    font-weight: 500;
+    font-weight: 600;
   }
 }
 @media (max-width: 850px) {
   .price_button {
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 8vw;
   }
   .text {

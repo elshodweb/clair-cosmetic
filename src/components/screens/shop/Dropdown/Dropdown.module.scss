@@ -4,10 +4,12 @@
   width: max-content;
   max-width: 240px;
   width: 100%;
-
   z-index: 2;
+  &:first-of-type {
+    z-index: 3;
+  }
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 19.2px;
   user-select: none;
   &__button {
@@ -29,6 +31,7 @@
       align-items: center;
       white-space: nowrap;
       text-overflow: ellipsis;
+      position: relative;
       width: 100%;
       flex: 0 1 auto;
     }
@@ -45,7 +48,6 @@
     display: block;
     background: url(./../../../../../public/images/UI/dropdown/arrow.svg) center /
       cover no-repeat;
-
     transform: rotate(180deg);
     transition: all 0.2s ease-in-out;
   }
@@ -61,18 +63,18 @@
     border-radius: 0 0 20px 20px;
     border-top: none;
     width: 100%;
-    z-index: 1;
+    z-index: 10;
     width: 100%;
     overflow: hidden;
     &__item {
+      position: relative;
+      z-index: 10;
       padding: 10px 35px;
       width: 100%;
       cursor: pointer;
-
       &:hover {
         background-color: #f1f1f1;
       }
-
       &.selected {
         font-weight: bold;
       }

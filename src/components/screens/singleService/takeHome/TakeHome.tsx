@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./TakeHome.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
-import "swiper/css";
 import SmallCard from "@/components/UI/cards/smallCard/SmallCard";
 const TakeHome = () => {
   return (

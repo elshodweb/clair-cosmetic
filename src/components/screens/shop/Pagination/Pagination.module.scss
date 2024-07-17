@@ -18,10 +18,10 @@
   color: $darkGray;
   border: 2px solid #000;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 19.2px;
-  &:hover{
-    transition: all .1s ease-in-out;
+  &:hover {
+    transition: all 0.1s ease-in-out;
     transform: scale(1.06);
   }
 }
@@ -37,8 +37,8 @@
   border-radius: 30px;
   color: $darkGray;
   border: 2px solid #000;
-  &:hover{
-    transition: all .1s ease-in-out;
+  &:hover {
+    transition: all 0.1s ease-in-out;
     transform: scale(1.06);
   }
 }

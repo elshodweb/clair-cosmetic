@@ -1,7 +1,9 @@
-import { FC } from "react";
+"use client";
+import { FC, useEffect, useState } from "react";
 import styles from "./ServiceItem.module.scss";
 import ItemPrice from "./itemPrice/ItemPrice";
 import Link from "next/link";
+import Image from "next/image";
 
 interface props {
   index: number;
@@ -18,6 +20,20 @@ const ServiceItem: FC<props> = ({
   isOpen,
   clickHandler,
 }) => {
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    setIsDesktop(window.innerWidth >= 850);
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 850);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div
       className={styles.container}
@@ -47,11 +63,23 @@ const ServiceItem: FC<props> = ({
           <div className={styles.info}>
             <div className={styles.text}>{content}</div>
             <div className={styles.img_container}>
-              <img
-                style={{ display: `${index == isOpen ? "block" : "none"}` }}
-                src="./images/services/girl-mobile.png"
-                alt="girl"
-              />
+              {isDesktop ? (
+                <Image
+                  style={{ display: `${index == isOpen ? "block" : "none"}` }}
+                  src="/images/home/girl.png"
+                  alt="girl"
+                  width={253}
+                  height={284}
+                />
+              ) : (
+                <Image
+                  style={{ display: `${index == isOpen ? "block" : "none"}` }}
+                  src="/images/home/girl-m.png"
+                  alt="girl"
+                  width={170}
+                  height={193}
+                />
+              )}
             </div>
           </div>
 

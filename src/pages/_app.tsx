@@ -1,14 +1,18 @@
 import "@/styles/globals.scss";
 import "@/styles/calendar.scss";
 import type { AppProps } from "next/app";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
+import "swiper/scss";
 
-const inter = Inter({ subsets: ["latin", "cyrillic"], weight: ["400", "500"] });
+const roboto = Roboto({
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "500", "700", "900"],
+});
 const isAuth = true;
 export default function App({ Component, pageProps }: AppProps) {
   if (isAuth) {
     return (
-      <div className={inter.className}>
+      <div className={roboto.className}>
         <Component {...pageProps} />
       </div>
     );

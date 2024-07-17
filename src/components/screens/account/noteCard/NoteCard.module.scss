@@ -1,0 +1,65 @@
+@import "./../../../../styles/variables.scss";
+.wrapper {
+  background: $white;
+  padding: 30px;
+  border-radius: 30px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.name {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+}
+.price {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  text-wrap: nowrap;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 57px;
+}
+.left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.time {
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 52px;
+}
+.date,
+.location {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.2px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+}
+.mobile {
+  display: none;
+}
+@media (max-width: 600px) {
+  .desctop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+    .left {
+      margin-bottom: 22px;
+      // justify-content: space-between;
+    }
+  }
+}

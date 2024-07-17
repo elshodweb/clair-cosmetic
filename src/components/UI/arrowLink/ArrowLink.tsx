@@ -4,10 +4,11 @@ import styles from "./ArrowLink.module.scss";
 interface ArrowLink {
   href: string;
   children: string;
+  className?:string;
 }
-const ArrowLink: FC<ArrowLink> = ({ href, children }) => {
+const ArrowLink: FC<ArrowLink> = ({ href, children,className }) => {
   return (
-    <Link href={href} className={styles.link}>
+    <Link href={href} className={`${styles.link} ${className}`}>
       {children}
     </Link>
   );

@@ -8,8 +8,8 @@
 .list {
   display: flex;
   flex-direction: column;
+  align-items: end;
   gap: 8px;
-  margin: 0 auto;
 }
 .title {
   padding-top: 137px;

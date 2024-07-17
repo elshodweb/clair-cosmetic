@@ -32,7 +32,7 @@
 }
 .title {
   font-size: 30px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 36px;
   margin-bottom: 24px;
 }
@@ -90,9 +90,9 @@
 
 @media (max-width: 1399px) {
   .text {
-    display: -webkit-box; 
+    display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4; 
+    -webkit-line-clamp: 4;
     overflow: hidden;
   }
   .row {

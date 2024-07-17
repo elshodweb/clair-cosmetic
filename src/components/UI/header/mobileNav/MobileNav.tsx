@@ -13,7 +13,7 @@ interface MobileNavProps {
 }
 
 const links = [
-  { path: "/profile", name: "ПРОФИЛЬ" },
+  { path: "/account", name: "ПРОФИЛЬ" },
   { path: "/shop", name: "МАГАЗИН" },
   { path: "/services", name: "УСЛУГИ" },
   { path: "/basket", name: "КОРЗИНА" },

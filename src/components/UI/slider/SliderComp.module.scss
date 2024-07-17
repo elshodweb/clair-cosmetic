@@ -5,20 +5,12 @@
 
   height: 420px;
   border-radius: 30px;
-  overflow: hidden;
+  // overflow: hidden;
   padding: 25px 20px;
   margin-bottom: 54px;
   display: flex;
   justify-content: center;
-  &:hover {
-    transition: all 0.2s ease-in-out;
-    transform: scale(1.01);
-
-    .btn {
-      transition: all 0.1s ease-in-out;
-      transform: scale(1.3);
-    }
-  }
+ 
 }
 .row {
   display: flex;
@@ -33,7 +25,6 @@
   font-size: 30px;
   line-height: 36px;
   color: $white;
-  text-shadow: 1px 1px 10px $darkGray;
   text-transform: uppercase;
 }
 .btn {

@@ -4,7 +4,10 @@
   display: flex;
   background: $white;
   border-radius: 30px;
+  margin: 0 auto;
   align-items: stretch;
+  justify-content: center;
+  max-width:max-content;
   margin-bottom: 64px;
   height: 800px;
   margin-top: 30px;
@@ -40,7 +43,7 @@
 
 .title {
   font-size: 30px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 32px;
   margin-bottom: 24px;
   display: flex;
@@ -60,7 +63,7 @@
 
 .sostavTitle {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 24px;
   margin-bottom: 8px;
 }
@@ -78,7 +81,7 @@
 
 .price {
   font-size: 30px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 32px;
   display: flex;
   gap: 10px;

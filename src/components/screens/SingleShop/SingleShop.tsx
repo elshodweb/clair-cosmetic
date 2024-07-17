@@ -5,7 +5,6 @@ import SmallTitle from "@/components/UI/smallTitle/SmallTitle";
 import SmallCard from "@/components/UI/cards/smallCard/SmallCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
-import "swiper/css";
 import Product from "./Product/Product";
 const SingleShop = () => {
   return (

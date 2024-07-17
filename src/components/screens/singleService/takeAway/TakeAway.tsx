@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./TakeAway.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
-import "swiper/css";
 import ServiceCard from "@/components/UI/serviceCard/ServiceCard";
 
 const TakeAway = () => {

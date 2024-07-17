@@ -1,7 +1,6 @@
 "use client"; // <===== REQUIRED
 import React from "react";
 import { SwiperSlide, Swiper } from "swiper/react";
-import "swiper/css";
 import Image from "next/image";
 import style from "./SliderComp.module.scss";
 import { FreeMode } from "swiper/modules";
