@@ -36,7 +36,7 @@ const ServiceItem: FC<props> = ({
 
   return (
     <div
-      className={`${styles.container} ${isOpen ? styles.activeContainer : ""}`}
+      className={`${styles.container} ${index == isOpen ? styles.activeContainer : ""}`}
       style={{
         background: `linear-gradient(180deg, #FFF 0%, ${
           index == isOpen ? "#FFEDFF" : "#FFEDFF"
