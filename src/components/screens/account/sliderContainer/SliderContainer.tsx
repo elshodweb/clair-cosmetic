@@ -16,10 +16,14 @@ const SliderContainer: FC<SliderContainerProps> = ({ className, children }) => {
         breakpoints={{
           0: {
             freeMode: false,
-            slidesPerView: 1,
+            slidesPerView: 1.1,
           },
-          1200: {
-            slidesPerView: 2,
+          760: {
+            freeMode: false,
+            slidesPerView: 1.4,
+          },
+          1100: {
+            slidesPerView: 2.1,
           },
         }}
       >

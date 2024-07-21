@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./AccountPage.module.scss";
 import Loyaut from "@/components/loyaut/Loyaut";
 import Title from "@/components/UI/title/Title";
@@ -9,7 +9,22 @@ import SliderContainer from "./sliderContainer/SliderContainer";
 import NoteCard from "./noteCard/NoteCard";
 import { SwiperSlide } from "swiper/react";
 import ArrowLink from "@/components/UI/arrowLink/ArrowLink";
+import ProductCard from "./productCard/ProductCard";
 const AccountPage = () => {
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    setIsDesktop(window.innerWidth >= 580);
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 580);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className={styles.wrapper}>
       <Loyaut>
@@ -51,27 +66,76 @@ const AccountPage = () => {
           </div>
         </div>
         <SmallTitle>Мои записи</SmallTitle>
-        <SliderContainer>
-          <SwiperSlide>
+        {isDesktop ? (
+          <SliderContainer>
+            <SwiperSlide>
+              <NoteCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <NoteCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <NoteCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <NoteCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <NoteCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <NoteCard />
+            </SwiperSlide>
+          </SliderContainer>
+        ) : (
+          <div className={styles.rowCards}>
             <NoteCard />
-          </SwiperSlide>
-          <SwiperSlide>
             <NoteCard />
-          </SwiperSlide>
-          <SwiperSlide>
             <NoteCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <NoteCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <NoteCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <NoteCard />
-          </SwiperSlide>
-        </SliderContainer>
-        <ArrowLink className={styles.arrowLink} href="/appointments" children="Все записи" />
+          </div>
+        )}
+        <ArrowLink
+          className={styles.arrowLink}
+          href="/appointments"
+          children="Все записи"
+        />
+        <div className={styles.decor}>
+          <SmallTitle>Мои покупки</SmallTitle>
+        </div>
+
+        {isDesktop ? (
+          <SliderContainer>
+            <SwiperSlide>
+              <ProductCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <ProductCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <ProductCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <ProductCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <ProductCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <ProductCard />
+            </SwiperSlide>
+          </SliderContainer>
+        ) : (
+          <div className={styles.rowCards}>
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+          </div>
+        )}
+        <ArrowLink
+          className={styles.arrowLink}
+          href="/history"
+          children="Все покупки"
+        />
       </Loyaut>
     </div>
   );

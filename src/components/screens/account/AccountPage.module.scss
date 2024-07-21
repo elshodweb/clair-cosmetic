@@ -84,6 +84,32 @@
 .arrowLink {
   margin-bottom: 64px;
 }
+.rowCards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  margin: 12px 0;
+  & > * {
+    width: 100%;
+  }
+}
+.decor {
+  position: relative;
+  &::after {
+    content: "";
+    display: block;
+    width: 215px;
+    height: 155px;
+    position: absolute;
+    right: 10%;
+    top: -35px;
+    z-index: 2;
+    pointer-events: none;
+    background: url(./../../../../public/images/account/stars-transformed.png)
+      center/auto no-repeat;
+  }
+}
 @media (max-width: 1370px) {
   .profile {
     margin-top: 10px;
@@ -143,5 +169,10 @@
     max-width: 300px;
     margin: 0 auto;
     display: block;
+  }
+  .decor::after{
+    width: 150px;
+    height: 110px;
+    right: 0;
   }
 }

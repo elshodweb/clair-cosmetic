@@ -17,11 +17,10 @@ const TakeAway = () => {
             slidesPerView: 1,
           },
           1200: {
-            slidesPerView: 2,
+            slidesPerView: 2.1,
           },
         }}
       >
-        {/* {data.map((i) => ( */}
         <SwiperSlide className={styles.slide}>
           <ServiceCard greenTitle={true} />
         </SwiperSlide>

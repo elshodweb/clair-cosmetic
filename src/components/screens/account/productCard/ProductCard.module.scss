@@ -1,0 +1,63 @@
+@import "./../../../../styles/variables.scss";
+.wrapper {
+  background: $white;
+  padding: 30px;
+  border-radius: 30px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.images {
+  display: flex;
+  align-items: end;
+}
+.status {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  color: $green;
+  margin-bottom: 2px;
+}
+.count {
+  color: $gray;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.2px;
+}
+.price {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  text-wrap: nowrap;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 57px;
+}
+.left {
+}
+
+.mobile {
+  display: none;
+}
+@media (max-width: 600px) {
+  .desctop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+    .left {
+      margin-bottom: 22px;
+    }
+  }
+  .status{
+    color: $darkGray;
+  }
+}
