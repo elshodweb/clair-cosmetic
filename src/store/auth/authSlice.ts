@@ -14,7 +14,7 @@ const initialState: AuthState = {
   isRegisterVisible: false,
   isPhoneVerificationVisible: false,
   isAccountDataVisible: false,
-  isFinishedModalVisible: false,
+  isFinishedModalVisible: true,
   isAuth: null,
 };
 

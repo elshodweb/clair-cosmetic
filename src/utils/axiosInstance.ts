@@ -23,6 +23,8 @@ export const verifyToken = async (token: string): Promise<boolean> => {
     await instance.post("/auth/jwt/verify/", { token });
     return true;
   } catch (error) {
+    console.log(error);
+    
     return false;
   }
 };

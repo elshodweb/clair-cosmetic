@@ -14,17 +14,28 @@ const FinishedModal: FC<FinishedModalProps> = ({ onClose, visible }) => {
       <ModalWrapper
         children={
           <>
+            <div onClick={onClose} className={styles.back}>
+              <Image
+                src={"/images/UI/arrow.svg"}
+                width={56}
+                height={10}
+                alt={"arrow"}
+              />
+            </div>
+            <div  className={styles.order}>
             <h2 className={styles.title}>ура!</h2>
             <Image
-              className={styles.rainBow}
+              className={styles.img}
               src={"/images/authModals/heart.png"}
               alt="cart"
-              
               width={399}
               height={150}
             />
+            </div>
             <h3 className={styles.subtitle}>Аккаунт успешно создан</h3>
-            <BlackButton onClick={onClose}>Вперед</BlackButton>
+            <BlackButton className={styles.btn} onClick={onClose}>
+              Вперед
+            </BlackButton>
           </>
         }
         isOpen={visible}

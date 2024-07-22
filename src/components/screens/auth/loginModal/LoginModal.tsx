@@ -4,10 +4,10 @@ import Link from "next/link";
 import BlackButton from "../../../UI/buttons/blackButton/BlackButton";
 import Image from "next/image";
 import IconButton from "../../../UI/buttons/iconButton/IconButton";
-import axios from "axios"; // Импортируем axios instance
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
 import { setLoginVisible, setRegisterVisible } from "@/store/auth/authSlice";
+import instance from "@/utils/axiosInstance";
 
 interface LoginModalProps {
   visible: boolean;
@@ -22,7 +22,7 @@ const LoginModal: FC<LoginModalProps> = ({ visible, onClose }) => {
   const handleLogin = async () => {
     try {
       console.log({ phone_number: phoneNumber, password: password });
-      const response = await axios.post(
+      const response = await instance.post(
         "https://ba745807670a.vps.myjino.ru/api/v1/auth/jwt/create/",
         {
           phone_number: phoneNumber,
