@@ -39,6 +39,7 @@
   max-width: 510px;
   background: $white;
   height: max-content;
+  min-height: 100%;
   margin-left: auto;
   padding: 60px 50px;
   transition: all 0.3s ease-in-out;
@@ -123,6 +124,12 @@
   &::placeholder {
     color: #848484;
   }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 .forget {
@@ -139,11 +146,11 @@
   max-width: 324px;
   margin: 0 auto;
   display: block;
-  
+
   padding: 20px;
-font-size: 16px;
-font-weight: 500;
-line-height: 19.2px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.2px;
   &:disabled {
     background: #ededed;
     border-color: #ededed;

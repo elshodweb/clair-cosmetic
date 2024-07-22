@@ -1,53 +1,53 @@
 import React, { FC, useState } from "react";
 import styles from "./RegisterModal.module.scss";
-import Link from "next/link";
 import BlackButton from "../../../UI/buttons/blackButton/BlackButton";
 import Image from "next/image";
 import IconButton from "../../../UI/buttons/iconButton/IconButton";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
-import { setLoginVisible, setRegisterVisible } from "@/store/auth/authSlice";
+import {
+  setAccountDataVisible,
+  setLoginVisible,
+  setRegisterVisible,
+} from "@/store/auth/authSlice";
 import ModalWrapper from "@/components/UI/modalWrapper/ModalWrapper";
-import SmallTitle from "@/components/UI/smallTitle/SmallTitle";
+import { IRegisterData } from "../Auth";
 
 interface RegisterModalProps {
   visible: boolean;
   onClose: () => void;
+  registerData: IRegisterData;
+  setRegisterData: (a: IRegisterData) => void;
 }
 
-const RegisterModal: FC<RegisterModalProps> = ({ visible, onClose }) => {
+const RegisterModal: FC<RegisterModalProps> = ({
+  visible,
+  onClose,
+  registerData,
+  setRegisterData,
+}) => {
   const dispatch = useDispatch<AppDispatch>();
-  const [email, setEmail] = useState<string>("");
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [isWrong, setIsWrong] = useState(false);
+
+  const [isWrong, setIsWrong] = useState("");
   const [isAcceptOffer, setAcceptOffer] = useState(false);
   const [isAcceptNews, setAcceptNews] = useState(false);
 
-  const handleRegister = async () => {
-    try {
-      console.log({
-        email: email,
-        phone_number: phoneNumber,
-        password: password,
-      });
-      const response = await axios.post(
-        "https://ba745807670a.vps.myjino.ru/api/v1/auth/users/",
-        {
-          email: email,
-          phone_number: phoneNumber,
-          password: password,
-        }
-      );
-      console.log(response);
-
-      // Закрываем модальное окно при успешной регистрации
-      onClose();
-    } catch (error) {
-      setIsWrong(true);
-      console.error("Ошибка при регистрации:", error);
+  const handleRegister = async (e?: any) => {
+    e.preventDefault();
+    const isPhoneNumber =
+      registerData.phone_number.length === 11 &&
+      (registerData.phone_number[0] === "7" ||
+        registerData.phone_number[0] === "8");
+    if (!isPhoneNumber) {
+      setIsWrong("Введите правильную телефон номер");
+    } else if (registerData.password.length < 8) {
+      setIsWrong("Введите не менее 8 символов для пароля");
+    } else if (!registerData?.email?.includes("@")) {
+      setIsWrong("Введите правильную почту");
+    } else {
+      dispatch(setRegisterVisible(false));
+      dispatch(setAccountDataVisible(true));
     }
   };
 
@@ -100,39 +100,50 @@ const RegisterModal: FC<RegisterModalProps> = ({ visible, onClose }) => {
           height={150}
         />
         <h2 className={styles.hi}>Добро пожаловать!</h2>
-        <div className={styles.mob}>
+        <form className={styles.mob}>
           <h5 className={`${styles.error} ${isWrong ? styles.show : ""}`}>
-            Ошибка при регистрации
+            {isWrong}
           </h5>
           <input
             className={`${styles.input} ${isWrong ? styles.errorInput : ""}`}
-            type="text"
+            type="email"
             placeholder="Почта"
-            value={email}
+            value={registerData.email}
             onChange={(e) => {
-              setEmail(e.target.value);
-              setIsWrong(false);
+              setRegisterData({ ...registerData, email: e.target.value });
+              setIsWrong("");
             }}
+            required
           />
           <input
             className={`${styles.input} ${isWrong ? styles.errorInput : ""}`}
-            type="text"
+            type="number"
             placeholder="Телефон"
-            value={phoneNumber}
+            value={registerData.phone_number}
             onChange={(e) => {
-              setPhoneNumber(e.target.value);
-              setIsWrong(false);
+              setRegisterData({
+                ...registerData,
+                phone_number: e.target.value,
+              });
+              setIsWrong("");
             }}
+            required
           />
           <input
             className={`${styles.input} ${isWrong ? styles.errorInput : ""} `}
             type="password"
             placeholder="Придумайте пароль"
-            value={password}
+            value={registerData.password}
             onChange={(e) => {
-              setPassword(e.target.value);
-              setIsWrong(false);
+              setRegisterData({
+                ...registerData,
+                password: e.target.value,
+                re_password: e.target.value,
+              });
+              setIsWrong("");
             }}
+            min={8}
+            required
           />
           <label className={styles.acceptOffer}>
             <input
@@ -163,9 +174,7 @@ const RegisterModal: FC<RegisterModalProps> = ({ visible, onClose }) => {
           </label>
           <BlackButton
             disabled={!(isAcceptNews && isAcceptOffer) ? true : false}
-            onClick={() => {
-              handleRegister();
-            }}
+            onClick={handleRegister}
             className={styles.blackBtn}
           >
             Зарегистрироваться
@@ -181,7 +190,7 @@ const RegisterModal: FC<RegisterModalProps> = ({ visible, onClose }) => {
               Войти
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

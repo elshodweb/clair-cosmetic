@@ -24,7 +24,10 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
   }, [time]);
 
   const formatTime = (time: number) => {
-    return `${time}`;
+
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${minutes} минут ${seconds < 10 ? `0${seconds}` : seconds} секунд`;
   };
 
   return formatTime(time);

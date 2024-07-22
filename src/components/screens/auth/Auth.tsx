@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import styles from "./Auth.module.scss";
 import { verifyToken, refreshToken } from "@/utils/axiosInstance";
 import LoginModal from "@/components/screens/auth/loginModal/LoginModal";
@@ -16,8 +17,24 @@ import {
   setFinishedModalVisible,
 } from "@/store/auth/authSlice";
 import FinishedModal from "./finishedModal/FinishedModal";
+export interface IRegisterData {
+  phone_number: string;
+  email: string;
+  full_name: string;
+  city: string;
+  password: string;
+  re_password: string;
+}
 
 const Auth = () => {
+  const [registerData, setRegisterData] = useState<IRegisterData>({
+    phone_number: "78212332222",
+    email: "user@example.com",
+    full_name: "string dasd    ",
+    city: "s",
+    password: "ssstring",
+    re_password: "ssstring",
+  });
   const dispatch = useDispatch<AppDispatch>();
   const {
     isLoginVisible,
@@ -28,37 +45,17 @@ const Auth = () => {
     isAuth,
   } = useSelector((state: RootState) => state.auth);
 
-  const fetchUserInfo = async () => {
-    const token = localStorage.getItem("accessToken");
-    if (!token) {
-      dispatch(setAuth(false));
-      // dispatch(setLoginVisible(true));
-      return;
-    }
-
-    const isValid = await verifyToken(token);
-    if (!isValid) {
-      dispatch(setAuth(false));
-      dispatch(setLoginVisible(true));
-    } else {
-      dispatch(setAuth(true));
-      // dispatch(setLoginVisible(false));
-    }
-  };
-
   useEffect(() => {
     const authenticate = async () => {
-      const refreshed = await refreshToken();
+      const refreshed = await verifyToken();
       if (refreshed) {
-        await fetchUserInfo();
+        dispatch(setAuth(true));
       } else {
         dispatch(setAuth(false));
-        // dispatch(setLoginVisible(true));
       }
     };
-
     authenticate();
-  }, [dispatch]);
+  }, []);
 
   if (isAuth === null) return null; // показываем загрузку или ничего, пока не получено состояние аутентификации
 
@@ -69,14 +66,19 @@ const Auth = () => {
         onClose={() => dispatch(setLoginVisible(false))}
       />
       <RegisterModal
+        registerData={registerData}
+        setRegisterData={setRegisterData}
         visible={isRegisterVisible}
         onClose={() => dispatch(setRegisterVisible(false))}
       />
       <AccountData
+        registerData={registerData}
+        setRegisterData={setRegisterData}
         visible={isAccountDataVisible}
         onClose={() => dispatch(setAccountDataVisible(false))}
       />
       <PhoneVerification
+        registerData={registerData}
         visible={isPhoneVerificationVisible}
         onClose={() => dispatch(setPhoneVerificationVisible(false))}
       />

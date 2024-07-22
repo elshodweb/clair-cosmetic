@@ -6,8 +6,12 @@ import Image from "next/image";
 import IconButton from "../../../UI/buttons/iconButton/IconButton";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
-import { setLoginVisible, setRegisterVisible } from "@/store/auth/authSlice";
-import instance from "@/utils/axiosInstance";
+import {
+  setAuth,
+  setLoginVisible,
+  setRegisterVisible,
+} from "@/store/auth/authSlice";
+import instance, { verifyToken } from "@/utils/axiosInstance";
 
 interface LoginModalProps {
   visible: boolean;
@@ -21,25 +25,28 @@ const LoginModal: FC<LoginModalProps> = ({ visible, onClose }) => {
   const [isWrong, setIsWrong] = useState(false);
   const handleLogin = async () => {
     try {
-      console.log({ phone_number: phoneNumber, password: password });
-      const response = await instance.post(
-        "https://ba745807670a.vps.myjino.ru/api/v1/auth/jwt/create/",
-        {
-          phone_number: phoneNumber,
-          password: password,
-        }
-      );
-      console.log(response);
+      const response = await instance.post("/auth/jwt/create/", {
+        phone_number: phoneNumber,
+        password: password,
+      });
 
       const accessToken = response.data.access;
       const refreshToken = response.data.refresh;
-
-      // Сохраняем токены в localStorage
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
 
-      // Закрываем модальное окно при успешном входе
-      onClose();
+      const authenticate = async () => {
+        const refreshed = await verifyToken();
+        if (refreshed) {
+          dispatch(setAuth(true));
+          onClose();
+        } else {
+          setIsWrong(true);
+          dispatch(setAuth(false));
+        }
+      };
+
+      authenticate();
     } catch (error) {
       setIsWrong(true);
       console.error("Ошибка при входе:", error);

@@ -2,45 +2,57 @@ import React, { FC, useState } from "react";
 import styles from "./PhoneVerification.module.scss";
 import Image from "next/image";
 import IconButton from "../../../UI/buttons/iconButton/IconButton";
-import axios from "axios";
+
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
-import { setPhoneVerificationVisible } from "@/store/auth/authSlice";
+import {
+  setFinishedModalVisible,
+  setPhoneVerificationVisible,
+} from "@/store/auth/authSlice";
 import BlackButton from "@/components/UI/buttons/blackButton/BlackButton";
 import CountdownTimer from "@/components/UI/timer/Timer";
+import { IRegisterData } from "../Auth";
+import instance from "@/utils/axiosInstance";
 
 interface PhoneVerificationProps {
   visible: boolean;
   onClose: () => void;
+  registerData: IRegisterData;
 }
 
 const PhoneVerification: FC<PhoneVerificationProps> = ({
   visible,
   onClose,
+  registerData,
 }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const phoneNumber = "+7 000 000-00-00"; // Должно быть передано через пропсы или глобальное состояние
+
   const [verificationCode, setVerificationCode] = useState<string>("");
   const [againBtnShow, setAgainBtnShow] = useState<boolean>(false);
-  const [isWrong, setIsWrong] = useState(false);
+  const [isWrong, setIsWrong] = useState("");
 
   const handleVerification = async () => {
     try {
-      console.log({ verification_code: verificationCode });
-      const response = await axios.post(
-        "https://ba745807670a.vps.myjino.ru/api/v1/auth/verify_phone/",
-        {
-          verification_code: verificationCode,
-          phone_number: phoneNumber,
-        }
-      );
-      console.log(response);
+      console.log({
+        ...registerData,
+        confirmation_code: verificationCode,
+      });
 
-      // Закрываем модальное окно при успешном подтверждении
+      const response = await instance.post("/users/", {
+        ...registerData,
+        // last_name: "string",
+        // first_name: "asasd",
+        // second_name: "string",
+        // full_name: null,
+        confirmation_code: verificationCode,
+      });
       dispatch(setPhoneVerificationVisible(false));
-    } catch (error) {
-      setIsWrong(true);
-      console.error("Ошибка при подтверждении номера:", error);
+      dispatch(setFinishedModalVisible(true));
+    } catch (error: any) {
+      setIsWrong(
+        error?.response?.data?.errors?.[0]?.message ||
+          "Ошибка при подтверждении номера, попробуйте заново"
+      );
     }
   };
 
@@ -75,12 +87,14 @@ const PhoneVerification: FC<PhoneVerificationProps> = ({
         <h2 className={styles.hi}>ПОДТВЕРДИТЕ НОМЕР</h2>
         <div className={styles.mob}>
           <h5 className={`${styles.error} ${isWrong ? styles.show : ""}`}>
-            Неправильный код
+            {isWrong}
           </h5>
           {!isWrong && (
             <p className={styles.subtitle}>
               Введите код, который мы отправили на номер{" "}
-              <strong className={styles.phone}>{phoneNumber}</strong>
+              <strong className={styles.phone}>
+                {registerData.phone_number}
+              </strong>
             </p>
           )}
           <input
@@ -90,7 +104,7 @@ const PhoneVerification: FC<PhoneVerificationProps> = ({
             value={verificationCode}
             onChange={(e) => {
               setVerificationCode(e.target.value);
-              setIsWrong(false);
+              setIsWrong("");
             }}
           />
           <BlackButton
@@ -103,7 +117,13 @@ const PhoneVerification: FC<PhoneVerificationProps> = ({
           {againBtnShow ? (
             <BlackButton
               className={styles.blackBtn}
-              onClick={() => setAgainBtnShow(false)}
+              onClick={async () => {
+                setAgainBtnShow(false)
+                await instance.post("/users/", {
+                  ...registerData,
+                  // confirmation_code: verificationCode,
+                });
+              }}
             >
               Выслать код еще раз
             </BlackButton>
@@ -112,9 +132,8 @@ const PhoneVerification: FC<PhoneVerificationProps> = ({
               Выслать письмо повторно через{" "}
               <CountdownTimer
                 finish={() => setAgainBtnShow(true)}
-                initialTime={30}
-              ></CountdownTimer>{" "}
-              секунд
+                initialTime={303}
+              ></CountdownTimer>
             </div>
           )}
         </div>
