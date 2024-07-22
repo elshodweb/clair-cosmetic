@@ -8,6 +8,10 @@ import ProfileButton from "@/components/UI/buttons/profileButton/ProfileButton";
 import MobileButton from "@/components/UI/buttons/mobileButton/MobileButton";
 import MobileNav from "./mobileNav/MobileNav";
 import Container from "@/components/container/Container";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import { useRouter } from "next/navigation";
+import { setLoginVisible } from "@/store/auth/authSlice";
 
 const navs = [
   { path: "/services", name: "Услуги" },
@@ -16,6 +20,11 @@ const navs = [
   { path: "/contacts", name: "Контакты" },
 ];
 const Header = () => {
+  const navigate = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { isAuth } = useSelector((state: RootState) => state.auth);
+
   const [isOpenNav, setIsOpenNav] = useState<boolean>(false);
   useEffect(() => {
     if (isOpenNav) {
@@ -87,8 +96,17 @@ const Header = () => {
               height={19}
             />
           </IconButton>
-          <ProfileButton className={style.profileBtn} onClick={() => {}}>
-            Профиль
+          <ProfileButton
+            className={style.profileBtn}
+            onClick={() => {
+              if (isAuth) {
+                navigate.push("/account");
+              } else {
+                dispatch(setLoginVisible(true));
+              }
+            }}
+          >
+            {isAuth ? "Профиль" : "Войти"}
           </ProfileButton>
         </div>
 

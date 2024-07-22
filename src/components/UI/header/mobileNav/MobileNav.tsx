@@ -6,6 +6,10 @@ import IconButton from "@/components/UI/buttons/iconButton/IconButton";
 import cn from "classnames";
 import BlackButton from "@/components/UI/buttons/blackButton/BlackButton";
 import OutlineButton from "@/components/UI/buttons/outlineButton/OutlineButton";
+import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import { setLoginVisible, setRegisterVisible } from "@/store/auth/authSlice";
 
 interface MobileNavProps {
   isOpenNav: boolean;
@@ -23,6 +27,11 @@ const links = [
 ];
 
 const MobileNav: FC<MobileNavProps> = ({ isOpenNav, setIsOpenNav }) => {
+  const navigate = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { isAuth } = useSelector((state: RootState) => state.auth);
+
   useEffect(() => {
     if (isOpenNav) {
       document.body.classList.add("no-scroll");
@@ -62,16 +71,37 @@ const MobileNav: FC<MobileNavProps> = ({ isOpenNav, setIsOpenNav }) => {
           </IconButton>
         </div>
         <nav className={style.nav}>
-          {links.map((i) => (
-            <Link className={style.link} key={i.path} href={i.path}>
-              {i.name}
-            </Link>
-          ))}
+          {links.map((i) => {
+            if (!isAuth && i.path === "/account") {
+              return "";
+            }
+            return (
+              <Link className={style.link} key={i.path} href={i.path}>
+                {i.name}
+              </Link>
+            );
+          })}
         </nav>
-        <div className={style.bottom}>
-          <BlackButton>Войти</BlackButton>
-          <OutlineButton>Зарегистрироваться</OutlineButton>
-        </div>
+        {!isAuth && (
+          <div className={style.bottom}>
+            <BlackButton
+              onClick={() => {
+                setIsOpenNav(false);
+                dispatch(setLoginVisible(true));
+              }}
+            >
+              Войти
+            </BlackButton>
+            <OutlineButton
+              onClick={() => {
+                setIsOpenNav(false);
+                dispatch(setRegisterVisible(true));
+              }}
+            >
+              Зарегистрироваться
+            </OutlineButton>
+          </div>
+        )}
       </div>
     </div>
   );

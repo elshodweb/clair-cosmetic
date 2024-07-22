@@ -5,6 +5,9 @@ import BlackButton from "../../../UI/buttons/blackButton/BlackButton";
 import Image from "next/image";
 import IconButton from "../../../UI/buttons/iconButton/IconButton";
 import axios from "axios"; // Импортируем axios instance
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store/store";
+import { setLoginVisible, setRegisterVisible } from "@/store/auth/authSlice";
 
 interface LoginModalProps {
   visible: boolean;
@@ -12,6 +15,7 @@ interface LoginModalProps {
 }
 
 const LoginModal: FC<LoginModalProps> = ({ visible, onClose }) => {
+  const dispatch = useDispatch<AppDispatch>();
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isWrong, setIsWrong] = useState(false);
@@ -103,7 +107,14 @@ const LoginModal: FC<LoginModalProps> = ({ visible, onClose }) => {
           </BlackButton>
           <div className={styles.question}>
             <span>Нет аккаунта?</span>
-            <Link href={"/register"}>Зарегистрироваться</Link>
+            <button
+              onClick={() => {
+                dispatch(setLoginVisible(false));
+                dispatch(setRegisterVisible(true));
+              }}
+            >
+              Зарегистрироваться
+            </button>
           </div>
         </div>
       </div>

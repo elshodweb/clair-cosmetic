@@ -2,6 +2,7 @@
 .wrapper {
   position: fixed;
   width: 100%;
+  height: 100%;
   background: $darkGrayOpacity;
   z-index: 7;
   opacity: 0;
@@ -14,31 +15,12 @@
   opacity: 1;
   visibility: visible;
 }
-
-.wrapper.noWrapperOpacity {
-  background: transparent;
-}
-.title {
-  margin-bottom: 40px;
-  font-size: 30px;
-  font-weight: 500;
-  line-height: 36px;
-}
-.list {
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  li {
-    &:not(:last-of-type) {
-      margin-bottom: 12px;
-    }
-  }
-}
 .content {
   width: 100%;
   max-width: 510px;
-  background: $white;
   height: max-content;
+  min-height: 100%;
+  background: $white;
   margin-left: auto;
   padding: 60px 50px;
   transition: all 0.3s ease-in-out;
@@ -80,22 +62,11 @@
   text-transform: uppercase;
   font-weight: 600;
   text-align: center;
-  max-width: 300px;
   margin: 0 auto;
   margin-bottom: 30px;
+  max-width: 370px;
 }
-.error {
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 18px;
-  margin-bottom: 12px;
-  text-align: center;
-  color: #e31a1a;
-  opacity: 0;
-}
-.error.show {
-  opacity: 1;
-}
+
 .input {
   padding: 20px;
   border-radius: 40px;
@@ -125,69 +96,25 @@
   }
 }
 
-.forget {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 19.2px;
-  margin-bottom: 47px;
-  display: block;
-  color: inherit;
-  text-align: center;
-}
 .blackBtn {
   width: 100%;
   max-width: 324px;
   margin: 0 auto;
   display: block;
-  
+
   padding: 20px;
-font-size: 16px;
-font-weight: 500;
-line-height: 19.2px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.2px;
   &:disabled {
     background: #ededed;
     border-color: #ededed;
     color: #b0b0b0;
   }
 }
-.question {
-  gap: 5px;
-  display: flex;
-  margin-top: 21px;
-  justify-content: center;
-  font-size: 16px;
-  line-height: 19.2px;
-  button {
-    color: inherit;
-    font-weight: 600;
-    background: transparent;
-  }
-}
 
-.rainBow {
+.img {
   display: none;
-}
-.acceptNews,
-.acceptOffer {
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 14.4px;
-  color: $gray;
-  display: flex;
-  gap: 10px;
-  max-width: 306px;
-  margin: 0 auto;
-  &:first-of-type {
-    margin-bottom: 13px;
-  }
-  &:last-of-type {
-    margin-bottom: 27px;
-  }
-
-  span {
-    text-decoration: underline;
-  }
 }
 @media (max-width: 500px) {
   .content {
@@ -201,25 +128,23 @@ line-height: 19.2px;
     padding-bottom: 0;
   }
   .top {
-    flex: 1;
-    height: 100%;
     align-items: start;
     margin-bottom: 0;
   }
   .content .btn {
     display: none;
   }
-  .rainBow {
+  .img {
     display: block;
+    flex: 1;
+    height: 100%;
     margin: 0 auto;
-    display: block;
-    width: 100%;
-    height: auto;
-    transform: translate(0, 50px);
-    position: relative;
-    z-index: -1;
-    max-width: 250px;
-    margin: 0 auto;
+    margin-bottom: 87px;
+    max-width: 272px;
+    & > img {
+      width: 100%;
+      height: auto;
+    }
   }
   .mob {
     background: $white;

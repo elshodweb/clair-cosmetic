@@ -4,7 +4,12 @@ import Link from "next/link";
 import BlackButton from "../../../UI/buttons/blackButton/BlackButton";
 import Image from "next/image";
 import IconButton from "../../../UI/buttons/iconButton/IconButton";
-import axios from "axios"; // Импортируем axios instance
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store/store";
+import { setLoginVisible, setRegisterVisible } from "@/store/auth/authSlice";
+import ModalWrapper from "@/components/UI/modalWrapper/ModalWrapper";
+import SmallTitle from "@/components/UI/smallTitle/SmallTitle";
 
 interface RegisterModalProps {
   visible: boolean;
@@ -12,38 +17,62 @@ interface RegisterModalProps {
 }
 
 const RegisterModal: FC<RegisterModalProps> = ({ visible, onClose }) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const [email, setEmail] = useState<string>("");
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isWrong, setIsWrong] = useState(false);
-  const handleLogin = async () => {
+  const [isAcceptOffer, setAcceptOffer] = useState(false);
+  const [isAcceptNews, setAcceptNews] = useState(false);
+
+  const handleRegister = async () => {
     try {
-      console.log({ phone_number: phoneNumber, password: password });
+      console.log({
+        email: email,
+        phone_number: phoneNumber,
+        password: password,
+      });
       const response = await axios.post(
-        "https://ba745807670a.vps.myjino.ru/api/v1/auth/jwt/create/",
+        "https://ba745807670a.vps.myjino.ru/api/v1/auth/users/",
         {
+          email: email,
           phone_number: phoneNumber,
           password: password,
         }
       );
       console.log(response);
 
-      const accessToken = response.data.access;
-      const refreshToken = response.data.refresh;
-
-      // Сохраняем токены в localStorage
-      localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("refreshToken", refreshToken);
-
-      // Закрываем модальное окно при успешном входе
+      // Закрываем модальное окно при успешной регистрации
       onClose();
     } catch (error) {
       setIsWrong(true);
-      console.error("Ошибка при входе:", error);
+      console.error("Ошибка при регистрации:", error);
     }
   };
 
   return (
-    <div className={`${styles.wrapper} ${visible ? styles.opened : ""}`}>
+    <div
+      className={`${styles.wrapper} ${visible ? styles.opened : ""} ${
+        isModalOpen ? styles.noWrapperOpacity : ""
+      }`}
+    >
+      <ModalWrapper isOpen={isModalOpen} setOpen={setModalOpen}>
+        <div className={styles.title}>Документация</div>
+        <ol className={styles.list}>
+          <li>Политика конфиденциальности</li>
+          <li>Политика конфиденциальности</li>
+          <li>Политика конфиденциальности</li>
+          <li>Политика конфиденциальности</li>
+          <li>Политика конфиденциальности</li>
+          <li>Политика конфиденциальности</li>
+          <li>Политика конфиденциальности</li>
+          <li>Политика конфиденциальности</li>
+          <li>Политика конфиденциальности</li>
+          <li>Политика конфиденциальности</li>
+        </ol>
+      </ModalWrapper>
+
       <div className={styles.content}>
         <div className={styles.top}>
           <button onClick={() => onClose()} className={styles.back}>
@@ -65,20 +94,30 @@ const RegisterModal: FC<RegisterModalProps> = ({ visible, onClose }) => {
         </div>
         <Image
           className={styles.rainBow}
-          src={"/images/login/rainbow.png"}
+          src={"/images/authModals/flowers.png"}
           alt="cart"
           width={399}
           height={150}
         />
-        <h2 className={styles.hi}>Привет!</h2>
+        <h2 className={styles.hi}>Добро пожаловать!</h2>
         <div className={styles.mob}>
           <h5 className={`${styles.error} ${isWrong ? styles.show : ""}`}>
-            Такой почты нет
+            Ошибка при регистрации
           </h5>
           <input
             className={`${styles.input} ${isWrong ? styles.errorInput : ""}`}
             type="text"
             placeholder="Почта"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setIsWrong(false);
+            }}
+          />
+          <input
+            className={`${styles.input} ${isWrong ? styles.errorInput : ""}`}
+            type="text"
+            placeholder="Телефон"
             value={phoneNumber}
             onChange={(e) => {
               setPhoneNumber(e.target.value);
@@ -88,22 +127,59 @@ const RegisterModal: FC<RegisterModalProps> = ({ visible, onClose }) => {
           <input
             className={`${styles.input} ${isWrong ? styles.errorInput : ""} `}
             type="password"
-            placeholder="Пароль"
+            placeholder="Придумайте пароль"
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
               setIsWrong(false);
             }}
           />
-          <Link className={`${styles.forget}`} href={"/forget-pas"}>
-            Забыли пароль?
-          </Link>
-          <BlackButton className={styles.blackBtn} onClick={handleLogin}>
-            Войти
+          <label className={styles.acceptOffer}>
+            <input
+              type="checkbox"
+              checked={isAcceptOffer}
+              onChange={() => setAcceptOffer(!isAcceptOffer)}
+            />
+            <div>
+              Даю согласие на
+              <span
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setModalOpen(true);
+                }}
+              >
+                обработку персональных данных и договор оферты
+              </span>
+            </div>
+          </label>
+
+          <label className={styles.acceptNews}>
+            <input
+              type="checkbox"
+              checked={isAcceptNews}
+              onChange={() => setAcceptNews(!isAcceptNews)}
+            />
+            <div>Хочу получать новости об акциях самым первым</div>
+          </label>
+          <BlackButton
+            disabled={!(isAcceptNews && isAcceptOffer) ? true : false}
+            onClick={() => {
+              handleRegister();
+            }}
+            className={styles.blackBtn}
+          >
+            Зарегистрироваться
           </BlackButton>
           <div className={styles.question}>
-            <span>Нет аккаунта?</span>
-            <Link href={"/register"}>Зарегистрироваться</Link>
+            <span>Уже есть аккаунт?</span>
+            <button
+              onClick={() => {
+                dispatch(setRegisterVisible(false));
+                dispatch(setLoginVisible(true));
+              }}
+            >
+              Войти
+            </button>
           </div>
         </div>
       </div>

@@ -14,31 +14,12 @@
   opacity: 1;
   visibility: visible;
 }
-
-.wrapper.noWrapperOpacity {
-  background: transparent;
-}
-.title {
-  margin-bottom: 40px;
-  font-size: 30px;
-  font-weight: 500;
-  line-height: 36px;
-}
-.list {
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  li {
-    &:not(:last-of-type) {
-      margin-bottom: 12px;
-    }
-  }
-}
 .content {
   width: 100%;
+  height: max-content;
+  min-height: 100%;
   max-width: 510px;
   background: $white;
-  height: max-content;
   margin-left: auto;
   padding: 60px 50px;
   transition: all 0.3s ease-in-out;
@@ -80,9 +61,21 @@
   text-transform: uppercase;
   font-weight: 600;
   text-align: center;
-  max-width: 300px;
   margin: 0 auto;
   margin-bottom: 30px;
+}
+.subtitle {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: center;
+  max-width: 280px;
+  margin: 0 auto;
+  margin-bottom: 22px;
+  margin-top: 10px;
+}
+.phone {
+  text-wrap: nowrap;
 }
 .error {
   font-size: 15px;
@@ -110,14 +103,12 @@
   font-weight: 400;
   line-height: 14.4px;
   outline: none;
+  margin-bottom: 32px;
   &:focus {
     box-shadow: 1px 1px 5px #000;
   }
   &.errorInput {
     border: 3px solid #ff0000;
-  }
-  &:first-of-type {
-    margin-bottom: 8px;
   }
 
   &::placeholder {
@@ -125,69 +116,37 @@
   }
 }
 
-.forget {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 19.2px;
-  margin-bottom: 47px;
-  display: block;
-  color: inherit;
-  text-align: center;
-}
 .blackBtn {
   width: 100%;
   max-width: 324px;
   margin: 0 auto;
   display: block;
-  
   padding: 20px;
-font-size: 16px;
-font-weight: 500;
-line-height: 19.2px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.2px;
+  margin-bottom: 8px;
+  &:last-of-type {
+    margin-bottom: 48px;
+  }
   &:disabled {
     background: #ededed;
     border-color: #ededed;
     color: #b0b0b0;
   }
 }
-.question {
-  gap: 5px;
-  display: flex;
-  margin-top: 21px;
-  justify-content: center;
-  font-size: 16px;
-  line-height: 19.2px;
-  button {
-    color: inherit;
-    font-weight: 600;
-    background: transparent;
-  }
-}
 
 .rainBow {
   display: none;
 }
-.acceptNews,
-.acceptOffer {
-  cursor: pointer;
-  font-size: 12px;
+.resend {
+  font-size: 16px;
   font-weight: 400;
-  line-height: 14.4px;
-  color: $gray;
-  display: flex;
-  gap: 10px;
-  max-width: 306px;
+  line-height: 19.2px;
+  text-align: center;
+  max-width: 232px;
   margin: 0 auto;
-  &:first-of-type {
-    margin-bottom: 13px;
-  }
-  &:last-of-type {
-    margin-bottom: 27px;
-  }
-
-  span {
-    text-decoration: underline;
-  }
+  color: #a9a9a9;
 }
 @media (max-width: 500px) {
   .content {
@@ -212,14 +171,11 @@ line-height: 19.2px;
   .rainBow {
     display: block;
     margin: 0 auto;
-    display: block;
     width: 100%;
     height: auto;
-    transform: translate(0, 50px);
-    position: relative;
+    transform: translate(0, -45px);
+    margin-bottom: -40px;
     z-index: -1;
-    max-width: 250px;
-    margin: 0 auto;
   }
   .mob {
     background: $white;
@@ -228,7 +184,8 @@ line-height: 19.2px;
     // max-width: 355px;
     width: 100%;
     margin: 0 auto;
-    & > * {
+    & button,
+    & input {
       width: 100%;
       max-width: 100%;
     }

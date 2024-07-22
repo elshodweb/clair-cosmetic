@@ -1,0 +1,63 @@
+@import "./../../../styles/variables.scss";
+
+.wrapper {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  background: $darkGrayOpacity;
+  width: 0;
+  z-index: 6;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen {
+  background: $white;
+  max-width: 500px;
+
+  width: 100%;
+  border-radius: 30px;
+  margin: 0 auto;
+  min-height: auto;
+  padding: 45px 60px;
+
+  z-index: 2;
+  position: relative;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(100vw, 0);
+  transition: all 0.3s ease-in-out;
+}
+.opened {
+  width: 100%;
+  padding: 40px;
+}
+.opened .screen {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translate(0vw, 0);
+  transition: all 0.3s ease-in-out;
+}
+.exitBtn {
+  position: absolute;
+  top: 36px;
+  right: 32px;
+  width: 32px;
+  height: 32px;
+}
+@media (max-width: 580px) {
+  .wrapper {
+    padding: 0;
+    margin: 0;
+  }
+  .screen {
+    height: 100%;
+    max-width: 100%;
+    border-radius: 0px;
+    padding: 30px;
+    padding-top: 70px;
+  }
+}
