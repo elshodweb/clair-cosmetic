@@ -3,12 +3,17 @@ import styles from "./FinishedModal.module.scss";
 import ModalWrapper from "@/components/UI/modalWrapper/ModalWrapper";
 import Image from "next/image";
 import BlackButton from "@/components/UI/buttons/blackButton/BlackButton";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store/store";
+import { setLoginVisible } from "@/store/auth/authSlice";
 
 interface FinishedModalProps {
   visible: boolean;
   onClose: () => void;
 }
 const FinishedModal: FC<FinishedModalProps> = ({ onClose, visible }) => {
+  
+  const dispatch = useDispatch<AppDispatch>();
   return (
     <div className={styles.wrapper}>
       <ModalWrapper
@@ -33,7 +38,10 @@ const FinishedModal: FC<FinishedModalProps> = ({ onClose, visible }) => {
             />
             </div>
             <h3 className={styles.subtitle}>Аккаунт успешно создан</h3>
-            <BlackButton className={styles.btn} onClick={onClose}>
+            <BlackButton className={styles.btn} onClick={()=>{
+              onClose();
+              dispatch(setLoginVisible(true));
+            }}>
               Вперед
             </BlackButton>
           </>

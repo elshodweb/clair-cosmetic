@@ -1,9 +1,9 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import styles from "./AccountData.module.scss";
 import Image from "next/image";
 import IconButton from "../../../UI/buttons/iconButton/IconButton";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
 import BlackButton from "@/components/UI/buttons/blackButton/BlackButton";
 import { IRegisterData } from "../Auth";
 import instance from "@/utils/axiosInstance";
@@ -14,6 +14,7 @@ import {
   setAccountDataVisible,
   setPhoneVerificationVisible,
   setRegisterVisible,
+  setTimer,
 } from "@/store/auth/authSlice";
 interface AccountDataProps {
   visible: boolean;
@@ -22,7 +23,7 @@ interface AccountDataProps {
   setRegisterData: (a: IRegisterData) => void;
 }
 function validateName(input: string) {
-  const regex = /^[A-Za-z]+\s+[A-Za-z]+$/;
+  const regex = /^[A-Za-z]+\s+[A-Za-z]+\s+[A-Za-z]+$/;
 
   if (regex.test(input)) {
     return true;
@@ -30,12 +31,16 @@ function validateName(input: string) {
     return false;
   }
 }
+
 const AccountData: FC<AccountDataProps> = ({
   visible,
   onClose,
   registerData,
   setRegisterData,
 }) => {
+
+  
+  const timer = useSelector((state: RootState) => state.auth.timer);
   const dispatch = useDispatch<AppDispatch>();
   const notify = (err: string | undefined) =>
     toast.error(err || "Что то пошло не так, попробуйте снова");
@@ -49,6 +54,7 @@ const AccountData: FC<AccountDataProps> = ({
 
       dispatch(setAccountDataVisible(false));
       dispatch(setPhoneVerificationVisible(true));
+      dispatch(setTimer(301));
     } catch (error: any) {
       notify(error?.response?.data?.errors?.[0]?.message);
       setRegisterData({
@@ -65,6 +71,11 @@ const AccountData: FC<AccountDataProps> = ({
   };
 
   const handleSave = () => {
+    if (timer > 0) {
+      dispatch(setAccountDataVisible(false));
+      dispatch(setPhoneVerificationVisible(true));
+      return;
+    }
     if (!validateName(registerData.full_name)) {
       setIsWrong("Введите правильную имю и фамилию");
     } else {
@@ -76,7 +87,13 @@ const AccountData: FC<AccountDataProps> = ({
     <div className={`${styles.wrapper} ${visible ? styles.opened : ""}`}>
       <div className={styles.content}>
         <div className={styles.top}>
-          <button onClick={onClose} className={styles.back}>
+          <button
+            onClick={() => {
+              dispatch(setAccountDataVisible(false));
+              dispatch(setRegisterVisible(true));
+            }}
+            className={styles.back}
+          >
             <Image
               src={"/images/UI/arrow.svg"}
               width={56}

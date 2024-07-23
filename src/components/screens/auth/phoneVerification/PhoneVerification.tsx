@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import styles from "./PhoneVerification.module.scss";
 import Image from "next/image";
 import IconButton from "../../../UI/buttons/iconButton/IconButton";
@@ -6,8 +6,11 @@ import IconButton from "../../../UI/buttons/iconButton/IconButton";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
 import {
+  setAccountDataVisible,
   setFinishedModalVisible,
   setPhoneVerificationVisible,
+  setRegisterVisible,
+  setTimer,
 } from "@/store/auth/authSlice";
 import BlackButton from "@/components/UI/buttons/blackButton/BlackButton";
 import CountdownTimer from "@/components/UI/timer/Timer";
@@ -33,11 +36,10 @@ const PhoneVerification: FC<PhoneVerificationProps> = ({
 
   const handleVerification = async () => {
     try {
-      console.log({
-        ...registerData,
-        confirmation_code: verificationCode,
-      });
-
+      if (!registerData.email) {
+        dispatch(setPhoneVerificationVisible(false));
+        dispatch(setRegisterVisible(true));
+      }
       const response = await instance.post("/users/", {
         ...registerData,
         // last_name: "string",
@@ -48,6 +50,7 @@ const PhoneVerification: FC<PhoneVerificationProps> = ({
       });
       dispatch(setPhoneVerificationVisible(false));
       dispatch(setFinishedModalVisible(true));
+      dispatch(setTimer(0));
     } catch (error: any) {
       setIsWrong(
         error?.response?.data?.errors?.[0]?.message ||
@@ -55,12 +58,33 @@ const PhoneVerification: FC<PhoneVerificationProps> = ({
       );
     }
   };
+  const codeSendAgain = async () => {
+    try {
+      if (!registerData.email) {
+        dispatch(setPhoneVerificationVisible(false));
+        dispatch(setRegisterVisible(true));
+      }
+      await instance.post("/users/", {
+        ...registerData,
+      });
+      setAgainBtnShow(false);
+      dispatch(setTimer(301));
+    } catch (error) {
+      setAgainBtnShow(false);
+    }
+  };
 
   return (
     <div className={`${styles.wrapper} ${visible ? styles.opened : ""}`}>
       <div className={styles.content}>
         <div className={styles.top}>
-          <button onClick={onClose} className={styles.back}>
+          <button
+            onClick={() => {
+              dispatch(setPhoneVerificationVisible(false));
+              dispatch(setAccountDataVisible(true));
+            }}
+            className={styles.back}
+          >
             <Image
               src={"/images/UI/arrow.svg"}
               width={56}
@@ -115,16 +139,7 @@ const PhoneVerification: FC<PhoneVerificationProps> = ({
             Подтвердить
           </BlackButton>
           {againBtnShow ? (
-            <BlackButton
-              className={styles.blackBtn}
-              onClick={async () => {
-                setAgainBtnShow(false)
-                await instance.post("/users/", {
-                  ...registerData,
-                  // confirmation_code: verificationCode,
-                });
-              }}
-            >
+            <BlackButton className={styles.blackBtn} onClick={codeSendAgain}>
               Выслать код еще раз
             </BlackButton>
           ) : (
@@ -132,7 +147,6 @@ const PhoneVerification: FC<PhoneVerificationProps> = ({
               Выслать письмо повторно через{" "}
               <CountdownTimer
                 finish={() => setAgainBtnShow(true)}
-                initialTime={303}
               ></CountdownTimer>
             </div>
           )}

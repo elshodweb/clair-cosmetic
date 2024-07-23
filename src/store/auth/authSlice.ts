@@ -1,11 +1,13 @@
+// src/store/auth/authSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthState {
   isLoginVisible: boolean;
   isRegisterVisible: boolean;
-  isPhoneVerificationVisible: boolean; // Добавлено для видимости подтверждения телефона
-  isAccountDataVisible: boolean; // Добавлено для видимости данных аккаунта
+  isPhoneVerificationVisible: boolean;
+  isAccountDataVisible: boolean;
   isFinishedModalVisible: boolean;
+  timer: number; 
   isAuth: boolean | null;
 }
 
@@ -15,6 +17,7 @@ const initialState: AuthState = {
   isPhoneVerificationVisible: false,
   isAccountDataVisible: false,
   isFinishedModalVisible: false,
+  timer: 301, 
   isAuth: null,
 };
 
@@ -40,6 +43,9 @@ const authSlice = createSlice({
     setAuth(state, action: PayloadAction<boolean | null>) {
       state.isAuth = action.payload;
     },
+    setTimer(state, action: PayloadAction<number>) { 
+      state.timer = action.payload;
+    },
   },
 });
 
@@ -50,5 +56,6 @@ export const {
   setAccountDataVisible,
   setFinishedModalVisible,
   setAuth,
+  setTimer,
 } = authSlice.actions;
 export default authSlice.reducer;

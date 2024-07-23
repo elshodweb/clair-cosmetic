@@ -26,14 +26,20 @@ export interface IRegisterData {
   re_password: string;
 }
 
+// phone_number: "78212332224",
+//     email: "user@example.com",
+//     full_name: "string dasd",
+//     city: "s",
+//     password: "ssstring",
+//     re_password: "ssstring",
 const Auth = () => {
   const [registerData, setRegisterData] = useState<IRegisterData>({
-    phone_number: "78212332222",
-    email: "user@example.com",
-    full_name: "string dasd    ",
-    city: "s",
-    password: "ssstring",
-    re_password: "ssstring",
+    phone_number: "",
+    email: "",
+    full_name: "",
+    city: "",
+    password: "",
+    re_password: "",
   });
   const dispatch = useDispatch<AppDispatch>();
   const {
@@ -55,36 +61,61 @@ const Auth = () => {
       }
     };
     authenticate();
+    
   }, []);
 
-  if (isAuth === null) return null; // показываем загрузку или ничего, пока не получено состояние аутентификации
-
+  if (isAuth === null || isAuth) return null; // показываем загрузку или ничего, пока не получено состояние аутентификации
+  function cleanInputs() {
+    setRegisterData({
+      phone_number: "",
+      email: "",
+      full_name: "",
+      city: "",
+      password: "",
+      re_password: "",
+    });
+  }
   return (
     <div className={styles.wrapper}>
       <LoginModal
         visible={isLoginVisible}
-        onClose={() => dispatch(setLoginVisible(false))}
+        onClose={() => {
+          dispatch(setLoginVisible(false));
+          cleanInputs();
+        }}
       />
       <RegisterModal
         registerData={registerData}
         setRegisterData={setRegisterData}
         visible={isRegisterVisible}
-        onClose={() => dispatch(setRegisterVisible(false))}
+        onClose={() => {
+          dispatch(setRegisterVisible(false));
+          cleanInputs();
+        }}
       />
       <AccountData
         registerData={registerData}
         setRegisterData={setRegisterData}
         visible={isAccountDataVisible}
-        onClose={() => dispatch(setAccountDataVisible(false))}
+        onClose={() => {
+          dispatch(setAccountDataVisible(false));
+          cleanInputs();
+        }}
       />
       <PhoneVerification
         registerData={registerData}
         visible={isPhoneVerificationVisible}
-        onClose={() => dispatch(setPhoneVerificationVisible(false))}
+        onClose={() => {
+          dispatch(setPhoneVerificationVisible(false));
+          cleanInputs();
+        }}
       />
       <FinishedModal
         visible={isFinishedModalVisible}
-        onClose={() => dispatch(setFinishedModalVisible(false))}
+        onClose={() => {
+          dispatch(setFinishedModalVisible(false));
+          cleanInputs();
+        }}
       />
     </div>
   );
