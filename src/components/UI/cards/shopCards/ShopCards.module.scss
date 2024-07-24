@@ -1,8 +1,9 @@
 .row {
   padding: 25px 0;
   display: flex;
+  justify-content: center;
   gap: 15px;
   flex-wrap: wrap;
-  max-width: max-content;
+  max-width: 1400px;
   margin: 0 auto;
 }

@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
 }
 .title {
   font-size: 20px;
@@ -32,9 +33,13 @@
 .img {
   position: absolute;
   right: 30px;
-  top: 20px;
+  top: 50px;
   width: 160px;
+  overflow: hidden;
+  max-height: 190px;
+  height: auto;
   img {
+    // object-fit: cover;
     width: 100%;
     height: auto;
   }
@@ -79,6 +84,12 @@
     height: 310px;
     right: auto;
     margin: 0 auto;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: none;
     img {
       height: 100%;
       width: auto;

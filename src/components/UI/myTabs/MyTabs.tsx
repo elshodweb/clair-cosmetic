@@ -1,33 +1,33 @@
 import styles from "./MyTabs.module.scss";
 import { FC, useState, useEffect } from "react";
 interface TabProps {
-  data: Array<{ title: string }>;
-  filterListener?: (title: string) => void;
+  data:any[];
+  filterListener?: (id: string) => void;
 }
 const MyTabs: FC<TabProps> = ({ data, filterListener }) => {
-  const [currentFilter, setCurentFilter] = useState(3);
+  const [currentFilter, setCurentFilter] = useState("");
 
-  const changeFilter = (index: number) => {
-    setCurentFilter(index);
+  const changeFilter = (id: string) => {
+    setCurentFilter(id);
   };
 
-  const filterHandler = (title: string) => {
-    filterListener && filterListener(title);
+  const filterHandler = (id: string) => {
+    filterListener && filterListener(id);
   };
 
   return (
     <div className={styles.container}>
-      {data.map((item, index) => (
+      {data.map((item) => (
         <button
-          key={index}
+          key={item.id}
           style={{
-            backgroundColor: `${index === currentFilter ? "#1B1B1A" : "transparent"}`,
-            color: `${index === currentFilter ? "#fff" : "#000"}`,
+            backgroundColor: `${item.id === currentFilter ? "#1B1B1A" : "transparent"}`,
+            color: `${item.id === currentFilter ? "#fff" : "#000"}`,
           }}
           className={styles.filter_item}
           onClick={() => {
-            changeFilter(index);
-            filterHandler(item.title);
+            changeFilter(item.id);
+            filterHandler(item.id);
           }}
         >
           {item.title}

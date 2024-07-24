@@ -1,5 +1,5 @@
 import { setTimer } from "@/store/auth/authSlice";
-import { RootState } from "@/store/rootReducer";
+import { RootState } from "@/store/store";
 import { AppDispatch } from "@/store/store";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";

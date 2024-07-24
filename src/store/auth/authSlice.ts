@@ -1,7 +1,7 @@
 // src/store/auth/authSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface AuthState {
+export interface AuthState {
   isLoginVisible: boolean;
   isRegisterVisible: boolean;
   isPhoneVerificationVisible: boolean;

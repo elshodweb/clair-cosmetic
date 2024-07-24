@@ -1,47 +1,46 @@
-import axios, { AxiosRequestHeaders, InternalAxiosRequestConfig } from "axios";
+// src/utils/axiosInstance.ts
 
+import axios from 'axios';
+
+// Создаем экземпляр axios для публичных запросов
 const instance = axios.create({
   baseURL: "https://ba745807670a.vps.myjino.ru/api/v1/",
 });
 
 export default instance;
 
-const http = instance.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      if (config.headers) {
-        (
-          config.headers as AxiosRequestHeaders
-        ).Authorization = `Bearer ${token}`;
-      } else {
-        config.headers = {
-          Authorization: `Bearer ${token}`,
-        } as AxiosRequestHeaders;
-      }
-    }
-    return config;
-  }
-);
-export { http };
+// Создаем экземпляр axios для запросов с авторизацией
+const createHttpInstance = () => {
+  const token = typeof window !== 'undefined' ? localStorage.getItem("accessToken") : null;
 
+  return axios.create({
+    baseURL: "https://ba745807670a.vps.myjino.ru/api/v1/",
+    headers: {
+      Authorization: token ? `Bearer ${token}` : undefined,
+    },
+  });
+};
+
+export const http = createHttpInstance();
+
+// Функции для проверки и обновления токена
 export const verifyToken = async (): Promise<boolean> => {
   try {
-    const token = localStorage.getItem("refreshToken");
+    const token = typeof window !== 'undefined' ? localStorage.getItem("refreshToken") : null;
     if (!token) {
       return false;
     }
     await instance.post("/auth/jwt/verify/", { token: token });
     return true;
   } catch (error) {
-    refreshToken();
+    await refreshToken();
     return false;
   }
 };
 
 export const refreshToken = async (): Promise<boolean> => {
   try {
-    const refreshToken = localStorage.getItem("refreshToken");
+    const refreshToken = typeof window !== 'undefined' ? localStorage.getItem("refreshToken") : null;
 
     if (!refreshToken) {
       return false;
@@ -54,9 +53,11 @@ export const refreshToken = async (): Promise<boolean> => {
     const newAccessToken = refreshResponse.data.access;
     const newRefreshToken = refreshResponse.data.refresh;
 
-    localStorage.setItem("accessToken", newAccessToken);
-    localStorage.setItem("refreshToken", newRefreshToken);
-    verifyToken();
+    if (typeof window !== 'undefined') {
+      localStorage.setItem("accessToken", newAccessToken);
+      localStorage.setItem("refreshToken", newRefreshToken);
+    }
+    
     return true;
   } catch (error) {
     return false;

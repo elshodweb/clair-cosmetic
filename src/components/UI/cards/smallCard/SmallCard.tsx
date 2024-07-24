@@ -3,27 +3,29 @@ import styles from "./SmallCard.module.scss";
 import Image from "next/image";
 import Like from "../../like/Like";
 import Link from "next/link";
-const SmallCard = () => {
+const SmallCard = ({ data }: any) => {
   const [isLiked, setIsLike] = useState<boolean>(false);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.titles}>
-        <Link href={'/shop/asd'} className={styles.title}>Holiday.Plumping</Link>
-        <h5 className={styles.subtitle}>KEVIN MURPHY </h5>
+        <Link href={"/shop/asd"} className={styles.title}>
+          {data.title}
+        </Link>
+        <h5 className={styles.subtitle}>{data.brand}</h5>
       </div>
-      <Link href={'/shop/asd'} className={styles.img}>
+      <Link href={"/shop/asd"} className={styles.img}>
         <Image
-          src={"/images/products/1.png"}
+          src={data.images[0]?.image}
           alt="product img"
           height={240}
           width={160}
-          
         />
       </Link>
       <div className={styles.row}>
         <div className={styles.price}>
-          <strong>8 800 ₽ </strong>
-          <span>12 800 ₽</span>
+          <strong>{data.price} ₽ </strong>
+          {/* <span>12 800 ₽</span> */}
         </div>
         <div
           onClick={() => {

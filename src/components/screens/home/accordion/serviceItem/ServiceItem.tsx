@@ -4,9 +4,12 @@ import styles from "./ServiceItem.module.scss";
 import ItemPrice from "./itemPrice/ItemPrice";
 import Link from "next/link";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import { fetchServices } from "@/store/services/servicesSlice";
 
 interface props {
-  index: number;
+  index: string;
   isOpen: any;
   title: string;
   content: string;
@@ -21,6 +24,22 @@ const ServiceItem: FC<props> = ({
   clickHandler,
 }) => {
   const [isDesktop, setIsDesktop] = useState(false);
+
+  const dispatch = useDispatch<AppDispatch>();
+  const subCategories = useSelector(
+    (state: RootState) => state.servicesCategories.subCategories
+  );
+  const services = useSelector((state: RootState) => state.services.services);
+  const categoriesStatus = useSelector(
+    (state: RootState) => state.servicesCategories.status
+  );
+  const servicesStatus = useSelector(
+    (state: RootState) => state.servicesCategories.status
+  );
+  const error = useSelector(
+    (state: RootState) => state.servicesCategories.error || state.services.error
+  );
+
   useEffect(() => {
     setIsDesktop(window.innerWidth >= 850);
     const handleResize = () => {
@@ -34,9 +53,27 @@ const ServiceItem: FC<props> = ({
     };
   }, []);
 
+  useEffect(() => {
+    if (servicesStatus === "idle") {
+      dispatch(fetchServices());
+    }
+  }, [servicesStatus, dispatch]);
+
+  if (categoriesStatus === "loading" || servicesStatus === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (categoriesStatus === "failed" || servicesStatus === "failed") {
+    return <div>{error}</div>;
+  }
+
+  console.log(services);
+
   return (
     <div
-      className={`${styles.container} ${index == isOpen ? styles.activeContainer : ""}`}
+      className={`${styles.container} ${
+        index == isOpen ? styles.activeContainer : ""
+      }`}
       style={{
         background: `linear-gradient(180deg, #FFF 0%, ${
           index == isOpen ? "#FFEDFF" : "#FFEDFF"
@@ -84,10 +121,12 @@ const ServiceItem: FC<props> = ({
           </div>
 
           <div className={styles.price_list}>
-            <ItemPrice />
-            <ItemPrice />
-            <ItemPrice />
-            <ItemPrice />
+            {subCategories
+              .filter((i: any) => i.parent.id === index)
+              .slice(0, 4)
+              .map((el) => (
+                <ItemPrice data={el} />
+              ))}
             <div className={styles.button_container}>
               <Link href="/face">
                 <button className={styles.showAll_button}>

@@ -1,28 +1,19 @@
-import { FC } from 'react'
-import styles from './Item.price.module.scss'
+import { FC } from "react";
+import styles from "./Item.price.module.scss";
 
-interface props {
-    title?: string
-    price?: number
-}
-
-const ItemPrice: FC<props> = (props) => {
-    const {title, price} = props
-    return(
+const ItemPrice: FC<any> = ({ data }) => {
+  const { title, price_min, description } = data;
+  return (
     <div className={styles.list_item}>
-        <div className={styles.info}>
-            <div className={styles.title}>Название</div>
-            <div className={styles.text}>
-                Пилинг PRX-T33
-                Пилинг PRX-T33
-                Пилинг PRX-T33
-            </div>
-        </div>
-        <button className={styles.price_button}>
-            <div>от 1700</div>
-        </button>
+      <div className={styles.info}>
+        <div className={styles.title}>{title}</div>
+        <div className={styles.text}>{description}</div>
+      </div>
+      <button className={styles.price_button}>
+        <div>от {price_min}₽</div>
+      </button>
     </div>
-    )
-}
+  );
+};
 
-export default ItemPrice
+export default ItemPrice;

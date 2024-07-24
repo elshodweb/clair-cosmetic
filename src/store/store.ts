@@ -1,18 +1,34 @@
 // src/store/store.ts
-import { configureStore } from '@reduxjs/toolkit';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-import rootReducer from './rootReducer'; // импорт rootReducer
-
-const persistConfig = {
-  key: 'root',
+import { configureStore } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { combineReducers } from "@reduxjs/toolkit";
+import authReducer from "./auth/authSlice"; // импорт authReducer
+import newsReducer from "./newStories/storiesSlice"; // импорт newsReducer
+import servicesReducer from "./services/servicesSlice";
+import servicesCategoriesReducer from "./services/servicesCategoriesSlice";
+import productCategoriesReducer from "./product/productCategoriesSlice";
+import products from "./product/productsSlice";
+const authPersistConfig = {
+  key: "auth",
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
+
+const rootReducer = combineReducers({
+  auth: persistedAuthReducer,
+  news: newsReducer,
+
+  services: servicesReducer,
+  servicesCategories: servicesCategoriesReducer,
+  productCategories: productCategoriesReducer,
+  products: products,
+  // другие редукторы
+});
 
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,

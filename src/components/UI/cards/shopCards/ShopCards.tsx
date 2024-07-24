@@ -5,10 +5,9 @@ import SmallCard from "../smallCard/SmallCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 
-const ShopCards = () => {
+const ShopCards = ({ data }: any) => {
   const [isClient, setIsClient] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
-
   useEffect(() => {
     setIsClient(true);
     setIsDesktop(window.innerWidth >= 580);
@@ -29,14 +28,12 @@ const ShopCards = () => {
 
   return isDesktop ? (
     <div className={styles.row}>
-      <BigCard />
-      <SmallCard />
-      <SmallCard />
-      <SmallCard />
-      <SmallCard />
-      <SmallCard />
-      <SmallCard />
-      <BigCard />
+      {data.map((el: any, i: number) => {
+        if (i == 0 || i == 7) {
+          return <BigCard data={el} />;
+        }
+        return <SmallCard data={el} />;
+      })}
     </div>
   ) : (
     <Swiper
@@ -57,30 +54,20 @@ const ShopCards = () => {
       }}
       style={{ marginBottom: 12 }}
     >
-      <SwiperSlide>
-        <BigCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <SmallCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <SmallCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <SmallCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <SmallCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <SmallCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <SmallCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <BigCard />
-      </SwiperSlide>
+      {data.map((el: any, i: number) => {
+        if (i == 0 || i == 7) {
+          return (
+            <SwiperSlide>
+              <BigCard data={el} />
+            </SwiperSlide>
+          );
+        }
+        return (
+          <SwiperSlide>
+            <SmallCard data={el} />
+          </SwiperSlide>
+        );
+      })}
     </Swiper>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./HomeScreen.module.scss";
 import Loyaut from "@/components/loyaut/Loyaut";
 import Title from "@/components/UI/title/Title";
@@ -11,8 +11,11 @@ import MasterContainer from "@/components/screens/home/masters/MasterContainer/M
 import NewsDecor from "@/components/screens/home/news/NewsDecor/NewsDecor";
 import NewsCards from "@/components/screens/home/news/NewsCards/NewsCards";
 import Salon from "@/components/screens/home/salon/Salon";
-import Link from "next/link";
 import DownloadApp from "@/components/UI/buttons/DownloadApp/DownloadApp";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import { fetchProductCategories } from "@/store/product/productCategoriesSlice";
+import { fetchProducts } from "@/store/product/productsSlice";
 
 const dataShops = [
   { title: "Персональные предложения" },
@@ -30,8 +33,39 @@ const dataMasters = [
   { title: "Парикмахеры" },
 ];
 const HomeScreen = () => {
-  function filterListener(params: string) {}
+  function filterListener(params: string) {
+    dispatch(fetchProducts({ categoryId:params, page: 1, pageSize: 10 }));
+  }
   function filterListenerMaster(params: string) {}
+
+  const dispatch = useDispatch<AppDispatch>();
+  const categories = useSelector(
+    (state: RootState) => state.productCategories.categories
+  );
+  const products = useSelector((state: RootState) => state.products.products);
+  const statusCategory = useSelector(
+    (state: RootState) => state.productCategories.status
+  );
+  const statusProducts = useSelector(
+    (state: RootState) => state.products.status
+  );
+  const errorCategory = useSelector(
+    (state: RootState) => state.productCategories.error
+  );
+  const errorProducts = useSelector((state: RootState) => state.products.error);
+
+  useEffect(() => {
+    if (statusCategory === "idle") {
+      dispatch(fetchProductCategories());
+    }
+    if (statusProducts === "idle") {
+      dispatch(fetchProducts({ page: 1, pageSize: 8 }));
+    }
+  }, [statusCategory, statusProducts, dispatch]);
+
+  if (statusCategory === "failed" || statusProducts === "failed")
+    return <div>Error: {errorCategory || errorProducts}</div>;
+  
   return (
     <div className={style.wrapper}>
       <Loyaut>
@@ -53,9 +87,13 @@ const HomeScreen = () => {
         <div className={style.shop}>
           <div className={style.row}>
             <Title>магазин</Title>
-            <MyTabs filterListener={filterListener} data={dataShops} />
+            {statusCategory === "loading" ? (
+              "loading..."
+            ) : (
+              <MyTabs filterListener={filterListener} data={categories} />
+            )}
+            {statusProducts === "loading" ? "loading..." : <ShopCards data={products} />}
           </div>
-          <ShopCards />
           <ArrowLink href="/shop" children="Посмотреть магазин" />
         </div>
         <div className={style.masters}>
