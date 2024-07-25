@@ -18,22 +18,10 @@ import { fetchProductCategories } from "@/store/product/productCategoriesSlice";
 import { fetchProducts } from "@/store/product/productsSlice";
 import { fetchMasterCategories } from "@/store/masters/masterCategoriesSlice";
 import { fetchMasters } from "@/store/masters/mastersSlice";
+import { fetchNews } from "@/store/news/homeNewsSlice";
 
-const dataShops = [
-  { title: "Персональные предложения" },
-  { title: "Акции" },
-  { title: "Новинки" },
-  { title: "Подборки" },
-  { title: "Уход за волосами" },
-];
 
-const dataMasters = [
-  { title: "Персональные предложения" },
-  { title: "Избранное" },
-  { title: "Стайлинг" },
-  { title: "Визажисты" },
-  { title: "Парикмахеры" },
-];
+
 const HomeScreen = () => {
   function filterListener(params: string) {
     dispatch(fetchProducts({ categoryId: params, page: 1, pageSize: 10 }));
@@ -44,6 +32,11 @@ const HomeScreen = () => {
   }
 
   const dispatch = useDispatch<AppDispatch>();
+
+
+
+
+
   const categories = useSelector(
     (state: RootState) => state.productCategories.categories
   );
@@ -52,6 +45,11 @@ const HomeScreen = () => {
   );
   const products = useSelector((state: RootState) => state.products.products);
   const masters = useSelector((state: RootState) => state.masters.masters);
+  
+
+
+
+
   const statusCategory = useSelector(
     (state: RootState) => state.productCategories.status
   );
@@ -62,6 +60,11 @@ const HomeScreen = () => {
   const statusMastersCategory = useSelector(
     (state: RootState) => state.masterCategories.status
   );
+ 
+
+
+
+
 
   const errorMastersCategory = useSelector(
     (state: RootState) => state.masterCategories.error
@@ -71,6 +74,10 @@ const HomeScreen = () => {
   );
   const errorProducts = useSelector((state: RootState) => state.products.error);
   const errorMasters = useSelector((state: RootState) => state.masters.error);
+
+
+
+
 
   useEffect(() => {
     if (statusCategory === "idle") {
@@ -85,21 +92,23 @@ const HomeScreen = () => {
     if (statusProducts === "idle") {
       dispatch(fetchMasters({ page: 1, pageSize: 8 }));
     }
+    
   }, [statusCategory, statusProducts, statusMastersCategory, dispatch]);
 
-  if (
-    statusCategory === "failed" ||
-    statusProducts === "failed" ||
-    statusMastersCategory === "failed" ||
-    statusMasters === "failed"
-  )
-    return (
-      <div>
-        Error:{" "}
-        {errorCategory || errorProducts || errorMastersCategory || errorMasters}
-      </div>
-    );
-
+  // if (
+  //   statusCategory === "failed" ||
+  //   statusProducts === "failed" ||
+  //   statusMastersCategory === "failed" ||
+  //   statusMasters === "failed" 
+  // )
+  //   return (
+  //     <div>
+  //       Error:{" "}
+  //       {errorCategory || errorProducts || errorMastersCategory || errorMasters }
+  //     </div>
+  //   );
+    
+    
 
   return (
     <div className={style.wrapper}>

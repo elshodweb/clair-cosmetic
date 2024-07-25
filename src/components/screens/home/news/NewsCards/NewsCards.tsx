@@ -1,32 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./NewsCards.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import { fetchNews } from "@/store/news/homeNewsSlice";
 
-const NewsCards = () => {
+const NewsCards = ({ data }: any) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const homeNews = useSelector((state: RootState) => state.homeNews.news);
+
+  const statusNews = useSelector((state: RootState) => state.homeNews.status);
+  const errorNews = useSelector((state: RootState) => state.homeNews.news);
+
+  useEffect(() => {
+    if (statusNews === "idle") {
+      dispatch(fetchNews());
+    }
+  }, [statusNews, dispatch]);
+
+  // if (statusNews === "failed") return <div>Error: {errorNews}</div>;
+  if (statusNews === "loading") return <div>Loading...</div>;
   return (
     <div className={styles.row}>
       <div className={styles.bigCard}>
-        <div className={styles.title}>
-          Этой весной Clair исполняется 15 лет!
-        </div>
-        <div className={styles.text}>
-          <p>
-            За эти годы в наших салонах случилось больше магии, чем в самом
-            Хогвартсе, и мы решили, что одного дня будет совсем недостаточно,
-            чтобы отпраздновать событие такого масштаба!
-          </p>
-
-          <p>
-            Поэтому на этот раз мы подготовили для тебя целый марафон дней
-            любимых брендов
-          </p>
-        </div>
+        <div className={styles.title}>{homeNews?.[0]?.title}</div>
+        <div className={styles.text}>{homeNews?.[0]?.preview}</div>
       </div>
       <div className={styles.cards}>
         <div className={styles.smallCard}>
-          <div className={styles.title}>Новинки для лица</div>
+          <div className={styles.title}> {homeNews?.[1]?.title}</div>
         </div>
         <div className={styles.smallCard}>
-          <div className={styles.title}>Большой книжный фестиваль «Фонарь» </div>
+          <div className={styles.title}> {homeNews?.[2]?.title}</div>
         </div>
       </div>
     </div>
