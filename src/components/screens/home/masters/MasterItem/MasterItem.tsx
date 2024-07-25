@@ -2,14 +2,8 @@ import Image from "next/image";
 import React, { FC } from "react";
 import styles from "./MasterItem.module.scss";
 
-interface master {
-  id: number;
-  name: string;
-  profession: string;
-  img: string;
-}
 interface MasterProps {
-  data: master;
+  data: any;
   setMaster: (id: number | null) => void;
 }
 const MasterItem: FC<MasterProps> = ({ data,setMaster }) => {
@@ -17,7 +11,7 @@ const MasterItem: FC<MasterProps> = ({ data,setMaster }) => {
     <div className={styles.wrapper}>
       <Image
         className={styles.img}
-        src={data.img}
+        src={data.avatar}
         alt="trends"
         width={324}
         height={420}
@@ -27,7 +21,7 @@ const MasterItem: FC<MasterProps> = ({ data,setMaster }) => {
       <div className={styles.row}>
         <div className={styles.info}>
           <div className={styles.name}>{data.name}</div>
-          <div className={styles.profession}>{data.profession}</div>
+          <div className={styles.profession}>{data.specialization.title}</div>
         </div>
         <button onClick={()=>{setMaster(data.id)}} className={styles.btn}>Запись</button>
       </div>

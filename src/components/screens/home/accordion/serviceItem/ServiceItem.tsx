@@ -67,7 +67,6 @@ const ServiceItem: FC<props> = ({
     return <div>{error}</div>;
   }
 
-  console.log(services);
 
   return (
     <div
@@ -125,7 +124,7 @@ const ServiceItem: FC<props> = ({
               .filter((i: any) => i.parent.id === index)
               .slice(0, 4)
               .map((el) => (
-                <ItemPrice data={el} />
+                <ItemPrice key={el.id} data={el} />
               ))}
             <div className={styles.button_container}>
               <Link href="/face">

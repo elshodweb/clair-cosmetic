@@ -30,9 +30,9 @@ const ShopCards = ({ data }: any) => {
     <div className={styles.row}>
       {data.map((el: any, i: number) => {
         if (i == 0 || i == 7) {
-          return <BigCard data={el} />;
+          return <BigCard key={el.id} data={el} />;
         }
-        return <SmallCard data={el} />;
+        return <SmallCard key={el.id} data={el} />;
       })}
     </div>
   ) : (
@@ -57,13 +57,13 @@ const ShopCards = ({ data }: any) => {
       {data.map((el: any, i: number) => {
         if (i == 0 || i == 7) {
           return (
-            <SwiperSlide>
+            <SwiperSlide key={el.id}>
               <BigCard data={el} />
             </SwiperSlide>
           );
         }
         return (
-          <SwiperSlide>
+          <SwiperSlide key={el.id}> 
             <SmallCard data={el} />
           </SwiperSlide>
         );

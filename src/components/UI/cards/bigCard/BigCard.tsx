@@ -14,7 +14,7 @@ const BigCard = ({data}:any) => {
       </div>
       <Link href={'/shop/asd'} className={styles.img}>
         <Image
-          src={data.images[0]?.image}
+          src={data.images[0]?.image|| "/"}
           alt="product img"
           height={240}
           width={160}

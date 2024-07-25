@@ -9,6 +9,8 @@ import servicesReducer from "./services/servicesSlice";
 import servicesCategoriesReducer from "./services/servicesCategoriesSlice";
 import productCategoriesReducer from "./product/productCategoriesSlice";
 import products from "./product/productsSlice";
+import masterCategories from "./masters/masterCategoriesSlice";
+import masters from "./masters/mastersSlice";
 const authPersistConfig = {
   key: "auth",
   storage,
@@ -24,6 +26,8 @@ const rootReducer = combineReducers({
   servicesCategories: servicesCategoriesReducer,
   productCategories: productCategoriesReducer,
   products: products,
+  masterCategories: masterCategories,
+  masters: masters,
   // другие редукторы
 });
 
