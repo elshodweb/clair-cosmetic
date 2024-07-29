@@ -11,7 +11,7 @@ const MasterItem: FC<MasterProps> = ({ data,setMaster }) => {
     <div className={styles.wrapper}>
       <Image
         className={styles.img}
-        src={data.avatar}
+        src={"/images/masters/master.png"}
         alt="trends"
         width={324}
         height={420}
