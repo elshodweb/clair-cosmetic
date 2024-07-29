@@ -1,0 +1,112 @@
+@import "./../../../../styles/variables.scss";
+
+.wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  background: #000000cf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slide {
+  height: 637px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(0.4);
+}
+.slideContent {
+  transition: all 0.1s;
+  padding: 20px 25px;
+  width: 100%;
+  height: 100%;
+  max-width: 255px;
+  max-height: 424px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 30px;
+  button {
+    display: none;
+  }
+}
+.top {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.avatar {
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.name {
+  color: $white;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.imgWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  left: 0;
+  top: 0;
+  z-index: -1;
+  img {
+    display: block;
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+    height: auto;
+  }
+}
+.exitBtn {
+  filter: invert(1);
+  width: 32px;
+  height: 32px;
+}
+
+.autoplayProgress {
+  transition: all 0.1s ease-in-out;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 16px;
+  z-index: 10;
+  width: 200px; /* Ширина прогресс-бара */
+  height: 4px; /* Высота прогресс-бара */
+  background: #ffffff; /* Фоновый цвет (белый) */
+  border-radius: 2px; /* Закругление углов */
+  overflow: hidden; /* Скрытие переполняющего содержимого */
+}
+
+.autoplayProgress .progressBar {
+  height: 100%;
+  width: 0;
+  background: #000000; /* Цвет заполнения (черный) */
+  transition: width 0.1s linear; /* Плавное изменение ширины */
+}
+@media (max-width: 660px) {
+  .slide {
+    height: 100vh;
+  }
+  .slideContent {
+    border-radius: 0;
+
+    max-width: none;
+    max-height: none;
+  }
+}

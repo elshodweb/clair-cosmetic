@@ -1,0 +1,18 @@
+@import "./../../../styles/variables.scss";
+.wrapper {
+  background: $blue;
+}
+.content {
+  padding-top: 85px;
+}
+.title {
+  margin-bottom: 33px;
+}
+.column{
+  max-width: 660px;
+  margin: 0 auto;
+}
+.smallTitle{
+  margin-bottom: 16px;
+  
+}

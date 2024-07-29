@@ -1,0 +1,20 @@
+.btn {
+  border: 2px solid #1b1b1a;
+  background: transparent;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.2px;
+  padding: 12px 35px 12px 40px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  &::before{
+    content: '';
+    transform: rotate(180deg);
+    width: 24px;
+    height: 20px;
+    display: block;
+    background: url(./../../../../public/images/UI/arrowMobile.svg) center / cover no-repeat;
+  }
+}

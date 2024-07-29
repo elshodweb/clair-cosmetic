@@ -15,27 +15,20 @@ import DownloadApp from "@/components/UI/buttons/DownloadApp/DownloadApp";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { fetchProductCategories } from "@/store/product/productCategoriesSlice";
-import { fetchProducts } from "@/store/product/productsSlice";
+import { fetchProducts } from "@/store/productHomePage/productsSlice";
 import { fetchMasterCategories } from "@/store/masters/masterCategoriesSlice";
 import { fetchMasters } from "@/store/masters/mastersSlice";
 import { fetchNews } from "@/store/news/homeNewsSlice";
-
-
 
 const HomeScreen = () => {
   function filterListener(params: string) {
     dispatch(fetchProducts({ categoryId: params, page: 1, pageSize: 10 }));
   }
   function filterListenerMaster(params: string) {
-    
     dispatch(fetchMasters({ categoryId: params, page: 1, pageSize: 10 }));
   }
 
   const dispatch = useDispatch<AppDispatch>();
-
-
-
-
 
   const categories = useSelector(
     (state: RootState) => state.productCategories.categories
@@ -43,28 +36,19 @@ const HomeScreen = () => {
   const mastersCategory = useSelector(
     (state: RootState) => state.masterCategories.categories
   );
-  const products = useSelector((state: RootState) => state.products.products);
+  const products = useSelector((state: RootState) => state.productsHome.products);
   const masters = useSelector((state: RootState) => state.masters.masters);
-  
-
-
-
 
   const statusCategory = useSelector(
     (state: RootState) => state.productCategories.status
   );
   const statusProducts = useSelector(
-    (state: RootState) => state.products.status
+    (state: RootState) => state.productsHome.status
   );
   const statusMasters = useSelector((state: RootState) => state.masters.status);
   const statusMastersCategory = useSelector(
     (state: RootState) => state.masterCategories.status
   );
- 
-
-
-
-
 
   const errorMastersCategory = useSelector(
     (state: RootState) => state.masterCategories.error
@@ -72,12 +56,8 @@ const HomeScreen = () => {
   const errorCategory = useSelector(
     (state: RootState) => state.productCategories.error
   );
-  const errorProducts = useSelector((state: RootState) => state.products.error);
+  const errorProducts = useSelector((state: RootState) => state.productsHome.error);
   const errorMasters = useSelector((state: RootState) => state.masters.error);
-
-
-
-
 
   useEffect(() => {
     if (statusCategory === "idle") {
@@ -92,14 +72,13 @@ const HomeScreen = () => {
     if (statusProducts === "idle") {
       dispatch(fetchMasters({ page: 1, pageSize: 8 }));
     }
-    
   }, [statusCategory, statusProducts, statusMastersCategory, dispatch]);
 
   // if (
   //   statusCategory === "failed" ||
   //   statusProducts === "failed" ||
   //   statusMastersCategory === "failed" ||
-  //   statusMasters === "failed" 
+  //   statusMasters === "failed"
   // )
   //   return (
   //     <div>
@@ -107,8 +86,6 @@ const HomeScreen = () => {
   //       {errorCategory || errorProducts || errorMastersCategory || errorMasters }
   //     </div>
   //   );
-    
-    
 
   return (
     <div className={style.wrapper}>

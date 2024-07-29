@@ -1,0 +1,23 @@
+[data-set="slider-history"] .swiper-slide-active {
+  filter: brightness(1);
+  & > * {
+    max-width: 380px;
+    max-height: 637px;
+    button {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 660px) {
+  [data-set="slider-history"] .swiper-slide-active {
+    filter: brightness(1);
+    & > * {
+      max-width: none;
+      max-height: none;
+      button {
+        display: block;
+      }
+    }
+  }
+}

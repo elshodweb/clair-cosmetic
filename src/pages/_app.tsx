@@ -2,8 +2,7 @@
 
 import { Provider } from "react-redux";
 import { persistor, store } from "@/store/store";
-import "@/styles/globals.scss";
-import "@/styles/calendar.scss";
+import "@/styles/index.scss";
 import type { AppProps } from "next/app";
 import { Roboto } from "next/font/google";
 import { ToastContainer } from "react-toastify";

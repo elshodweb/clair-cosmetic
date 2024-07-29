@@ -1,5 +1,5 @@
 "use client"; // <===== REQUIRED
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { SwiperSlide, Swiper } from "swiper/react";
 import Image from "next/image";
 import style from "./SliderComp.module.scss";
@@ -7,6 +7,7 @@ import { FreeMode } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { getNews } from "@/store/newStories/storiesSlice";
+import OpdenedSlider from "./opdenedSlider/OpdenedSlider";
 // const trends = [
 //   { name: "Тренды лета", id: 1, img: "/images/slider/1.png" },
 //   { name: "Тренды лета", id: 2, img: "/images/slider/2.png" },
@@ -21,7 +22,7 @@ const SwiperComp = () => {
   const news = useSelector((state: RootState) => state.news.news);
   const newsStatus = useSelector((state: RootState) => state.news.status);
   const error = useSelector((state: RootState) => state.news.error);
-
+  const [isOpen, setOpen] = useState<boolean>(false);
   useEffect(() => {
     if (newsStatus === "idle") {
       dispatch(getNews());
@@ -32,9 +33,9 @@ const SwiperComp = () => {
     return <div>Loading...</div>;
   }
 
-  if (newsStatus === "failed") {
-    return <div>{error}</div>;
-  }
+  // if (newsStatus === "failed") {
+  //   return <div>{error}</div>;
+  // }
 
   return (
     <Swiper
@@ -58,28 +59,29 @@ const SwiperComp = () => {
         },
       }}
     >
-      {news.map((i:any) => (
+      {isOpen ? <OpdenedSlider setOpen={setOpen} /> : ""}
+      {news.map((i: any) => (
         <SwiperSlide className={style.slide} key={i.id}>
-          <div className={style.sliderWrapper} >
-          <div className={style.row}>
-            <div className={style.name}>{i.title}</div>
-            <button className={style.btn}>
-              <Image
-                src={"/images/stories/right.svg"}
-                alt="right"
-                width={15}
-                height={15}
-              />
-            </button>
-          </div>
-          <Image
-            className={style.img}
-            src={i.images[0]}
-            alt="trends"
-            width={324}
-            height={420}
-            priority
-          />
+          <div className={style.sliderWrapper}>
+            <div className={style.row}>
+              <div className={style.name}>{i.title}</div>
+              <button onClick={() => setOpen(true)} className={style.btn}>
+                <Image
+                  src={"/images/stories/right.svg"}
+                  alt="right"
+                  width={15}
+                  height={15}
+                />
+              </button>
+            </div>
+            <Image
+              className={style.img}
+              src={i.images[0]}
+              alt="trends"
+              width={324}
+              height={420}
+              priority
+            />
           </div>
         </SwiperSlide>
       ))}
