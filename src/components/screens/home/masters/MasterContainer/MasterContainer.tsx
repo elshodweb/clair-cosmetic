@@ -4,53 +4,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import MasterItem from "../MasterItem/MasterItem";
 import MasterModal from "@/components/UI/masterModal/MasterModal";
-// const data = [
-//   {
-//     id: 1,
-//     name: "Светлана",
-//     isLiked: true,
-//     profession: "Мастер по маникюру",
-//     img: "/images/masters/master.png",
-//   },
-//   {
-//     id: 2,
-//     name: "Анастасия",
-//     isLiked: false,
-//     profession: "Мастер по маникюру",
-//     img: "/images/masters/master.png",
-//   },
-//   {
-//     id: 3,
-//     name: "Ксения",
-//     isLiked: false,
-//     profession: "Стилист",
-//     img: "/images/masters/master.png",
-//   },
-//   {
-//     id: 4,
-//     name: "Юрий",
-//     isLiked: false,
-//     profession: "Парикмахер",
-//     img: "/images/masters/master.png",
-//   },
-//   {
-//     id: 5,
-//     name: "Юрий",
-//     isLiked: false,
-//     profession: "Парикмахер",
-//     img: "/images/masters/master.png",
-//   },
-//   {
-//     id: 6,
-//     name: "Юрий",
-//     isLiked: false,
-//     profession: "Парикмахер",
-//     img: "/images/masters/master.png",
-//   },
-// ];
 
-const MasterContainer = ({ data }: any) => {
-  const [id, setId] = useState<number | null>(null);
+interface MasterContainerProps {
+  data: any[];
+}
+
+const MasterContainer: React.FC<MasterContainerProps> = ({ data }) => {
+  const [id, setId] = useState<string | null>(null);
+
   return (
     <div className={styles.wrapper}>
       <Swiper
@@ -62,7 +23,6 @@ const MasterContainer = ({ data }: any) => {
           0: {
             slidesPerView: 1.1,
           },
-
           460: {
             slidesPerView: 1.3,
           },
@@ -77,7 +37,7 @@ const MasterContainer = ({ data }: any) => {
           },
         }}
       >
-        {data.map((i: any) => (
+        {data.map((i) => (
           <SwiperSlide className={styles.slide} key={i.id}>
             <MasterItem setMaster={setId} data={i} />
           </SwiperSlide>

@@ -19,6 +19,13 @@
   line-height: 24px;
   margin-bottom: 4px;
   color: $darkGray;
+
+  
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .subtitle {
   font-size: 16px;
@@ -31,16 +38,14 @@
   z-index: 1;
 }
 .img {
-  position: absolute;
   right: 30px;
+  margin-left: auto;
   top: 50px;
-  width: 160px;
   overflow: hidden;
-  max-height: 190px;
-  height: auto;
+  height: 100%;
   img {
-    width: 100%;
-    height: auto;
+    height: 100%;
+    width: auto;
   }
 }
 .row {

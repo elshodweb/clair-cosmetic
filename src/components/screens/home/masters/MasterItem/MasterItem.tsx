@@ -4,7 +4,7 @@ import styles from "./MasterItem.module.scss";
 
 interface MasterProps {
   data: any;
-  setMaster: (id: number | null) => void;
+  setMaster: (id: string | null) => void;
 }
 const MasterItem: FC<MasterProps> = ({ data,setMaster }) => {
   return (

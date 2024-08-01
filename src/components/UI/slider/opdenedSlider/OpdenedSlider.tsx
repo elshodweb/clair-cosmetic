@@ -1,18 +1,33 @@
-import React, { FC, useRef } from "react";
+"use client"; // <===== REQUIRED
+
+import React, { FC, useEffect, useRef } from "react";
 import styles from "./OpdenedSlider.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import IconButton from "../../buttons/iconButton/IconButton";
 import Image from "next/image";
 import { Autoplay } from "swiper/modules";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import { getNews } from "@/store/newStories/storiesSlice";
 interface OpdenedSlider {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const OpdenedSlider: FC<OpdenedSlider> = ({ setOpen }) => {
   // Указываем правильные типы для useRef
+  const dispatch = useDispatch<AppDispatch>();
+
+  const news = useSelector((state: RootState) => state.news.news);
+  const newsStatus = useSelector((state: RootState) => state.news.status);
+  const error = useSelector((state: RootState) => state.news.error);
   const progressBar = useRef<HTMLDivElement | null>(null);
   const progressBarWrapper: any = useRef<HTMLDivElement | null>(null);
   const progressContent = useRef<HTMLSpanElement | null>(null);
+  useEffect(() => {
+    if (newsStatus === "idle") {
+      dispatch(getNews());
+    }
+  }, [newsStatus, dispatch]);
 
   const onAutoplayTimeLeft = (s: unknown, time: number, progress: number) => {
     if (progressBar.current) {
@@ -23,9 +38,11 @@ const OpdenedSlider: FC<OpdenedSlider> = ({ setOpen }) => {
       progressBarWrapper.current.style.opacity = time < 150 ? "0" : "1"; // Adjust opacity based on time
     }
   };
-
+  if (newsStatus === "loading") {
+    return <div>Loading...</div>;
+  }
   return (
-    <div className={styles.wrapper} data-set={'slider-history'} >
+    <div className={styles.wrapper} data-set={"slider-history"}>
       <Swiper
         slidesPerView={"auto"}
         centeredSlides={true}
@@ -67,272 +84,49 @@ const OpdenedSlider: FC<OpdenedSlider> = ({ setOpen }) => {
         }}
         onAutoplayTimeLeft={onAutoplayTimeLeft} // Не забудьте привязать обработчик события
       >
-        <SwiperSlide className={styles.slide}>
-          <div className={styles.slideContent}>
-            <div className={styles.top}>
-              <div className={styles.left}>
-                <div className={styles.avatar}>
-                  <Image
-                    src={"/images/profile/profile.png"}
-                    alt="avatar"
-                    width={47}
-                    height={47}
-                  />
+        {news.map((i: any) => (
+          <SwiperSlide key={i.id} className={styles.slide}>
+            <div className={styles.slideContent}>
+              <div className={styles.top}>
+                <div className={styles.left}>
+                  <div className={styles.avatar}>
+                    <Image
+                      src={"/images/profile/profile.png"}
+                      alt="avatar"
+                      width={47}
+                      height={47}
+                    />
+                  </div>
+                  <div className={styles.name}>Скидки</div>
                 </div>
-                <div className={styles.name}>Скидки</div>
-              </div>
-              <IconButton
-                className={styles.exitBtn}
-                onClick={() => {
-                  setOpen(false);
-                }}
-              >
-                <Image
-                  src={"/images/header/cross.svg"}
-                  alt="cart"
-                  width={16}
-                  height={19}
-                />
-              </IconButton>
-            </div>
-            <div className={styles.imgWrapper}>
-              <Image
-                src={"/images/UI/history.png"}
-                alt="cart"
-                width={380}
-                height={638}
-              />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className={styles.slide}>
-          <div className={styles.slideContent}>
-            <div className={styles.top}>
-              <div className={styles.left}>
-                <div className={styles.avatar}>
+                <IconButton
+                  className={styles.exitBtn}
+                  onClick={() => {
+                    setOpen(false);
+                  }}
+                >
                   <Image
-                    src={"/images/profile/profile.png"}
-                    alt="avatar"
-                    width={47}
-                    height={47}
+                    src={"/images/header/cross.svg"}
+                    alt="cart"
+                    width={16}
+                    height={19}
                   />
-                </div>
-                <div className={styles.name}>Скидки</div>
+                </IconButton>
               </div>
-              <IconButton
-                className={styles.exitBtn}
-                onClick={() => {
-                  setOpen(false);
-                }}
-              >
+              <div className={styles.imgWrapper}>
                 <Image
-                  src={"/images/header/cross.svg"}
-                  alt="cart"
-                  width={16}
-                  height={19}
+                  className={styles.img}
+                  src={i.images[0]}
+                  alt="trends"
+                  width={324}
+                  height={638}
+                  priority
                 />
-              </IconButton>
-            </div>
-            <div className={styles.imgWrapper}>
-              <Image
-                src={"/images/UI/history.png"}
-                alt="cart"
-                width={380}
-                height={638}
-              />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className={styles.slide}>
-          <div className={styles.slideContent}>
-            <div className={styles.top}>
-              <div className={styles.left}>
-                <div className={styles.avatar}>
-                  <Image
-                    src={"/images/profile/profile.png"}
-                    alt="avatar"
-                    width={47}
-                    height={47}
-                  />
-                </div>
-                <div className={styles.name}>Скидки</div>
+               
               </div>
-              <IconButton
-                className={styles.exitBtn}
-                onClick={() => {
-                  setOpen(false);
-                }}
-              >
-                <Image
-                  src={"/images/header/cross.svg"}
-                  alt="cart"
-                  width={16}
-                  height={19}
-                />
-              </IconButton>
             </div>
-            <div className={styles.imgWrapper}>
-              <Image
-                src={"/images/UI/history.png"}
-                alt="cart"
-                width={380}
-                height={638}
-              />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className={styles.slide}>
-          <div className={styles.slideContent}>
-            <div className={styles.top}>
-              <div className={styles.left}>
-                <div className={styles.avatar}>
-                  <Image
-                    src={"/images/profile/profile.png"}
-                    alt="avatar"
-                    width={47}
-                    height={47}
-                  />
-                </div>
-                <div className={styles.name}>Скидки</div>
-              </div>
-              <IconButton
-                className={styles.exitBtn}
-                onClick={() => {
-                  setOpen(false);
-                }}
-              >
-                <Image
-                  src={"/images/header/cross.svg"}
-                  alt="cart"
-                  width={16}
-                  height={19}
-                />
-              </IconButton>
-            </div>
-            <div className={styles.imgWrapper}>
-              <Image
-                src={"/images/UI/history.png"}
-                alt="cart"
-                width={380}
-                height={638}
-              />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className={styles.slide}>
-          <div className={styles.slideContent}>
-            <div className={styles.top}>
-              <div className={styles.left}>
-                <div className={styles.avatar}>
-                  <Image
-                    src={"/images/profile/profile.png"}
-                    alt="avatar"
-                    width={47}
-                    height={47}
-                  />
-                </div>
-                <div className={styles.name}>Скидки</div>
-              </div>
-              <IconButton
-                className={styles.exitBtn}
-                onClick={() => {
-                  setOpen(false);
-                }}
-              >
-                <Image
-                  src={"/images/header/cross.svg"}
-                  alt="cart"
-                  width={16}
-                  height={19}
-                />
-              </IconButton>
-            </div>
-            <div className={styles.imgWrapper}>
-              <Image
-                src={"/images/UI/history.png"}
-                alt="cart"
-                width={380}
-                height={638}
-              />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className={styles.slide}>
-          <div className={styles.slideContent}>
-            <div className={styles.top}>
-              <div className={styles.left}>
-                <div className={styles.avatar}>
-                  <Image
-                    src={"/images/profile/profile.png"}
-                    alt="avatar"
-                    width={47}
-                    height={47}
-                  />
-                </div>
-                <div className={styles.name}>Скидки</div>
-              </div>
-              <IconButton
-                className={styles.exitBtn}
-                onClick={() => {
-                  setOpen(false);
-                }}
-              >
-                <Image
-                  src={"/images/header/cross.svg"}
-                  alt="cart"
-                  width={16}
-                  height={19}
-                />
-              </IconButton>
-            </div>
-            <div className={styles.imgWrapper}>
-              <Image
-                src={"/images/UI/history.png"}
-                alt="cart"
-                width={380}
-                height={638}
-              />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className={styles.slide}>
-          <div className={styles.slideContent}>
-            <div className={styles.top}>
-              <div className={styles.left}>
-                <div className={styles.avatar}>
-                  <Image
-                    src={"/images/profile/profile.png"}
-                    alt="avatar"
-                    width={47}
-                    height={47}
-                  />
-                </div>
-                <div className={styles.name}>Скидки</div>
-              </div>
-              <IconButton
-                className={styles.exitBtn}
-                onClick={() => {
-                  setOpen(false);
-                }}
-              >
-                <Image
-                  src={"/images/header/cross.svg"}
-                  alt="cart"
-                  width={16}
-                  height={19}
-                />
-              </IconButton>
-            </div>
-            <div className={styles.imgWrapper}>
-              <Image
-                src={"/images/UI/history.png"}
-                alt="cart"
-                width={380}
-                height={638}
-              />
-            </div>
-          </div>
-        </SwiperSlide>
+          </SwiperSlide>
+        ))}
         {/* Остальные SwiperSlide элементы аналогично */}
         <div
           ref={progressBarWrapper}

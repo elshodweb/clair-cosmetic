@@ -5,7 +5,6 @@
 .hi {
   background: url(./../../../../public/images/mainBackground/rainbow.png)
     calc(100% - 80px) 10px / auto 100% no-repeat;
-  // padding-bottom: 20px;
   margin: 0;
   margin-top: 34px;
 }
@@ -23,6 +22,7 @@
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: 5px;
+  width: 100%;
 }
 .shop,
 .masters {

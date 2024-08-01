@@ -36,7 +36,9 @@ const HomeScreen = () => {
   const mastersCategory = useSelector(
     (state: RootState) => state.masterCategories.categories
   );
-  const products = useSelector((state: RootState) => state.productsHome.products);
+  const products = useSelector(
+    (state: RootState) => state.productsHome.products
+  );
   const masters = useSelector((state: RootState) => state.masters.masters);
 
   const statusCategory = useSelector(
@@ -56,7 +58,9 @@ const HomeScreen = () => {
   const errorCategory = useSelector(
     (state: RootState) => state.productCategories.error
   );
-  const errorProducts = useSelector((state: RootState) => state.productsHome.error);
+  const errorProducts = useSelector(
+    (state: RootState) => state.productsHome.error
+  );
   const errorMasters = useSelector((state: RootState) => state.masters.error);
 
   useEffect(() => {
@@ -113,12 +117,12 @@ const HomeScreen = () => {
             ) : (
               <MyTabs filterListener={filterListener} data={categories} />
             )}
-            {statusProducts === "loading" ? (
-              "loading..."
-            ) : (
-              <ShopCards data={products} />
-            )}
           </div>
+          {statusProducts === "loading" ? (
+            "loading..."
+          ) : (
+            <ShopCards data={products} />
+          )}
           <ArrowLink href="/shop" children="Посмотреть магазин" />
         </div>
         <div className={style.masters}>

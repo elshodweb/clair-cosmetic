@@ -8,15 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { getNews } from "@/store/newStories/storiesSlice";
 import OpdenedSlider from "./opdenedSlider/OpdenedSlider";
-// const trends = [
-//   { name: "Тренды лета", id: 1, img: "/images/slider/1.png" },
-//   { name: "Тренды лета", id: 2, img: "/images/slider/2.png" },
-//   { name: "Тренды лета", id: 3, img: "/images/slider/3.png" },
-//   { name: "Тренды лета", id: 4, img: "/images/slider/1.png" },
-//   { name: "Тренды лета", id: 5, img: "/images/slider/2.png" },
-//   { name: "Тренды лета", id: 6, img: "/images/slider/3.png" },
-//   { name: "Тренды лета", id: 7, img: "/images/slider/1.png" },
-// ];
 const SwiperComp = () => {
   const dispatch = useDispatch<AppDispatch>();
   const news = useSelector((state: RootState) => state.news.news);
@@ -36,7 +27,8 @@ const SwiperComp = () => {
   // if (newsStatus === "failed") {
   //   return <div>{error}</div>;
   // }
-
+  console.log(news);
+  
   return (
     <Swiper
       spaceBetween={12}

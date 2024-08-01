@@ -13,6 +13,7 @@ import masterCategories from "./masters/masterCategoriesSlice";
 import masters from "./masters/mastersSlice";
 import homeNews from "./news/homeNewsSlice";
 import salonsReducer from "./salons/salonSlice"; // Импорт редуктора салонов
+import salonReducer from "./salonSlice/salonSlice";
 
 const authPersistConfig = {
   key: "auth",
@@ -33,6 +34,8 @@ const rootReducer = combineReducers({
   masters: masters,
   homeNews: homeNews,
   salons: salonsReducer,
+  salon: salonReducer,
+
   // другие редукторы
 });
 
