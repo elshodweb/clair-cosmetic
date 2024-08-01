@@ -23,7 +23,6 @@ const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
       dispatch(fetchSalon(id.toString()));
     }
   }, [id, dispatch]);
-  console.log(salonData);
   if (salonStatus === "loading") return "loading";
 
   if (salonStatus === "failed") return "error";
@@ -157,7 +156,7 @@ const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
                 </h3>
                 
                 {salonData.qualifications.map((i: any) => (
-                  <p className={styles.descr}>
+                  <p key={i.id} className={styles.descr}>
                     {i.description}
                   </p>
                 ))}

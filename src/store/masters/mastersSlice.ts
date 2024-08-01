@@ -44,7 +44,6 @@ export const fetchMasters = createAsyncThunk(
     }
     url += `page=${page}&page_size=${pageSize}`
     const response = await instance.get(url);
-    console.log(response);
     return response.data;
   }
 );

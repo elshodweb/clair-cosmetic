@@ -27,7 +27,6 @@ const SwiperComp = () => {
   // if (newsStatus === "failed") {
   //   return <div>{error}</div>;
   // }
-  console.log(news);
   
   return (
     <Swiper
