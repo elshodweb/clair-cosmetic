@@ -33,15 +33,16 @@ const initialState: ProductsState = {
 };
 
 // Асинхронный thunk для получения `products`
-export const fetchProducts = createAsyncThunk(
-  "products/fetchProducts",
+export const fetchProductsInHome = createAsyncThunk(
+  "products/fetchProductsInHome",
   async ({ categoryId, page, pageSize }: FetchProductsParams) => {
     let url = `/products/?`;
     if (categoryId) {
       url += `category_ids=${categoryId}&`;
     }
-    url += `page=${page}&page_size=${pageSize}`
+    url += `page=${page}&page_size=${pageSize}`;
     const response = await instance.get(url);
+
     return response.data;
   }
 );
@@ -53,15 +54,15 @@ const productsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchProducts.pending, (state) => {
+      .addCase(fetchProductsInHome.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchProducts.fulfilled, (state, action) => {
+      .addCase(fetchProductsInHome.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.products = action.payload.results;
         state.totalPages = action.payload.total_pages;
       })
-      .addCase(fetchProducts.rejected, (state, action) => {
+      .addCase(fetchProductsInHome.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Failed to fetch products";
       });

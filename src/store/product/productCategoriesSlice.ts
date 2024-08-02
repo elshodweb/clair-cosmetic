@@ -32,7 +32,6 @@ export const fetchProductCategories = createAsyncThunk(
   }
 );
 
-// Slice
 const productCategoriesSlice = createSlice({
   name: "productCategories",
   initialState,

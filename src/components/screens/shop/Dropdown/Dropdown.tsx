@@ -2,25 +2,18 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./Dropdown.module.scss";
 import cn from "classnames";
 
-const options = [
-  "по скидкам",
-  "по новинкам",
-  "по популярности",
-  "по возрастанию цены",
-  "по убыванию цены",
-];
-
-const Dropdown: React.FC = () => {
+const Dropdown: React.FC<any> = ({ options, onChange, lable }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options[2]);
+  const [selectedOption, setSelectedOption] = useState(lable);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  const selectOption = (option: string) => {
+  const selectOption = (option: any) => {
     setSelectedOption(option);
+    onChange(option.id);
     setIsOpen(false);
   };
 
@@ -46,20 +39,28 @@ const Dropdown: React.FC = () => {
         className={`${styles.dropdown__button} ${isOpen ? styles.active : ""}`}
         onClick={toggleDropdown}
       >
-        <span className={styles.text}>{selectedOption}</span>
+        <span className={styles.text}>{selectedOption.title}</span>
         <span className={cn(styles.icon, isOpen ? styles.rotate : "")}></span>
       </div>
       {isOpen && (
         <div className={styles.dropdown__menu}>
-          {options.map((option) => (
+          <div
+            className={`${styles.dropdown__menu__item} ${
+              selectedOption.id === "" ? styles.selected : ""
+            }`}
+            onClick={() => selectOption(lable)}
+          >
+           По умолчанию
+          </div>
+          {options.map((option: any) => (
             <div
-              key={option}
+              key={option.id}
               className={`${styles.dropdown__menu__item} ${
-                selectedOption === option ? styles.selected : ""
+                selectedOption.id === option.id ? styles.selected : ""
               }`}
               onClick={() => selectOption(option)}
             >
-              {option}
+              {option.title}
             </div>
           ))}
         </div>

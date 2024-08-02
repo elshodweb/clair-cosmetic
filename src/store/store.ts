@@ -14,7 +14,10 @@ import masters from "./masters/mastersSlice";
 import homeNews from "./news/homeNewsSlice";
 import salonsReducer from "./salons/salonSlice"; // Импорт редуктора салонов
 import salonReducer from "./salonSlice/salonSlice";
-
+import servicesByMasterReducer from "./services/servicesSliceByMaster";
+import productsReducer from "./magazine/productsSlice";
+import brandsReducer from "./brands/brandsSlice";
+import filtersReducer from "./filters/filtersSlice";
 const authPersistConfig = {
   key: "auth",
   storage,
@@ -35,8 +38,10 @@ const rootReducer = combineReducers({
   homeNews: homeNews,
   salons: salonsReducer,
   salon: salonReducer,
-
-  // другие редукторы
+  products: productsReducer,
+  brands: brandsReducer,
+  servicesByMaster: servicesByMasterReducer,
+  filters: filtersReducer,
 });
 
 const store = configureStore({

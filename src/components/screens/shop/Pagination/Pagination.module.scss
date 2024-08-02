@@ -30,7 +30,8 @@
   background: $darkGray;
   color: $white;
 }
-.next {
+.next,
+.prev {
   width: 128px;
   height: 43px;
   background: url(./../../../../../public/images/UI/arrow.svg) center no-repeat;
@@ -40,5 +41,27 @@
   &:hover {
     transition: all 0.1s ease-in-out;
     transform: scale(1.06);
+  }
+  &:disabled {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+}
+.prev {
+  transform: rotate(180deg);
+
+  &:hover {
+    transform: rotate(180deg) scale(1.06);
+  }
+  &:disabled {
+    opacity: 0.5;
+    transform: rotate(180deg) scale(1);
+  }
+}
+@media (max-width: 460px) {
+  .next,
+  .prev {
+    width: 70px;
+    background-image: url(./../../../../../public/images/UI/arrowMobile.svg);
   }
 }

@@ -15,14 +15,14 @@ import DownloadApp from "@/components/UI/buttons/DownloadApp/DownloadApp";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { fetchProductCategories } from "@/store/product/productCategoriesSlice";
-import { fetchProducts } from "@/store/productHomePage/productsSlice";
+import { fetchProductsInHome } from "@/store/productHomePage/productsSlice";
 import { fetchMasterCategories } from "@/store/masters/masterCategoriesSlice";
 import { fetchMasters } from "@/store/masters/mastersSlice";
 import { fetchNews } from "@/store/news/homeNewsSlice";
 
 const HomeScreen = () => {
   function filterListener(params: string) {
-    dispatch(fetchProducts({ categoryId: params, page: 1, pageSize: 10 }));
+    dispatch(fetchProductsInHome({ categoryId: params, page: 1, pageSize: 10 }));
   }
   function filterListenerMaster(params: string) {
     dispatch(fetchMasters({ categoryId: params, page: 1, pageSize: 10 }));
@@ -68,7 +68,7 @@ const HomeScreen = () => {
       dispatch(fetchProductCategories());
     }
     if (statusProducts === "idle") {
-      dispatch(fetchProducts({ page: 1, pageSize: 8 }));
+      dispatch(fetchProductsInHome({ page: 1, pageSize: 8 }));
     }
     if (statusMastersCategory === "idle") {
       dispatch(fetchMasterCategories());
@@ -133,7 +133,11 @@ const HomeScreen = () => {
               data={mastersCategory}
             />
           </div>
-          <MasterContainer data={masters} />
+          {statusMasters === "loading" ? (
+            "loading  ..."
+          ) : (
+            <MasterContainer data={masters} />
+          )}
           <ArrowLink href="/masters" children="Все мастера" />
         </div>
         <div className={style.masters}>

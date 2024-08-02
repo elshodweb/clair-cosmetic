@@ -8,6 +8,7 @@ import MySmallInput from "../mySmallInput/MySmallInput";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { fetchSalon } from "@/store/salonSlice/salonSlice";
+import { fetchServicesByMaster } from "@/store/services/servicesSliceByMaster";
 interface MasterModalProps {
   id: string | null;
   setMaster: (id: string | null) => void;
@@ -15,19 +16,30 @@ interface MasterModalProps {
 const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
+
   const salonData = useSelector((state: RootState) => state.salon.data);
   const salonStatus = useSelector((state: RootState) => state.salon.status);
+
+  const servicesData = useSelector(
+    (state: RootState) => state.servicesByMaster.services
+  );
+  const servicesStatus = useSelector(
+    (state: RootState) => state.servicesByMaster.status
+  );
 
   useEffect(() => {
     if (id !== null) {
       dispatch(fetchSalon(id.toString()));
+      dispatch(fetchServicesByMaster(id));
     }
   }, [id, dispatch]);
-  if (salonStatus === "loading") return "loading";
 
-  if (salonStatus === "failed") return "error";
+  if (salonStatus === "loading" || servicesStatus === "loading")
+    return "Loading...";
 
-  if (salonStatus === "succeeded")
+  if (salonStatus === "failed" || servicesStatus === "failed") return "Error";
+
+  if (salonStatus === "succeeded" && servicesStatus === "succeeded")
     return (
       <div
         onClick={(e) => {
@@ -85,82 +97,40 @@ const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
                 </div>
               </div>
             ))}
-            <h3 className={styles.title} style={{ marginBottom: 16 }}>
-              Услуги
-            </h3>
-            <p className={styles.descr}>
-              Услуги, которые делает мастер Анастасия
-            </p>
-            <div className={styles.selects}>
-              <MySmallInput
-                small={true}
-                name="HydraFacial Базовый сервис"
-                price="5250 ₽"
-                onChange={(e) => {
-                  console.log(e);
-                }}
-              />
-              <MySmallInput
-                small={true}
-                name="HydraFacial Базовый сервис"
-                price="5250 ₽"
-                onChange={(e) => {
-                  console.log(e);
-                }}
-              />
-              <MySmallInput
-                small={true}
-                name="HydraFacial Базовый сервис"
-                price="5250 ₽"
-                onChange={(e) => {
-                  console.log(e);
-                }}
-              />
-              <MySmallInput
-                small={true}
-                name="HydraFacial Базовый сервис"
-                price="5250 ₽"
-                onChange={(e) => {
-                  console.log(e);
-                }}
-              />
-              <MySmallInput
-                small={true}
-                name="HydraFacial Базовый сервис"
-                price="5250 ₽"
-                onChange={(e) => {
-                  console.log(e);
-                }}
-              />
-              <MySmallInput
-                small={true}
-                name="HydraFacial Базовый сервис"
-                price="5250 ₽"
-                onChange={(e) => {
-                  console.log(e);
-                }}
-              />
-              <MySmallInput
-                small={true}
-                name="HydraFacial Базовый сервис"
-                price="5250 ₽"
-                onChange={(e) => {
-                  console.log(e);
-                }}
-              />
-            </div>
+            {servicesData.length > 0 && (
+              <>
+                <h3 className={styles.title} style={{ marginBottom: 16 }}>
+                  Услуги
+                </h3>
+                <p className={styles.descr}>
+                  Услуги, которые делает мастер Анастасия
+                </p>
+                <div className={styles.selects}>
+                  {servicesData.map((service) => (
+                    <MySmallInput
+                      key={service.id}
+                      small={true}
+                      name={service.title}
+                      price={`${service.price_max} ₽`}
+                      onChange={(e) => {
+                        console.log(e);
+                      }}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
             {salonData.qualifications.length > 0 && (
               <>
                 <h3 className={styles.title} style={{ marginBottom: 16 }}>
                   Квалификация:
                 </h3>
-                
+
                 {salonData.qualifications.map((i: any) => (
                   <p key={i.id} className={styles.descr}>
                     {i.description}
                   </p>
                 ))}
-                
               </>
             )}
           </div>

@@ -6,7 +6,7 @@
   height: 100vh;
   left: 0;
   top: 0;
-  z-index: 2;
+  z-index: 20;
   background: #000000cf;
   display: flex;
   align-items: center;
@@ -28,7 +28,6 @@
   max-width: 255px;
   max-height: 424px;
   overflow: hidden;
-  position: relative;
   border-radius: 30px;
   button {
     display: none;
@@ -86,7 +85,7 @@
   left: 50%;
   transform: translate(-50%, 0);
   bottom: 16px;
-  z-index: 10;
+  z-index: 1;
   width: 200px; /* Ширина прогресс-бара */
   height: 4px; /* Высота прогресс-бара */
   background: #ffffff; /* Фоновый цвет (белый) */
