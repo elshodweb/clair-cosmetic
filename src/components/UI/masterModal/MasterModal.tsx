@@ -1,4 +1,10 @@
-import React, { FC, useEffect, useState } from "react";
+import React, {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import styles from "./MasterModal.module.scss";
 import BlackButton from "../buttons/blackButton/BlackButton";
 import IconButton from "../buttons/iconButton/IconButton";
@@ -11,7 +17,7 @@ import { fetchSalon } from "@/store/salonSlice/salonSlice";
 import { fetchServicesByMaster } from "@/store/services/servicesSliceByMaster";
 interface MasterModalProps {
   id: string | null;
-  setMaster: (id: string | null) => void;
+  setMaster: Dispatch<SetStateAction<string | null>>;
 }
 const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
@@ -112,8 +118,7 @@ const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
                       small={true}
                       name={service.title}
                       price={`${service.price_max} ₽`}
-                      onChange={(e) => {
-                      }}
+                      onChange={(e) => {}}
                     />
                   ))}
                 </div>

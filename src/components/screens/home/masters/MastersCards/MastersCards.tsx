@@ -47,7 +47,7 @@ const data = [
   },
 ];
 const MastersCards = () => {
-  const [id, setId] = useState<number | null>(null);
+  const [id, setId] = useState<string | null>(null);
 
   useEffect(() => {
     if (id !== null) {
