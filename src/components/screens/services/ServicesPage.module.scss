@@ -8,7 +8,7 @@
 .list {
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-end;
   gap: 8px;
 }
 .title {
@@ -21,7 +21,7 @@
   justify-content: space-between;
   align-items: stretch;
   padding-bottom: 56px;
-  background: url(./../../../../public/images/servicesbg/filterBG.png) -260px bottom  /
+  background: url(./../../../../public/images/servicesbg/filterBG.png) -260px bottom /
     auto no-repeat;
 }
 
@@ -55,7 +55,7 @@
         auto no-repeat;
     }
   }
-  .row{
+  .row {
     background: none;
   }
 }

@@ -17,13 +17,15 @@ const BigCard = ({ data }: any) => {
         )}
       </div>
       <Link href={"/shop/" + data.id} className={styles.img}>
-        <Image
-          src={data.images[0]?.image || "/"}
-          alt="product img"
-          height={240}
-          width={160}
-          priority
-        />
+        {data.images[0]?.image && (
+          <Image
+            src={data.images[0]?.image || "/"}
+            alt="product img"
+            height={240}
+            width={160}
+            priority
+          />
+        )}
       </Link>
       <div className={styles.row}>
         <div className={styles.price}>

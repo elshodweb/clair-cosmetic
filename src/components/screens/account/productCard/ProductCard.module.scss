@@ -12,7 +12,7 @@
 }
 .images {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
 }
 .status {
   font-size: 20px;
@@ -57,7 +57,7 @@
       margin-bottom: 22px;
     }
   }
-  .status{
+  .status {
     color: $darkGray;
   }
 }

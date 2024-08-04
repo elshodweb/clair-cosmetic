@@ -3,14 +3,12 @@
 import instance from "@/utils/axiosInstance";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-
 interface newsState {
   news: any[];
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
   totalPages: number;
 }
-
 
 // Начальное состояние
 const initialState: newsState = {
@@ -21,14 +19,11 @@ const initialState: newsState = {
 };
 
 // Асинхронный thunk для получения `news`
-export const fetchNews = createAsyncThunk(
-  "news/fetchNews",
-  async () => {
-    let url = `/news/?category_slugs=main_header&page=1&page_size=3`;
-    const response = await instance.get(url);
-    return response.data;
-  }
-);
+export const fetchNews = createAsyncThunk("news/fetchNews", async () => {
+  let url = `/news/?category_slugs=main_header&page=1&page_size=3`;
+  const response = await instance.get(url);
+  return response.data;
+});
 
 // Slice
 const newsSlice = createSlice({

@@ -203,14 +203,14 @@
     background: $pink;
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
     padding: 10px;
     padding-bottom: 0;
   }
   .top {
     flex: 1;
     height: 100%;
-    align-items: start;
+    align-items: flex-start;
     margin-bottom: 0;
   }
   .content .btn {

@@ -7,19 +7,17 @@ import SwiperComp from "@/components/UI/slider/SwiperComp";
 import MyTabs from "@/components/UI/myTabs/MyTabs";
 import NewsCard from "./NewsCard/NewsCard";
 import MoreBtn from "./MoreBtn/MoreBtn";
-import NewsModal from "./NewsModal/NewsModal"; // Import the thunk
-import { fetchNewsCategories } from "@/store/news/newsCategorySlice";
+import NewsModal from "./NewsModal/NewsModal";
 import { RootState } from "@/store/store";
+import { fetchNewsCategories } from "@/store/news/newsCategorySlice";
 
 const NewsPage = () => {
   const dispatch = useDispatch();
-  const { categories, status } = useSelector(
-    (state: RootState) => state.newsCategory
-  );
+  const { categories } = useSelector((state: RootState) => state.newsCategory);
   const [selectedNews, setSelectedNews] = useState<number | null>(null);
 
   useEffect(() => {
-    dispatch(fetchNewsCategories());
+    // dispatch(fetchNewsCategories());
   }, [dispatch]);
 
   function filterListener(id: string) {

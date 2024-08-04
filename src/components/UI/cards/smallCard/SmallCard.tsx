@@ -17,12 +17,14 @@ const SmallCard = ({ data }: any) => {
         )}
       </div>
       <Link href={"/shop/" + data.id} className={styles.img}>
-        <Image
-          src={data.images[0]?.image || "/"}
-          alt="product img"
-          height={240}
-          width={160}
-        />
+        {data.images.length > 0 && (
+          <Image
+            src={data.images[0]?.image || "/"}
+            alt="product img"
+            height={240}
+            width={160}
+          />
+        )}
       </Link>
       <div className={styles.row}>
         <div className={styles.price}>
