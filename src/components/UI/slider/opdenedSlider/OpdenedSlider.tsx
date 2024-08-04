@@ -17,9 +17,9 @@ const OpdenedSlider: FC<OpdenedSlider> = ({ setOpen }) => {
   // Указываем правильные типы для useRef
   const dispatch = useDispatch<AppDispatch>();
 
-  const news = useSelector((state: RootState) => state.news.news);
-  const newsStatus = useSelector((state: RootState) => state.news.status);
-  const error = useSelector((state: RootState) => state.news.error);
+  const news = useSelector((state: RootState) => state.newsStoris.news);
+  const newsStatus = useSelector((state: RootState) => state.newsStoris.status);
+  const error = useSelector((state: RootState) => state.newsStoris.error);
   const progressBar = useRef<HTMLDivElement | null>(null);
   const progressBarWrapper: any = useRef<HTMLDivElement | null>(null);
   const progressContent = useRef<HTMLSpanElement | null>(null);

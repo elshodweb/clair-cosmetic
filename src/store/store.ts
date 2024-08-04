@@ -1,10 +1,10 @@
 // src/store/store.ts
 import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
 import { combineReducers } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
 import authReducer from "./auth/authSlice"; // импорт authReducer
-import newsReducer from "./newStories/storiesSlice"; // импорт newsReducer
+import newsStoriesReducer from "./newStories/storiesSlice"; // импорт newsReducer
 import servicesReducer from "./services/servicesSlice";
 import servicesCategoriesReducer from "./services/servicesCategoriesSlice";
 import productCategoriesReducer from "./product/productCategoriesSlice";
@@ -21,6 +21,8 @@ import filtersReducer from "./filters/filtersSlice";
 import singleProduct from "./singleProduct/productSlice";
 import viewedProductsReducer from "./viewd/viewedProductsSlice";
 import newsCategoryReducer from "./news/newsCategorySlice";
+import newsReducer from "./news/newsSlice";
+
 const authPersistConfig = {
   key: "auth",
   storage,
@@ -30,24 +32,30 @@ const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 
 const rootReducer = combineReducers({
   auth: persistedAuthReducer,
+
+  filters: filtersReducer,
+
   news: newsReducer,
+  newsStoris: newsStoriesReducer,
+  homeNews: homeNews,
+  newsCategory: newsCategoryReducer,
 
   services: servicesReducer,
   servicesCategories: servicesCategoriesReducer,
-  productCategories: productCategoriesReducer,
-  productsHome: products,
-  masterCategories: masterCategories,
-  masters: masters,
-  homeNews: homeNews,
-  salons: salonsReducer,
-  salon: salonReducer,
+
   products: productsReducer,
+  productsHome: products,
+  productCategories: productCategoriesReducer,
   brands: brandsReducer,
-  servicesByMaster: servicesByMasterReducer,
-  filters: filtersReducer,
   singleProduct: singleProduct,
   viewedProducts: viewedProductsReducer,
-  newsCategory: newsCategoryReducer,
+
+  masters: masters,
+  masterCategories: masterCategories,
+  servicesByMaster: servicesByMasterReducer,
+
+  salon: salonReducer,
+  salons: salonsReducer,
 });
 
 const store = configureStore({

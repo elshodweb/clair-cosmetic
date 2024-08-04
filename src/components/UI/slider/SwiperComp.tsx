@@ -10,9 +10,9 @@ import { getNews } from "@/store/newStories/storiesSlice";
 import OpdenedSlider from "./opdenedSlider/OpdenedSlider";
 const SwiperComp = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const news = useSelector((state: RootState) => state.news.news);
-  const newsStatus = useSelector((state: RootState) => state.news.status);
-  const error = useSelector((state: RootState) => state.news.error);
+  const news = useSelector((state: RootState) => state.newsStoris.news);
+  const newsStatus = useSelector((state: RootState) => state.newsStoris.status);
+  const error = useSelector((state: RootState) => state.newsStoris.error);
   const [isOpen, setOpen] = useState<boolean>(false);
   useEffect(() => {
     if (newsStatus === "idle") {

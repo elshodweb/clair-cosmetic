@@ -55,9 +55,16 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  &:nth-of-type(odd) {
+    flex-direction: column-reverse;
+  }
 }
 .btn {
   position: relative;
+}
+.emptyListMessage {
+  margin: 220px 0;
+  display: block;
 }
 @media (max-width: 940px) {
   .title {

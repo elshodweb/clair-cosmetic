@@ -39,9 +39,7 @@ const newsSlice = createSlice({
       })
       .addCase(fetchNewsCategories.fulfilled, (state, action) => {
         state.status = "idle";
-        state.categories = action.payload.filter(
-          (i: any) => i.slug !== "storisy"
-        );
+        state.categories = action.payload;
       })
       .addCase(fetchNewsCategories.rejected, (state, action) => {
         state.status = "failed";
