@@ -54,6 +54,7 @@ const Auth = () => {
   useEffect(() => {
     const authenticate = async () => {
       const refreshed = await verifyToken();
+      
       if (refreshed) {
         dispatch(setAuth(true));
       } else {
@@ -61,10 +62,9 @@ const Auth = () => {
       }
     };
     authenticate();
-    
   }, []);
 
-  if (isAuth === null || isAuth) return null; // показываем загрузку или ничего, пока не получено состояние аутентификации
+  if (isAuth === null || isAuth) return null;
   function cleanInputs() {
     setRegisterData({
       phone_number: "",

@@ -22,7 +22,9 @@ import { fetchNews } from "@/store/news/homeNewsSlice";
 
 const HomeScreen = () => {
   function filterListener(params: string) {
-    dispatch(fetchProductsInHome({ categoryId: params, page: 1, pageSize: 10 }));
+    dispatch(
+      fetchProductsInHome({ categoryId: params, page: 1, pageSize: 10 })
+    );
   }
   function filterListenerMaster(params: string) {
     dispatch(fetchMasters({ categoryId: params, page: 1, pageSize: 10 }));
@@ -51,17 +53,6 @@ const HomeScreen = () => {
   const statusMastersCategory = useSelector(
     (state: RootState) => state.masterCategories.status
   );
-
-  const errorMastersCategory = useSelector(
-    (state: RootState) => state.masterCategories.error
-  );
-  const errorCategory = useSelector(
-    (state: RootState) => state.productCategories.error
-  );
-  const errorProducts = useSelector(
-    (state: RootState) => state.productsHome.error
-  );
-  const errorMasters = useSelector((state: RootState) => state.masters.error);
 
   useEffect(() => {
     if (statusCategory === "idle") {

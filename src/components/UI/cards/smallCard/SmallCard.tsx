@@ -9,12 +9,14 @@ const SmallCard = ({ data }: any) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.titles}>
-        <Link href={"/shop/asd"} className={styles.title}>
+        <Link href={"/shop/" + data.id} className={styles.title}>
           {data.title}
         </Link>
-        <h5 className={styles.subtitle}>{data.brand}</h5>
+        {data?.brand?.title && (
+          <h5 className={styles.subtitle}>{data.brand.title}</h5>
+        )}
       </div>
-      <Link href={"/shop/asd"} className={styles.img}>
+      <Link href={"/shop/" + data.id} className={styles.img}>
         <Image
           src={data.images[0]?.image || "/"}
           alt="product img"
@@ -25,7 +27,6 @@ const SmallCard = ({ data }: any) => {
       <div className={styles.row}>
         <div className={styles.price}>
           <strong>{data.price} ₽ </strong>
-          {/* <span>12 800 ₽</span> */}
         </div>
         <div
           onClick={() => {

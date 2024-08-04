@@ -1,20 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Product.module.scss";
-import MyTabs from "@/components/UI/myTabs/MyTabs";
-import SmallTitle from "@/components/UI/smallTitle/SmallTitle";
-import Link from "next/link";
-import Counter from "../Counter/Counter";
 import Image from "next/image";
+import Link from "next/link";
 import FilterMenu from "@/components/UI/filterMenu/FilterMenu";
 import BlackArrowButton from "@/components/UI/buttons/blackArrowButton/BlackArrowButton";
-const data = [{ title: "Состав" }, { title: "Применение" }];
-const Product = () => {
-  function tabfunc(title: string) {}
+import Counter from "../Counter/Counter";
+
+interface ProductProps {
+  product: any;
+}
+
+const Product: React.FC<ProductProps> = ({ product }) => {
+  const [activeTab, setActiveTab] = useState<string>("Состав");
+
+  const tabData = [{ title: "Состав" }, { title: "Применение" }];
+
+  const tabContent =
+    activeTab === "Состав" ? product.structure : product.application;
+
+  const handleTabChange = (title: string) => {
+    setActiveTab(title);
+  };
   return (
     <div className={styles.row}>
       <div className={styles.img}>
         <Image
-          src={"/images/shop/product1.png"}
+          src={product.images?.[0]?.image}
           alt="product"
           width={660}
           height={800}
@@ -25,29 +36,20 @@ const Product = () => {
           <div className={styles.path}>
             Уход за волосами / Кудрявые волосы / Новинки
           </div>
-          <div className={styles.like}></div>
+          <button onClick={() => {}} className={styles.like}></button>
         </div>
-        <h1 className={styles.title}>
-          Шампунь «Так и Ходи» для объёмных кудрей и волн с запахом кардамона
-        </h1>
-        <p className={styles.descr}>
-          Хорошо промывает, не пересушивает волосы и кожу головы даже в жёсткой
-          воде, а ещё от него так и веет спокойствием. Не содержит сульфатов.
-          Шампунь подойдет для всех типов кожи головы.
-        </p>
+        <h1 className={styles.title}>{product.title}</h1>
+        <p className={styles.descr}>{product.description}</p>
         <div className={styles.tabs}>
-          <FilterMenu data={data} filterListener={tabfunc} />
+          <FilterMenu data={tabData} filterListener={handleTabChange} />
         </div>
-        <div className={styles.sostavTitle}>Состав:</div>
+        <div className={styles.sostavTitle}>{activeTab}:</div>
         <p className={styles.sostav}>
-          Вода, кокамидопропил бетаин, натрия кокоил изетионат, каприлил каприл
-          глюкозид, лаурил глюкозид, кокоглюкозид, глицерин, пищевой
-          ароматизатор, морская соль, сорбат калия, бензоат натрия, гуар
-          гидроксипропилтримоний хлорид, эфирное масло кардамона.
+          {tabContent || `${activeTab} не указано`}
         </p>
         <div className={styles.price}>
-          <strong>5 050 ₽</strong>
-          <span>5 550 ₽</span>
+          <strong>{product.sale} </strong>
+          {product.previous_price && <span>{product.previous_price} </span>}
         </div>
         <div className={styles.btns}>
           <Counter />
@@ -55,7 +57,9 @@ const Product = () => {
             <BlackArrowButton>Добавить в корзину</BlackArrowButton>
           </div>
         </div>
-        <Link className={styles.link} href={"#"}>Торговая декларация</Link>
+        <Link className={styles.link} href={"#"}>
+          Торговая декларация
+        </Link>
       </div>
     </div>
   );

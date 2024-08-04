@@ -20,7 +20,7 @@ const ShopPage = () => {
   useEffect(() => {
     dispatch(fetchProducts({ page: 1, page_size: 27 }));
   }, [dispatch]);
-
+  
   return (
     <div className={styles.wrapper}>
       <Loyaut>
@@ -36,6 +36,7 @@ const ShopPage = () => {
             {status === "loading" && <p>Loading...</p>}
             {status === "failed" && <p>Error loading products</p>}
             {status === "succeeded" &&
+              products.length > 0 &&
               products.map((product: any, index) => {
                 if (index === 0 || index === 12 || index === 18)
                   return <BigCard key={product.id} data={product} />;

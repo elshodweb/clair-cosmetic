@@ -7,7 +7,7 @@
   margin: 0 auto;
   align-items: stretch;
   justify-content: center;
-  max-width:max-content;
+  max-width: max-content;
   margin-bottom: 64px;
   height: 800px;
   margin-top: 30px;
@@ -86,6 +86,10 @@
   display: flex;
   gap: 10px;
   margin-bottom: 15px;
+  span {
+    text-decoration: line-through;
+    color: #e0e0e0;
+  }
 }
 
 .btns {

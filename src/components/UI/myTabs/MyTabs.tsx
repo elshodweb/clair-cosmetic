@@ -1,7 +1,7 @@
 import styles from "./MyTabs.module.scss";
 import { FC, useState, useEffect } from "react";
 interface TabProps {
-  data:any[];
+  data: any[];
   filterListener?: (id: string) => void;
 }
 const MyTabs: FC<TabProps> = ({ data, filterListener }) => {
@@ -21,7 +21,9 @@ const MyTabs: FC<TabProps> = ({ data, filterListener }) => {
         <button
           key={item.id}
           style={{
-            backgroundColor: `${item.id === currentFilter ? "#1B1B1A" : "transparent"}`,
+            backgroundColor: `${
+              item.id === currentFilter ? "#1B1B1A" : "transparent"
+            }`,
             color: `${item.id === currentFilter ? "#fff" : "#000"}`,
           }}
           className={styles.filter_item}

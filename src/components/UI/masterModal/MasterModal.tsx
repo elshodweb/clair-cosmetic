@@ -113,7 +113,6 @@ const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
                       name={service.title}
                       price={`${service.price_max} ₽`}
                       onChange={(e) => {
-                        console.log(e);
                       }}
                     />
                   ))}

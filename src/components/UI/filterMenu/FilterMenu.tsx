@@ -7,7 +7,7 @@ interface props {
 }
 
 const FilterMenu: FC<props> = ({ data, filterListener }) => {
-  const [currentFilter, setCurentFilter] = useState(3);
+  const [currentFilter, setCurentFilter] = useState(0);
   const changeFilter = (index: number) => {
     setCurentFilter(index);
   };
@@ -22,7 +22,9 @@ const FilterMenu: FC<props> = ({ data, filterListener }) => {
           <div
             key={index}
             style={{
-              backgroundColor: `${index == currentFilter ? "#1B1B1A" : "transparent"}`,
+              backgroundColor: `${
+                index == currentFilter ? "#1B1B1A" : "transparent"
+              }`,
               color: `${index == currentFilter ? "#fff" : "#000"}`,
             }}
             className={styles.filter_item}

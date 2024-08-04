@@ -5,15 +5,18 @@ import Like from "../../like/Like";
 import Link from "next/link";
 const BigCard = ({ data }: any) => {
   const [isLiked, setIsLike] = useState<boolean>(false);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.titles}>
-        <Link href={"/shop/asd"} className={styles.title}>
+        <Link href={"/shop/" + data.id} className={styles.title}>
           {data.title}
         </Link>
-        <h5 className={styles.subtitle}>{data.brand}</h5>
+        {data?.brand?.title && (
+          <h5 className={styles.subtitle}>{data.brand.title}</h5>
+        )}
       </div>
-      <Link href={"/shop/asd"} className={styles.img}>
+      <Link href={"/shop/" + data.id} className={styles.img}>
         <Image
           src={data.images[0]?.image || "/"}
           alt="product img"

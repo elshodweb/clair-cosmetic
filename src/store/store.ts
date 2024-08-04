@@ -18,6 +18,9 @@ import servicesByMasterReducer from "./services/servicesSliceByMaster";
 import productsReducer from "./magazine/productsSlice";
 import brandsReducer from "./brands/brandsSlice";
 import filtersReducer from "./filters/filtersSlice";
+import singleProduct from "./singleProduct/productSlice";
+import viewedProductsReducer from "./viewd/viewedProductsSlice";
+import newsCategoryReducer from "./news/newsCategorySlice";
 const authPersistConfig = {
   key: "auth",
   storage,
@@ -42,14 +45,17 @@ const rootReducer = combineReducers({
   brands: brandsReducer,
   servicesByMaster: servicesByMasterReducer,
   filters: filtersReducer,
+  singleProduct: singleProduct,
+  viewedProducts: viewedProductsReducer,
+  newsCategory: newsCategoryReducer,
 });
 
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false,
-    }),
+      // serializableCheck: false,
+    }).concat(),
 });
 
 const persistor = persistStore(store);
