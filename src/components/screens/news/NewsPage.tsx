@@ -73,11 +73,7 @@ const NewsPage = () => {
                           setSelectedNews={setSelectedNews}
                           title={item.title}
                           preview={item.preview}
-                          image={
-                            // item.images[0]
-
-                            "/public/images/UI/history.png"
-                          }
+                          image={item.images[0]}
                           small={false}
                         />
                         {news[index + 1] && (
@@ -85,11 +81,7 @@ const NewsPage = () => {
                             setSelectedNews={setSelectedNews}
                             title={news[index + 1].title}
                             preview={news[index + 1].preview}
-                            image={
-                              // news[index + 1].images[0]
-
-                              "/public/images/UI/history.png"
-                            }
+                            image={news[index + 1].images[0]}
                             small={true}
                           />
                         )}
