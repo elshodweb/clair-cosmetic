@@ -39,13 +39,13 @@ export const fetchNews = createAsyncThunk<
   { categoryIds: string | null; page: number; pageSize: number }
 >("news/fetchNews", async ({ categoryIds, page, pageSize }) => {
   let url = `/news/?page=${page}&page_size=${pageSize}`;
-  console.log(categoryIds);
+  
 
   if (categoryIds) {
     url += `&category_ids=${categoryIds}`;
   }
   const response = await instance.get(url);
-  console.log(response);
+  
 
   return response.data.results;
 });

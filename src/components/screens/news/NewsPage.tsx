@@ -41,10 +41,8 @@ const NewsPage = () => {
 
   function filterListener(id: string) {
     setSelectedCategory(id);
-    console.log("Selected filter ID:", id);
   }
 
-  // console.log(news);
 
   return (
     <div className={styles.wrapper}>
