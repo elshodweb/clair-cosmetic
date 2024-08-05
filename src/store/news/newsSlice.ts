@@ -4,11 +4,13 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "../store";
 import instance from "@/utils/axiosInstance";
+import { ReactNode } from "react";
 
 interface News {
   id: string;
   title: string;
   preview: string;
+  body: ReactNode;
   categories: Array<{
     id: string;
     title: string;

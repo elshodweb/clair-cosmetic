@@ -5,6 +5,28 @@
   margin: 10px;
   border-radius: 30px;
 }
+.top {
+  position: relative;
+  pointer-events: none;
+  height: 255px;
+  overflow: hidden;
+  padding-bottom: 18px;
+
+  &::after {
+    content: "";
+    display: block;
+    left: 0;
+    bottom: -10px;
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.346) 0%,
+      #ffffff 100%
+    );
+  }
+}
 .title {
   font-size: 42px;
   font-weight: 600;
@@ -21,28 +43,11 @@
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  position: relative;
-  pointer-events: none;
-  margin-bottom: 18px;
-  &::after {
-    content: "";
-    display: block;
-    left: 0;
-    top: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) 0%,
-      #ffffff 100%
-    );
-  }
+  // display: -webkit-box;
+  // -webkit-box-orient: vertical;
+  // -webkit-line-clamp: 4;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
 }
 .botom {
   button {
@@ -54,7 +59,7 @@
   width: 100%;
   border-radius: 30px;
   overflow: hidden;
-  max-height: 560px;
+  height: 700px;
   display: flex;
   align-items: center;
   justify-content: center;

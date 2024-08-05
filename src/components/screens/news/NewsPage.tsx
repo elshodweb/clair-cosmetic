@@ -26,7 +26,7 @@ const NewsPage = () => {
   const news = useSelector(selectNews);
   const newsStatus = useSelector(selectNewsStatus);
   const newsError = useSelector(selectNewsError);
-  const [selectedNews, setSelectedNews] = useState<number | null>(null);
+  const [selectedNews, setSelectedNews] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(""); // Default category ID for filtering
 
   useEffect(() => {
@@ -71,17 +71,22 @@ const NewsPage = () => {
                       <div className={styles.column} key={item.id}>
                         <NewsCard
                           setSelectedNews={setSelectedNews}
+                          id={item.id}
                           title={item.title}
-                          preview={item.preview}
+                          subtitle={item.preview}
+                          preview={item.body}
                           image={item.images[0]}
                           small={false}
                         />
+
                         {news[index + 1] && (
                           <NewsCard
                             setSelectedNews={setSelectedNews}
                             title={news[index + 1].title}
-                            preview={news[index + 1].preview}
+                            subtitle={news[index + 1].preview}
+                            preview={news[index + 1].body}
                             image={news[index + 1].images[0]}
+                            id={news[index + 1].id}
                             small={true}
                           />
                         )}
