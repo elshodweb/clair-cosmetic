@@ -13,9 +13,13 @@ import NewsModal from "./NewsModal/NewsModal";
 import { AppDispatch, RootState } from "@/store/store";
 import {
   fetchNews,
+  fetchMoreNews,
   selectNews,
   selectNewsStatus,
   selectNewsError,
+  selectCurrentPage,
+  incrementPage,
+  selectTotalCount,
 } from "@/store/news/newsSlice";
 import { fetchNewsCategories } from "@/store/news/newsCategorySlice";
 import SmallTitle from "@/components/UI/smallTitle/SmallTitle";
@@ -26,8 +30,10 @@ const NewsPage = () => {
   const news = useSelector(selectNews);
   const newsStatus = useSelector(selectNewsStatus);
   const newsError = useSelector(selectNewsError);
+  const currentPage = useSelector(selectCurrentPage);
+  const totalCount = useSelector(selectTotalCount);
   const [selectedNews, setSelectedNews] = useState<string | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(""); // Default category ID for filtering
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(""); // ID категории по умолчанию
 
   useEffect(() => {
     dispatch(fetchNewsCategories());
@@ -39,10 +45,22 @@ const NewsPage = () => {
     );
   }, [dispatch, selectedCategory]);
 
+  const handleLoadMore = () => {
+    dispatch(incrementPage()); // Увеличение номера страницы
+    dispatch(
+      fetchMoreNews({
+        categoryIds: selectedCategory,
+        page: currentPage + 1,
+        pageSize: 8,
+      })
+    );
+  };
+
   function filterListener(id: string) {
-    setSelectedCategory(id);
+    setSelectedCategory(id); // Устанавливаем категорию и сбрасываем новости
   }
 
+  const hasMoreNews = totalCount > news.length;
 
   return (
     <div className={styles.wrapper}>
@@ -56,15 +74,15 @@ const NewsPage = () => {
         </div>
         <MyTabs filterListener={filterListener} data={categories} />
 
-        {newsStatus === "loading" && <p>Loading...</p>}
+        {newsStatus === "loading" && <p>Загрузка...</p>}
 
-        {newsStatus === "failed" && <p>Error: {newsError}</p>}
+        {newsStatus === "failed" && <p>Ошибка: {newsError}</p>}
         {news.length > 0 ? (
           <>
             <div className={styles.list}>
               <div className={styles.row}>
                 {news.map((item, index) => {
-                  if (index % 2 == 0)
+                  if (index % 2 === 0)
                     return (
                       <div className={styles.column} key={item.id}>
                         <NewsCard
@@ -93,13 +111,15 @@ const NewsPage = () => {
                 })}
               </div>
             </div>
-            <div className={styles.btn}>
-              <MoreBtn onClick={() => {}} children="Показать еще" />
-            </div>
+            {hasMoreNews && (
+              <div className={styles.btn}>
+                <MoreBtn onClick={handleLoadMore} children="Показать еще" />
+              </div>
+            )}
           </>
         ) : (
           <div className={styles.emptyListMessage}>
-            <SmallTitle>Нововости по этой категории не сушествует</SmallTitle>
+            <SmallTitle>Новостей по этой категории не существует</SmallTitle>
           </div>
         )}
       </Loyaut>
