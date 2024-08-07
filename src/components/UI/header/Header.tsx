@@ -17,7 +17,7 @@ const navs = [
   { path: "/services", name: "Услуги" },
   { path: "/shop", name: "Магазин" },
   { path: "/news", name: "Новости" },
-  { path: "/contacts", name: "Контакты" },
+  { path: "/masters", name: "Мастера" },
 ];
 const Header = () => {
   const navigate = useRouter();

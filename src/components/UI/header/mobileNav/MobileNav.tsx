@@ -23,7 +23,7 @@ const links = [
   { path: "/basket", name: "КОРЗИНА" },
   { path: "/salon", name: "САЛОНЫ" },
   { path: "/news", name: "НОВОСТИ" },
-  { path: "/contacts", name: "КОНТАКТЫ" },
+  { path: "/masters", name: "МАСТЕРА" },
 ];
 
 const MobileNav: FC<MobileNavProps> = ({ isOpenNav, setIsOpenNav }) => {

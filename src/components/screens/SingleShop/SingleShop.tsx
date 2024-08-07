@@ -29,7 +29,6 @@ const SingleShop = () => {
     status: viewedProductsStatus,
   } = useSelector((state: RootState) => state.viewedProducts);
 
-
   useEffect(() => {
     if (typeof id === "string" && id) {
       dispatch(fetchSingleProduct(id));
@@ -39,8 +38,7 @@ const SingleShop = () => {
       if (isAuth) {
         try {
           http.post("/products/viewed/", { product: id });
-        } catch (error) {
-        }
+        } catch (error) {}
       }
     }
   }, [dispatch, id]);
@@ -48,7 +46,7 @@ const SingleShop = () => {
   return (
     <div className={styles.wrapper}>
       <Loyaut>
-        {status === "loading" && <p>Loading...</p>}
+        {/* {status === "loading" && <p>Loading...</p>} */}
         {status === "failed" && <p>Error: {error}</p>}
         {status === "succeeded" && product && <Product product={product} />}
         <SmallTitle>Рекомендации</SmallTitle>
