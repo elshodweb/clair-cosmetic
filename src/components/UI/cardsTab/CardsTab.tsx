@@ -1,33 +1,29 @@
 import styles from "./CardsTab.module.scss";
 import { FC, useState, useEffect } from "react";
 interface TabProps {
-  data: Array<{ title: string }>;
-  filterListener?: (title: string) => void;
+  data: Array<{ title: string; id: string }>;
+  filterListener?: (id: string) => void;
+  selectedCategory: string | null;
 }
-const CardsTab: FC<TabProps> = ({ data, filterListener }) => {
-  const [currentFilter, setCurentFilter] = useState(3);
-
-  const changeFilter = (index: number) => {
-    setCurentFilter(index);
-  };
-
+const CardsTab: FC<TabProps> = ({ data, filterListener, selectedCategory }) => {
   const filterHandler = (title: string) => {
     filterListener && filterListener(title);
   };
 
   return (
     <div className={styles.container}>
-      {data.map((item, index) => (
+      {data.map((item) => (
         <button
-          key={index}
+          key={item.id}
           style={{
-            backgroundColor: `${index === currentFilter ? "#1B1B1A" : "transparent"}`,
-            color: `${index === currentFilter ? "#fff" : "#000"}`,
+            backgroundColor: `${
+              item.id === selectedCategory ? "#1B1B1A" : "transparent"
+            }`,
+            color: `${item.id === selectedCategory ? "#fff" : "#000"}`,
           }}
           className={styles.filter_item}
           onClick={() => {
-            changeFilter(index);
-            filterHandler(item.title);
+            filterHandler(item.id);
           }}
         >
           {item.title}

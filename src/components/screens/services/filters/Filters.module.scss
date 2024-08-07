@@ -1,0 +1,41 @@
+@import "./../../../../styles/variables.scss";
+
+.input {
+  display: block;
+  max-width: 663px;
+
+  height: 100px;
+  border-radius: 70px;
+  padding: 30px;
+  padding-left: 95px;
+  background: url(./../../../../../public/images/search/search.svg) 30px center /
+      auto no-repeat,
+    $white;
+  color: $darkGray;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 32px;
+  margin-bottom: 16px;
+  min-width: auto;
+  width: 100%;
+  outline: none;
+  &:focus {
+    transition: all 0.1s ease-in-out;
+    box-shadow: 5px 5px 10px $darkGray;
+  }
+}
+.tabs {
+  margin-top: 4px;
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+}
+@media (max-width: 730px) {
+  .input {
+    padding: 20px;
+    padding-left: 78px;
+    background-size: 36px;
+    font-size: 30px;
+    line-height: 32px;
+  }
+}

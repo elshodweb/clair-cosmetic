@@ -1,35 +1,32 @@
 import styles from "./Filter.module.scss";
-import { FC, useState } from "react";
+import { FC } from "react";
 
 interface props {
-  data: Array<{ title: string }>;
-  filterListener?: (title: string) => void;
+  currentCategory: string;
+  data: Array<{ title: string; slug: string }>;
+  filterListener?: (slug: string) => void;
 }
 
-const FilterMenu: FC<props> = ({ data, filterListener }) => {
-  const [currentFilter, setCurentFilter] = useState(0);
-  const changeFilter = (index: number) => {
-    setCurentFilter(index);
-  };
-  const filterHandler = (title: string) => {
-    filterListener && filterListener(title);
+const FilterMenu: FC<props> = ({ data, filterListener, currentCategory }) => {
+  const filterHandler = (slug: string) => {
+    filterListener && filterListener(slug);
   };
 
   return (
     <div className={styles.container}>
-      {data.map((item, index) => {
+      {data.map((item) => {
         return (
           <div
-            key={index}
+            key={item.slug}
             style={{
               backgroundColor: `${
-                index == currentFilter ? "#1B1B1A" : "transparent"
+                item.slug == currentCategory ? "#1B1B1A" : "transparent"
               }`,
-              color: `${index == currentFilter ? "#fff" : "#000"}`,
+              color: `${item.slug == currentCategory ? "#fff" : "#000"}`,
             }}
             className={styles.filter_item}
             onClick={() => {
-              changeFilter(index), filterHandler(item.title);
+              filterHandler(item.slug);
             }}
           >
             {item.title}

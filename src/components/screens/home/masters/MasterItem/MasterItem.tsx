@@ -9,13 +9,14 @@ interface MasterProps {
 const MasterItem: FC<MasterProps> = ({ data, setMaster }) => {
   return (
     <div className={styles.wrapper}>
-      <Image
-        className={styles.img}
-        src={"/images/masters/master.png"}
-        alt="trends"
-        width={324}
-        height={420}
-      />
+      <div className={styles.img}>
+        <Image
+          src={data?.avatar ? data.avatar : "/images/masters/master.png"}
+          alt="trends"
+          width={324}
+          height={420}
+        />
+      </div>
       <button className={styles.like}></button>
 
       <div className={styles.row}>

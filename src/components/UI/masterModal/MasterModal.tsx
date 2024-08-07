@@ -40,111 +40,117 @@ const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
     }
   }, [id, dispatch]);
 
-  if (salonStatus === "loading" || servicesStatus === "loading")
-    return "Loading...";
-
-  if (salonStatus === "failed" || servicesStatus === "failed") return "Error";
-
-  if (salonStatus === "succeeded" && servicesStatus === "succeeded")
-    return (
-      <div
-        onClick={(e) => {
-          setMaster(null);
-        }}
-        className={cn(styles.wrapper, id ? styles.opened : "")}
-      >
-        <div onClick={(e) => e.stopPropagation()} className={styles.screen}>
-          <div className={styles.content}>
-            <div className={styles.head}>
-              <div className={styles.about}>О мастере</div>
-              <IconButton
-                className={""}
-                onClick={() => {
-                  setMaster(null);
-                }}
-              >
-                <Image
-                  src={"/images/header/cross.svg"}
-                  alt="cart"
-                  width={16}
-                  height={19}
-                />
-              </IconButton>
-            </div>
-            <div className={styles.img}>
+  return (
+    <div
+      onClick={(e) => {
+        setMaster(null);
+      }}
+      className={cn(styles.wrapper, id ? styles.opened : "")}
+    >
+      <div onClick={(e) => e.stopPropagation()} className={styles.screen}>
+        <div className={styles.content}>
+          <div className={styles.head}>
+            <div className={styles.about}>О мастере</div>
+            <IconButton
+              className={""}
+              onClick={() => {
+                setMaster(null);
+              }}
+            >
               <Image
-                src={salonData?.avatar}
-                width={355}
-                height={448}
-                alt="master image"
+                src={"/images/header/cross.svg"}
+                alt="cart"
+                width={16}
+                height={19}
               />
-              <button
-                className={cn(styles.like, isLiked ? styles.liked : "")}
-                onClick={() => {
-                  setIsLiked(!isLiked);
-                }}
-              ></button>
-            </div>
-            <h3 className={styles.title}>{salonData.name}</h3>
-            <h4 className={styles.prof}>{salonData.specialization.title}</h4>
-            <p className={styles.descr}>{salonData.information}</p>
-            {salonData.salons.map((i: any) => (
-              <div key={i.id} className={styles.location}>
-                <div className={styles.locationImg}>
-                  <Image
-                    src={"/images/masters/location.png"}
-                    alt="location img"
-                    width={66}
-                    height={66}
-                  />
-                </div>
-                <div className={styles.locationName}>
-                  <span>{i.city}</span>
-                </div>
-              </div>
-            ))}
-            {servicesData.length > 0 && (
-              <>
-                <h3 className={styles.title} style={{ marginBottom: 16 }}>
-                  Услуги
-                </h3>
-                <p className={styles.descr}>
-                  Услуги, которые делает мастер Анастасия
-                </p>
-                <div className={styles.selects}>
-                  {servicesData.map((service) => (
-                    <MySmallInput
-                      key={service.id}
-                      small={true}
-                      name={service.title}
-                      price={`${service.price_max} ₽`}
-                      onChange={(e) => {}}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-            {salonData.qualifications.length > 0 && (
-              <>
-                <h3 className={styles.title} style={{ marginBottom: 16 }}>
-                  Квалификация:
-                </h3>
-
-                {salonData.qualifications.map((i: any) => (
-                  <p key={i.id} className={styles.descr}>
-                    {i.description}
-                  </p>
-                ))}
-              </>
-            )}
+            </IconButton>
           </div>
-        </div>
+          {(salonStatus === "loading" || servicesStatus === "loading") &&
+            "Loading..."}
+          {(salonStatus === "failed" || servicesStatus === "failed") && "Error"}
+          {salonStatus === "succeeded" && servicesStatus === "succeeded" && (
+            <>
+              <div className={styles.img}>
+                <Image
+                  src={
+                    salonData?.avatar
+                      ? salonData.avatar
+                      : "/images/masters/master.png"
+                  }
+                  width={355}
+                  height={448}
+                  alt="master image"
+                />
+                <button
+                  className={cn(styles.like, isLiked ? styles.liked : "")}
+                  onClick={() => {
+                    setIsLiked(!isLiked);
+                  }}
+                ></button>
+              </div>
+              <h3 className={styles.title}>{salonData.name}</h3>
+              <h4 className={styles.prof}>{salonData.specialization.title}</h4>
+              <p className={styles.descr}>{salonData.information}</p>
+              {salonData.salons.map((i: any) => (
+                <div key={i.id} className={styles.location}>
+                  <div className={styles.locationImg}>
+                    <Image
+                      src={"/images/masters/location.png"}
+                      alt="location img"
+                      width={66}
+                      height={66}
+                    />
+                  </div>
+                  <div className={styles.locationName}>
+                    <span>{i.city}</span>
+                  </div>
+                </div>
+              ))}
+              {servicesData.length > 0 && (
+                <>
+                  <h3 className={styles.title} style={{ marginBottom: 16 }}>
+                    Услуги
+                  </h3>
+                  <p className={styles.descr}>
+                    Услуги, которые делает мастер Анастасия
+                  </p>
+                  <div className={styles.selects}>
+                    {servicesData.map((service) => (
+                      <MySmallInput
+                        key={service.id}
+                        small={true}
+                        name={service.title}
+                        price={`${service.price_max} ₽`}
+                        onChange={(e) => {}}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+              {salonData.qualifications.length > 0 && (
+                <>
+                  <h3 className={styles.title} style={{ marginBottom: 16 }}>
+                    Квалификация:
+                  </h3>
 
+                  {salonData.qualifications.map((i: any) => (
+                    <p key={i.id} className={styles.descr}>
+                      {i.description}
+                    </p>
+                  ))}
+                </>
+              )}
+            </>
+          )}
+        </div>
+      </div>
+      {salonStatus === "succeeded" && servicesStatus === "succeeded" && (
         <div onClick={(e) => e.stopPropagation()} className={styles.btn}>
           <BlackButton>Записаться к мастеру</BlackButton>
         </div>
-      </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export default MasterModal;

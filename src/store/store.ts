@@ -22,7 +22,8 @@ import singleProduct from "./singleProduct/productSlice";
 import viewedProductsReducer from "./viewd/viewedProductsSlice";
 import newsCategoryReducer from "./news/newsCategorySlice";
 import newsReducer from "./news/newsSlice";
-
+import specializationsReducer from "./specializations/specializationsSlice";
+import staffsReducer from "./staffs/staffsSlice";
 const authPersistConfig = {
   key: "auth",
   storage,
@@ -50,12 +51,15 @@ const rootReducer = combineReducers({
   singleProduct: singleProduct,
   viewedProducts: viewedProductsReducer,
 
+  staffs: staffsReducer,
   masters: masters,
   masterCategories: masterCategories,
   servicesByMaster: servicesByMasterReducer,
 
   salon: salonReducer,
   salons: salonsReducer,
+
+  specializations: specializationsReducer,
 });
 
 const store = configureStore({

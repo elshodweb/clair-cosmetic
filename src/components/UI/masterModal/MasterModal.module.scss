@@ -72,8 +72,8 @@
   border-radius: 30px;
   overflow: hidden;
   img {
+    object-fit: cover;
     width: 100%;
-    height: auto;
   }
 }
 .about {
@@ -126,8 +126,11 @@
   gap: 16px;
   margin-bottom: 28px;
 }
-.locationImg {
+.avatarMaker {
+  width: 100%;
+  height: 100%;
 }
+
 .locationName {
   display: flex;
   flex-direction: column;

@@ -3,8 +3,8 @@ import style from "./ServicesPage.module.scss";
 import Loyaut from "@/components/loyaut/Loyaut";
 import Title from "@/components/UI/title/Title";
 import SwiperComp from "@/components/UI/slider/SwiperComp";
-import Filters from "@/components/UI/filters/Filters";
 import ServiceCard from "../../UI/serviceCard/ServiceCard";
+import Filters from "./filters/Filters";
 
 const ServicesPage = () => {
   return (
