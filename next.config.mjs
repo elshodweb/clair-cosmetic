@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["ba745807670a.vps.myjino.ru"], 
+    domains: ["https://clair-cosmetic.netlify.app/", "http://localhost:3000/"],
   },
 };
 
