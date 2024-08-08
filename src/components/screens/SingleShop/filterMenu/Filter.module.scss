@@ -1,0 +1,34 @@
+@import "./../../../../styles/variables.scss";
+.container {
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 5vw;
+  max-width: 660px;
+  width: auto;
+}
+.filter_item {
+  cursor: pointer;
+  text-align: center;
+  max-width: 166px;
+  width: 100%;
+  font-weight: 600;
+  padding: 2.1% 0;
+  transition: all 0.2s;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.2px;
+  border: 2px solid black;
+  &:hover {
+    background: $darkGray !important;
+    color: $white !important;
+  }
+}
+.filter_item:not(:last-child) {
+  border-right: 2px solid black;
+}
+.filter_item:first-child {
+  border-radius: 5vw 0 0 5vw;
+}
+.filter_item:last-child {
+  border-radius: 0 5vw 5vw 0;
+}

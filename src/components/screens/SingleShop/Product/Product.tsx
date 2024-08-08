@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import styles from "./Product.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-import FilterMenu from "@/components/UI/filterMenu/FilterMenu";
 import BlackArrowButton from "@/components/UI/buttons/blackArrowButton/BlackArrowButton";
 import Counter from "../Counter/Counter";
+import FilterMenu from "../filterMenu/FilterMenu";
 
 interface ProductProps {
   product: any;
@@ -21,6 +21,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
   const handleTabChange = (title: string) => {
     setActiveTab(title);
   };
+
   return (
     <div className={styles.row}>
       <div className={styles.img}>
@@ -42,9 +43,9 @@ const Product: React.FC<ProductProps> = ({ product }) => {
         <p className={styles.descr}>{product.description}</p>
         <div className={styles.tabs}>
           <FilterMenu
-            currentCategory={""}
-            data={tabData}
-            filterListener={handleTabChange}
+            currentTab={activeTab}
+            tabs={tabData}
+            onTabChange={handleTabChange}
           />
         </div>
         <div className={styles.sostavTitle}>{activeTab}:</div>
