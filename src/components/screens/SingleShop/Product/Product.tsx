@@ -41,7 +41,11 @@ const Product: React.FC<ProductProps> = ({ product }) => {
         <h1 className={styles.title}>{product.title}</h1>
         <p className={styles.descr}>{product.description}</p>
         <div className={styles.tabs}>
-          <FilterMenu data={tabData} filterListener={handleTabChange} />
+          <FilterMenu
+            currentCategory={""}
+            data={tabData}
+            filterListener={handleTabChange}
+          />
         </div>
         <div className={styles.sostavTitle}>{activeTab}:</div>
         <p className={styles.sostav}>

@@ -3,7 +3,7 @@ import { FC } from "react";
 
 interface props {
   currentCategory: string;
-  data: Array<{ title: string; slug: string }>;
+  data: any;
   filterListener?: (slug: string) => void;
 }
 
@@ -14,7 +14,7 @@ const FilterMenu: FC<props> = ({ data, filterListener, currentCategory }) => {
 
   return (
     <div className={styles.container}>
-      {data.map((item) => {
+      {data.map((item: any) => {
         return (
           <div
             key={item.slug}

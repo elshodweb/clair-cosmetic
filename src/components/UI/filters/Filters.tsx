@@ -23,9 +23,9 @@ const Filters = () => {
   return (
     <div className={styles.wrapper}>
       <input className={styles.input} type="text" placeholder="Поиск" />
-      <FilterMenu data={data} filterListener={tabfunc} />
+      <FilterMenu currentCategory={""} data={data} filterListener={tabfunc} />
       <div className={styles.tabs}>
-        <CardsTab data={tabs} />
+        <CardsTab selectedCategory={""} data={tabs} />
       </div>
     </div>
   );

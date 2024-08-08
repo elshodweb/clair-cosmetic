@@ -1,7 +1,7 @@
 import styles from "./CardsTab.module.scss";
 import { FC, useState, useEffect } from "react";
 interface TabProps {
-  data: Array<{ title: string; id: string }>;
+  data: any;
   filterListener?: (id: string) => void;
   selectedCategory: string | null;
 }
@@ -12,7 +12,7 @@ const CardsTab: FC<TabProps> = ({ data, filterListener, selectedCategory }) => {
 
   return (
     <div className={styles.container}>
-      {data.map((item) => (
+      {data.map((item: any) => (
         <button
           key={item.id}
           style={{

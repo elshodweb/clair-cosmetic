@@ -42,10 +42,6 @@ const PhoneVerification: FC<PhoneVerificationProps> = ({
       }
       const response = await instance.post("/users/", {
         ...registerData,
-        // last_name: "string",
-        // first_name: "asasd",
-        // second_name: "string",
-        // full_name: null,
         confirmation_code: verificationCode,
       });
       dispatch(setPhoneVerificationVisible(false));
@@ -127,7 +123,7 @@ const PhoneVerification: FC<PhoneVerificationProps> = ({
             placeholder="Код подтверждения"
             value={verificationCode}
             onChange={(e) => {
-              setVerificationCode(e.target.value);
+              setVerificationCode(e.currentTarget.value);
               setIsWrong("");
             }}
           />

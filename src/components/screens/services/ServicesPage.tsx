@@ -36,7 +36,7 @@ const ServicesPage = () => {
             {status === "failed" && <p>Error: {error}</p>}
             {status === "succeeded" &&
               services.length > 0 &&
-              services.map((i: any) => <ServiceCard service={i} />)}
+              services.map((i: any) => <ServiceCard key={i?.id} service={i} />)}
           </div>
         </div>
       </Loyaut>

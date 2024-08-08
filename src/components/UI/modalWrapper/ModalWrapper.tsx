@@ -19,6 +19,7 @@ const ModalWrapper: FC<ModalWrapperProps> = ({ isOpen, setOpen, children }) => {
       document.body.classList.remove("no-scroll");
     };
   }, [isOpen]);
+  
   return (
     <div
       onClick={(e) => {
