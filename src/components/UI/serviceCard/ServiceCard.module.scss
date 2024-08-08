@@ -34,6 +34,7 @@
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
+  text-wrap: nowrap;
 }
 .mobPrice {
   display: none;
@@ -62,10 +63,13 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 19.2px;
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
   color: $gray;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .mobTags {
   display: none;
@@ -83,7 +87,7 @@
     display: block;
   }
   .mobTags {
-    display: flex;
+    display: -webkit-box;
   }
 }
 @media (max-width: 460px) {

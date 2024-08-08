@@ -9,7 +9,7 @@ interface InputRadioProps {
   onChange: (val: boolean) => void;
 }
 
-const MyInput: FC<InputRadioProps> = ({ name, price, onChange }) => {
+const MyInput: FC<any> = ({ name, price, onChange, description }) => {
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const [isOpenedInfo, setIsOpenedInfo] = useState<boolean>(false);
   const infoRef = useRef<HTMLParagraphElement>(null);
@@ -57,9 +57,8 @@ const MyInput: FC<InputRadioProps> = ({ name, price, onChange }) => {
         ref={infoRef}
         className={cn(styles.info, isOpenedInfo ? styles.isOpened : "")}
       >
-        Насыщенный крем ONmacabim ProBioCin Moisturizer для эффективного ухода
-        за чувствительной и раздраженной кожей, содержит экстракты растений,
-        пост- и пробиотики, пептиды.{price}
+        {description}
+        {price}
       </p>
     </div>
   );

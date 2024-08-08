@@ -14,14 +14,9 @@ import {
   selectStaffsStatus,
   selectStaffsError,
 } from "@/store/staffs/staffsSlice";
-import { AppDispatch } from "@/store/store";
-
-const categories = [
-  { title: "Тело", slug: "telo" },
-  { title: "Ногти", slug: "nogti" },
-  { title: "Волосы", slug: "volosy" },
-  { title: "Лицо", slug: "lico" },
-];
+import { AppDispatch, RootState } from "@/store/store";
+import { fetchServiceCategories } from "@/store/services/servicesCategoriesSlice";
+import { fetchServicesByFilter } from "@/store/services/servicesSliceByFilters";
 
 const Filters = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -30,31 +25,51 @@ const Filters = () => {
   const specializationsError = useSelector(selectSpecializationsError);
   const staffsStatus = useSelector(selectStaffsStatus);
   const staffsError = useSelector(selectStaffsError);
+  const categories = useSelector(
+    (state: RootState) => state.servicesCategories.categories
+  );
+  const categoriesStatus = useSelector(
+    (state: RootState) => state.servicesCategories.status
+  );
+  const error = useSelector(
+    (state: RootState) => state.servicesCategories.error
+  );
 
   const [filterData, setFilterData] = useState<{
     specialization_category_slugs: string;
     search: string;
-    specialization_ids: string | null;
+    category_ids: string | null;
   }>({
-    specialization_category_slugs: categories[0].slug,
+    specialization_category_slugs: "",
     search: "",
-    specialization_ids: null,
+    category_ids: null,
   });
 
   useEffect(() => {
-    dispatch(
-      fetchSpecializations({
-        categorySlugs: filterData.specialization_category_slugs,
-      })
-    );
+    if (categoriesStatus === "idle") {
+      dispatch(fetchServiceCategories());
+    }
+    setFilterData({
+      ...filterData,
+      specialization_category_slugs: categories?.[1]?.slug,
+    });
+  }, [categoriesStatus, dispatch]);
+
+  useEffect(() => {
+    if (filterData.specialization_category_slugs?.length > 0) {
+      dispatch(
+        fetchSpecializations({
+          categorySlugs: filterData.specialization_category_slugs,
+        })
+      );
+    }
   }, [dispatch, filterData.specialization_category_slugs]);
 
   useEffect(() => {
     dispatch(
-      fetchStaffs({
+      fetchServicesByFilter({
         search: filterData.search,
-        specialization_category_slugs: filterData.specialization_category_slugs,
-        specialization_ids: filterData.specialization_ids,
+        category_ids: filterData.category_ids,
       })
     );
   }, [dispatch, filterData]);
@@ -76,7 +91,7 @@ const Filters = () => {
         filterListener={(slug) =>
           setFilterData({
             ...filterData,
-            specialization_ids: null,
+            category_ids: null,
             specialization_category_slugs: slug,
           })
         }
@@ -93,9 +108,9 @@ const Filters = () => {
             {specializations.length > 0 ? (
               <CardsTab
                 filterListener={(id: string) => {
-                  setFilterData({ ...filterData, specialization_ids: id });
+                  setFilterData({ ...filterData, category_ids: id });
                 }}
-                selectedCategory={filterData.specialization_ids}
+                selectedCategory={filterData.category_ids}
                 data={specializations}
               />
             ) : (

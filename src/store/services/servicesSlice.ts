@@ -28,8 +28,6 @@ const initialState: ServiceState = {
 export const fetchServices = createAsyncThunk('services/fetchServices', async () => {
   const response = await instance.get('/services/');
 
-  
-  
   return response.data;
 });
 

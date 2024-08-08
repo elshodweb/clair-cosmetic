@@ -15,10 +15,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { fetchSalon } from "@/store/salonSlice/salonSlice";
 import { fetchServicesByMaster } from "@/store/services/servicesSliceByMaster";
+
 interface MasterModalProps {
   id: string | null;
   setMaster: Dispatch<SetStateAction<string | null>>;
 }
+
 const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();

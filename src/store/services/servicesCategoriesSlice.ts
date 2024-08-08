@@ -1,13 +1,10 @@
-// src/store/services/servicesCategoriesSlice.ts
-
 import instance from "@/utils/axiosInstance";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-
-// Типы данных для `services categories`
 interface ServiceCategory {
   id: string;
-  name: string;
+  title: string;
+  slug: string;
 }
 
 interface ServiceCategoriesState {
@@ -17,7 +14,6 @@ interface ServiceCategoriesState {
   error: string | null;
 }
 
-// Начальное состояние
 const initialState: ServiceCategoriesState = {
   categories: [],
   subCategories: [],
@@ -25,7 +21,6 @@ const initialState: ServiceCategoriesState = {
   error: null,
 };
 
-// Асинхронный thunk для получения `services categories`
 export const fetchServiceCategories = createAsyncThunk(
   "servicesCategories/fetchServiceCategories",
   async () => {
@@ -35,7 +30,6 @@ export const fetchServiceCategories = createAsyncThunk(
   }
 );
 
-// Slice
 const servicesCategoriesSlice = createSlice({
   name: "servicesCategories",
   initialState,
@@ -48,7 +42,9 @@ const servicesCategoriesSlice = createSlice({
       .addCase(fetchServiceCategories.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.categories = action.payload?.filter((i: any) => i.parent == null);
-        state.subCategories = action.payload?.filter((i: any) => i.parent !== null);
+        state.subCategories = action.payload?.filter(
+          (i: any) => i.parent !== null
+        );
       })
       .addCase(fetchServiceCategories.rejected, (state, action) => {
         state.status = "failed";

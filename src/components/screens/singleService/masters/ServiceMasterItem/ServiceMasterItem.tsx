@@ -2,22 +2,15 @@ import Image from "next/image";
 import React, { FC } from "react";
 import styles from "./ServiceMasterItem.module.scss";
 
-interface master {
-  id: number;
-  name: string;
-  profession: string;
-  img: string;
-  address: string;
-}
 interface MasterProps {
-  data: master;
+  data: any;
 }
 const ServiceMasterItem: FC<MasterProps> = ({ data }) => {
   return (
     <div className={styles.wrapper}>
       <Image
         className={styles.img}
-        src={data.img}
+        src={data?.avatar ? data.avatar : "/images/masters/master.png"}
         alt="trends"
         width={324}
         height={420}
@@ -26,8 +19,7 @@ const ServiceMasterItem: FC<MasterProps> = ({ data }) => {
 
       <div className={styles.info}>
         <div className={styles.name}>{data.name}</div>
-        <div className={styles.profession}>{data.profession}</div>
-        <div className={styles.address}>{data.address}</div>
+        <div className={styles.profession}>{data.specialization.title}</div>
       </div>
     </div>
   );

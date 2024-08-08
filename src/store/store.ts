@@ -24,6 +24,10 @@ import newsCategoryReducer from "./news/newsCategorySlice";
 import newsReducer from "./news/newsSlice";
 import specializationsReducer from "./specializations/specializationsSlice";
 import staffsReducer from "./staffs/staffsSlice";
+import servicesSubCategoryReducer from "./services/subcategoriesSlice";
+import servicesByFilterReducer from "./services/servicesSliceByFilters";
+import singleService from "./services/singleService";
+import productByServiceReducer from "./productByService/productsByServiceSlice";
 const authPersistConfig = {
   key: "auth",
   storage,
@@ -41,10 +45,14 @@ const rootReducer = combineReducers({
   homeNews: homeNews,
   newsCategory: newsCategoryReducer,
 
+  service: singleService,
   services: servicesReducer,
+  servicesByFilter: servicesByFilterReducer,
+  servicesSubCategory: servicesSubCategoryReducer,
   servicesCategories: servicesCategoriesReducer,
 
   products: productsReducer,
+  productByService: productByServiceReducer,
   productsHome: products,
   productCategories: productCategoriesReducer,
   brands: brandsReducer,

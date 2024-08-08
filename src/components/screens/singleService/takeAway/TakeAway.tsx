@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import styles from "./TakeAway.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import ServiceCard from "@/components/UI/serviceCard/ServiceCard";
 
-const TakeAway = () => {
+const TakeAway: FC<any> = ({ services }) => {
   return (
     <div className={styles.row}>
       <Swiper
@@ -21,19 +21,13 @@ const TakeAway = () => {
           },
         }}
       >
-        <SwiperSlide className={styles.slide}>
-          <ServiceCard greenTitle={true} />
-        </SwiperSlide>
+        {services.length > 0 &&
+          services.map((i: any) => (
+            <SwiperSlide className={styles.slide}>
+              <ServiceCard service={i} key={i.id} greenTitle={true} />
+            </SwiperSlide>
+          ))}
 
-        <SwiperSlide className={styles.slide}>
-          <ServiceCard greenTitle={true} />
-        </SwiperSlide>
-        <SwiperSlide className={styles.slide}>
-          <ServiceCard greenTitle={true} />
-        </SwiperSlide>
-        <SwiperSlide className={styles.slide}>
-          <ServiceCard greenTitle={true} />
-        </SwiperSlide>
         {/* ))} */}
       </Swiper>
     </div>

@@ -8,29 +8,6 @@ import { getNews } from "@/store/newStories/storiesSlice";
 import { fetchServices } from "@/store/services/servicesSlice";
 import { fetchServiceCategories } from "@/store/services/servicesCategoriesSlice";
 
-// const serviceData = [
-//   {
-//     title: "Лицо",
-//     content:
-//       "Мы использем современные технологии, такие как Icoone Laser и RF-лифтинг, и высококачественные косметические средства.",
-//   },
-//   {
-//     title: "Тело",
-//     content:
-//       "Мы использем современные технологии, такие как Icoone Laser и RF-лифтинг, и высококачественные косметические средства.",
-//   },
-//   {
-//     title: "Волосы",
-//     content:
-//       "Мы использем современные технологии, такие как Icoone Laser и RF-лифтинг, и высококачественные косметические средства.",
-//   },
-//   {
-//     title: "Ногти",
-//     content:
-//       "Мы использем современные технологии, такие как Icoone Laser и RF-лифтинг, и высококачественные косметические средства.",
-//   },
-// ];
-
 const Services: FC = () => {
   const [isOpen, setIsOpen] = useState(null);
   const dispatch = useDispatch<AppDispatch>();
@@ -48,7 +25,7 @@ const Services: FC = () => {
     if (categoriesStatus === "idle") {
       dispatch(fetchServiceCategories());
     }
-  }, [ categoriesStatus, dispatch]);
+  }, [categoriesStatus, dispatch]);
 
   if (categoriesStatus === "loading") {
     return <div>Loading...</div>;
@@ -61,7 +38,7 @@ const Services: FC = () => {
   const clickHandler = (id: any) => {
     isOpen !== id ? setIsOpen(id) : setIsOpen(null);
   };
-
+  
   return (
     <section className={styles.container}>
       <div className={styles.services_inner}>
