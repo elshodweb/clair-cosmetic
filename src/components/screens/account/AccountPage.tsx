@@ -10,10 +10,10 @@ import NoteCard from "./noteCard/NoteCard";
 import { SwiperSlide } from "swiper/react";
 import ArrowLink from "@/components/UI/arrowLink/ArrowLink";
 import ProductCard from "./productCard/ProductCard";
-import instance, { http } from "@/utils/axiosInstance";
+import { http } from "@/utils/axiosInstance";
 import { useRouter } from "next/router";
 import LogoutModal from "./logoutModal/LogoutModal";
-
+import UpdateModal from "./UpdateModal/UpdateModal";
 
 interface User {
   id: string;
@@ -33,6 +33,7 @@ interface User {
 
 const AccountPage = () => {
   const [isOpenLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
+  const [isOpenUpdateModal, setOpenUpdateModal] = useState<boolean>(false);
   const router = useRouter();
   const [user, setUser] = useState<User>({
     id: "",
@@ -54,17 +55,16 @@ const AccountPage = () => {
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    let count = true;
     const fetchUserData = async () => {
       try {
         const response = await http.get<User>("/users/");
-        if (response.status !== 200) {
-          router.replace(router.asPath);
-        }
 
         setLoading(false);
         setUser({ ...user, ...response.data });
       } catch (error: any) {
+        if (error.response.status !== 200) {
+          window.location.reload();
+        }
         setError(error.message || "An error occurred");
 
         setLoading(false);
@@ -96,7 +96,6 @@ const AccountPage = () => {
   if (!user) {
     return <p>No user data found.</p>;
   }
-  console.log(user.image);
 
   return (
     <div className={styles.wrapper}>
@@ -104,26 +103,53 @@ const AccountPage = () => {
         setOpenLogoutModal={setOpenLogoutModal}
         isOpenLogoutModal={isOpenLogoutModal}
       />
+      <UpdateModal
+        visible={isOpenUpdateModal}
+        onClose={() => setOpenUpdateModal(false)}
+      />
       <Loyaut>
         <div className={styles.title}>
           <Title>Профиль</Title>
         </div>
         <div className={styles.profile}>
           <div className={styles.profileInfo}>
-            <Image
-              src={user.image ? user.image : "/images/profile/profile.png"}
-              alt="profile img"
-              className={styles.img}
-              width={100}
-              height={134}
-              priority
-              property=""
-            />
+            <div className={styles.imgWrapper}>
+              <Image
+                src={user.image ? user.image : "/images/profile/profile.png"}
+                alt="profile img"
+                className={styles.img}
+                width={210}
+                height={230}
+              />
+            </div>
             <div className={styles.info}>
-              <div className={styles.name}>{user?.first_name}</div>
-              <div className={styles.rank}>{user.achievement}</div>
+              <div className={styles.infoTop}>
+                <div className={styles.infoTopLeft}>
+                  <div className={styles.name}>{user?.first_name}</div>
+                  <div className={styles.rank}>{user.achievement}</div>
+                </div>
+                <div className={styles.infoTopRight}>
+                  <div className={styles.imgWrapperMob}>
+                    <Image
+                      src={
+                        user.image ? user.image : "/images/profile/profile.png"
+                      }
+                      alt="profile img"
+                      className={styles.img}
+                      width={210}
+                      height={230}
+                    />
+                  </div>
+                </div>
+              </div>
               <div className={styles.btns}>
-                <OutlineButton>Изменить профиль</OutlineButton>
+                <OutlineButton
+                  onClick={() => {
+                    setOpenUpdateModal(true);
+                  }}
+                >
+                  Изменить профиль
+                </OutlineButton>
                 <OutlineButton
                   onClick={() => {
                     setOpenLogoutModal(true);

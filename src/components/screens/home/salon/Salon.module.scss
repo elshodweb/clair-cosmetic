@@ -9,12 +9,17 @@
   line-height: 24px;
   margin-top: 16px;
 }
-.img {
+.wrapper {
   display: block;
   border-radius: 40px;
   overflow: hidden;
   width: 100%;
-  height: auto;
+  height: 100%;
+  max-width: 660px;
+  max-height: 350px;
+  img {
+    object-fit: cover;
+  }
 }
 .wrapper {
   max-width: 660px;

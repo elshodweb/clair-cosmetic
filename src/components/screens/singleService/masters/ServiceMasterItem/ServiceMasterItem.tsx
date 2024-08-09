@@ -8,13 +8,15 @@ interface MasterProps {
 const ServiceMasterItem: FC<MasterProps> = ({ data }) => {
   return (
     <div className={styles.wrapper}>
-      <Image
-        className={styles.img}
-        src={data?.avatar ? data.avatar : "/images/masters/master.png"}
-        alt="trends"
-        width={324}
-        height={420}
-      />
+      <div className={styles.imgWrapper}>
+        <Image
+          className={styles.img}
+          src={data?.avatar ? data.avatar : "/images/masters/master.png"}
+          alt="trends"
+          width={324}
+          height={420}
+        />
+      </div>
       <button className={styles.like}></button>
 
       <div className={styles.info}>

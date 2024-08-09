@@ -59,7 +59,8 @@
   width: 100%;
   border-radius: 30px;
   overflow: hidden;
-  height: 700px;
+  height: 100%;
+  max-height: 700px;
   display: flex;
   align-items: center;
   justify-content: center;

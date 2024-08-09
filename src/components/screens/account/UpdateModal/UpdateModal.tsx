@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import styles from "./LoginModal.module.scss";
+import styles from "./UpdateModal.module.scss";
 import Link from "next/link";
 import BlackButton from "../../../UI/buttons/blackButton/BlackButton";
 import Image from "next/image";
@@ -13,12 +13,12 @@ import {
 } from "@/store/auth/authSlice";
 import instance, { verifyToken } from "@/utils/axiosInstance";
 
-interface LoginModalProps {
+interface UpdateModalProps {
   visible: boolean;
   onClose: () => void;
 }
 
-const LoginModal: FC<LoginModalProps> = ({ visible, onClose }) => {
+const UpdateModal: FC<UpdateModalProps> = ({ visible, onClose }) => {
   const dispatch = useDispatch<AppDispatch>();
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -129,4 +129,4 @@ const LoginModal: FC<LoginModalProps> = ({ visible, onClose }) => {
   );
 };
 
-export default LoginModal;
+export default UpdateModal;
