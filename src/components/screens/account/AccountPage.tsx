@@ -34,7 +34,7 @@ interface User {
 const AccountPage = () => {
   const [isOpenLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
   const [isOpenUpdateModal, setOpenUpdateModal] = useState<boolean>(false);
-  const router = useRouter();
+  
   const [user, setUser] = useState<User>({
     id: "",
     phone_number: "",
@@ -105,6 +105,7 @@ const AccountPage = () => {
       />
       <UpdateModal
         visible={isOpenUpdateModal}
+        user={user}
         onClose={() => setOpenUpdateModal(false)}
       />
       <Loyaut>
@@ -162,7 +163,7 @@ const AccountPage = () => {
           </div>
           <div className={styles.profileBalance}>
             <div className={styles.balance}>
-              <div className={styles.amount}>3000₽</div>
+              <div className={styles.amount}>0₽</div>
               <div className={styles.label}>Баланс</div>
               <OutlineButton>Как использовать бонусы?</OutlineButton>
             </div>

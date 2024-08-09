@@ -33,7 +33,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 180px;
+  margin-bottom: 40px;
 }
 .back {
   display: flex;
@@ -106,15 +106,6 @@
   }
 }
 
-.forget {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 19.2px;
-  margin-bottom: 47px;
-  display: block;
-  color: inherit;
-  text-align: center;
-}
 .blackBtn {
   width: 100%;
   max-width: 324px;
@@ -130,22 +121,26 @@
     color: #b0b0b0;
   }
 }
-.question {
-  gap: 5px;
-  display: flex;
-  margin-top: 21px;
-  justify-content: center;
-  font-size: 16px;
-  line-height: 19.2px;
-  button {
-    color: inherit;
-    font-weight: 600;
-    background: transparent;
-  }
-}
 
+.avatarWrapper {
+  max-width: 162px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 23px;
+}
 .rainBow {
-  display: none;
+  object-fit: cover;
+  width: 100%;
+}
+.imgUpdate {
+  margin: 0 auto;
+  display: block;
+  margin-top: 12px;
 }
 @media (max-width: 500px) {
   .content {
@@ -167,14 +162,7 @@
   .content .btn {
     display: none;
   }
-  .rainBow {
-    display: block;
-    margin: 0 auto;
-    display: block;
-    margin-bottom: 87px;
-    width: 100%;
-    height: auto;
-  }
+
   .mob {
     background: $white;
     padding: 15px 15px 35px;

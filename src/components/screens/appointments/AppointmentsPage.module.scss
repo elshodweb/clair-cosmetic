@@ -8,11 +8,16 @@
 .title {
   margin-bottom: 33px;
 }
-.column{
+.column {
   max-width: 660px;
   margin: 0 auto;
 }
-.smallTitle{
-  margin-bottom: 16px;
-  
+.smallTitle {
+  margin-bottom: 20px;
+}
+.notes {
+  margin-bottom: 64px;
+  & > * {
+    margin-bottom: 12px;
+  }
 }
