@@ -1,6 +1,6 @@
 "use client"; // <===== REQUIRED
 
-import React, { FC, useEffect, useRef } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import styles from "./OpdenedSlider.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import IconButton from "../../buttons/iconButton/IconButton";
@@ -9,42 +9,53 @@ import { Autoplay } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { getNews } from "@/store/newStories/storiesSlice";
-interface OpdenedSlider {
+
+interface OpdenedSliderProps {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  initialSlide: number;
 }
 
-const OpdenedSlider: FC<OpdenedSlider> = ({ setOpen }) => {
-  // Указываем правильные типы для useRef
+const OpdenedSlider: FC<OpdenedSliderProps> = ({ setOpen, initialSlide }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const news = useSelector((state: RootState) => state.newsStoris.news);
   const newsStatus = useSelector((state: RootState) => state.newsStoris.status);
   const error = useSelector((state: RootState) => state.newsStoris.error);
   const progressBar = useRef<HTMLDivElement | null>(null);
-  const progressBarWrapper: any = useRef<HTMLDivElement | null>(null);
+  const progressBarWrapper = useRef<HTMLDivElement | null>(null);
   const progressContent = useRef<HTMLSpanElement | null>(null);
+  const swiperRef = useRef<any>(null); // Add this ref to access Swiper instance
+
   useEffect(() => {
     if (newsStatus === "idle") {
       dispatch(getNews());
     }
   }, [newsStatus, dispatch]);
 
+  useEffect(() => {
+    if (swiperRef.current) {
+      swiperRef.current.swiper.slideTo(initialSlide, 0); // Set slide without animation
+    }
+  }, [initialSlide]);
+
   const onAutoplayTimeLeft = (s: unknown, time: number, progress: number) => {
     if (progressBar.current) {
-      // Установка ширины линейного прогресс-бара
       progressBar.current.style.width = `${(1 - progress) * 100}%`;
     }
-    if (progressBarWrapper) {
-      progressBarWrapper.current.style.opacity = time < 150 ? "0" : "1"; // Adjust opacity based on time
+    if (progressBarWrapper.current) {
+      progressBarWrapper.current.style.opacity = time < 150 ? "0" : "1";
     }
   };
+
   if (newsStatus === "loading") {
     return <div>Loading...</div>;
   }
+
   return (
     <div className={styles.relative}>
       <div className={styles.wrapper} data-set={"slider-history"}>
         <Swiper
+          ref={swiperRef}
           slidesPerView={"auto"}
           centeredSlides={true}
           autoplay={{
@@ -52,41 +63,21 @@ const OpdenedSlider: FC<OpdenedSlider> = ({ setOpen }) => {
             disableOnInteraction: false,
           }}
           modules={[Autoplay]}
+          initialSlide={initialSlide}
           breakpoints={{
-            0: {
-              slidesPerView: 1,
-
-              spaceBetween: 0,
-            },
-            660: {
-              slidesPerView: 1.6,
-              spaceBetween: 20,
-            },
-            720: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            880: {
-              slidesPerView: 2.5,
-              spaceBetween: 20,
-            },
-            1200: {
-              slidesPerView: 3.5,
-              spaceBetween: 20,
-            },
-            1400: {
-              slidesPerView: 4,
-              spaceBetween: 20,
-            },
-            1700: {
-              slidesPerView: 5,
-              spaceBetween: 20,
-            },
+            0: { slidesPerView: 1, spaceBetween: 0 },
+            660: { slidesPerView: 1.6, spaceBetween: 20 },
+            720: { slidesPerView: 2, spaceBetween: 20 },
+            880: { slidesPerView: 2.5, spaceBetween: 20 },
+            1200: { slidesPerView: 3.5, spaceBetween: 20 },
+            1400: { slidesPerView: 4, spaceBetween: 20 },
+            1700: { slidesPerView: 5, spaceBetween: 20 },
           }}
-          onAutoplayTimeLeft={onAutoplayTimeLeft} // Не забудьте привязать обработчик события
+          onAutoplayTimeLeft={onAutoplayTimeLeft}
         >
-          {news.map((i: any) => (
-            <SwiperSlide key={i.id} className={styles.slide}>
+          {news.map((i: any,index) => (
+            <SwiperSlide key={i.id} className={styles.slide}
+            onClick={()=>{swiperRef.current.swiper.slideTo(index)}}>
               <div className={styles.slideContent}>
                 <div className={styles.top}>
                   <div className={styles.left}>
@@ -102,9 +93,7 @@ const OpdenedSlider: FC<OpdenedSlider> = ({ setOpen }) => {
                   </div>
                   <IconButton
                     className={styles.exitBtn}
-                    onClick={() => {
-                      setOpen(false);
-                    }}
+                    onClick={() => setOpen(false)}
                   >
                     <Image
                       src={"/images/header/cross.svg"}
@@ -127,7 +116,6 @@ const OpdenedSlider: FC<OpdenedSlider> = ({ setOpen }) => {
               </div>
             </SwiperSlide>
           ))}
-          {/* Остальные SwiperSlide элементы аналогично */}
           <div
             ref={progressBarWrapper}
             className={styles.autoplayProgress}

@@ -7,7 +7,8 @@ export interface AuthState {
   isPhoneVerificationVisible: boolean;
   isAccountDataVisible: boolean;
   isFinishedModalVisible: boolean;
-  timer: number; 
+
+  timer: number;
   isAuth: boolean | null;
 }
 
@@ -17,7 +18,8 @@ const initialState: AuthState = {
   isPhoneVerificationVisible: false,
   isAccountDataVisible: false,
   isFinishedModalVisible: false,
-  timer: 301, 
+
+  timer: 301,
   isAuth: null,
 };
 
@@ -43,7 +45,7 @@ const authSlice = createSlice({
     setAuth(state, action: PayloadAction<boolean | null>) {
       state.isAuth = action.payload;
     },
-    setTimer(state, action: PayloadAction<number>) { 
+    setTimer(state, action: PayloadAction<number>) {
       state.timer = action.payload;
     },
   },
@@ -55,6 +57,7 @@ export const {
   setPhoneVerificationVisible,
   setAccountDataVisible,
   setFinishedModalVisible,
+
   setAuth,
   setTimer,
 } = authSlice.actions;

@@ -1,14 +1,14 @@
 import React from "react";
-import styles from "./ProductCard.module.scss";
+import styles from "./ProductHistoryCard.module.scss";
 import OutlineButton from "@/components/UI/buttons/outlineButton/OutlineButton";
 import Image from "next/image";
-const ProductCard = () => {
+const ProductHistoryCard = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.desctop}>
         <div className={styles.row}>
           <div className={styles.info}>
-            <div className={styles.status}>Не доставлен</div>
+            <div className={styles.status}>12.06.2023</div>
             <div className={styles.count}>4 товара</div>
           </div>
           <div className={styles.price}>2700 ₽</div>
@@ -87,4 +87,4 @@ const ProductCard = () => {
   );
 };
 
-export default ProductCard;
+export default ProductHistoryCard;

@@ -1,13 +1,13 @@
 import PrivateRouteLoyaut from "@/components/loyaut/PrivateRouteLoyaut";
-import AccountPage from "@/components/screens/account/AccountPage";
+import HistoryPage from "@/components/screens/history/HistoryPage";
 import React from "react";
 
-const account = () => {
+const Appointments = () => {
   return (
     <PrivateRouteLoyaut>
-      <AccountPage />
+      <HistoryPage />
     </PrivateRouteLoyaut>
   );
 };
 
-export default account;
+export default Appointments;

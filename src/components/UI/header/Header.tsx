@@ -7,11 +7,12 @@ import IconButton from "@/components/UI/buttons/iconButton/IconButton";
 import ProfileButton from "@/components/UI/buttons/profileButton/ProfileButton";
 import MobileButton from "@/components/UI/buttons/mobileButton/MobileButton";
 import MobileNav from "./mobileNav/MobileNav";
-import Container from "@/components/container/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { useRouter } from "next/navigation";
-import { setLoginVisible } from "@/store/auth/authSlice";
+import {setLoginVisible } from "@/store/auth/authSlice";
+import BasketModal from "../BasketModal/BasketModal";
+import { setBasketVisible } from "@/store/basket/basketSlice";
 
 const navs = [
   { path: "/services", name: "Услуги" },
@@ -22,7 +23,6 @@ const navs = [
 const Header = () => {
   const navigate = useRouter();
   const dispatch = useDispatch<AppDispatch>();
-
   const { isAuth } = useSelector((state: RootState) => state.auth);
 
   const [isOpenNav, setIsOpenNav] = useState<boolean>(false);
@@ -80,7 +80,7 @@ const Header = () => {
               height={19}
             />
           </IconButton>
-          <IconButton onClick={() => {}}>
+          <IconButton onClick={() => dispatch(setBasketVisible(true))}>
             <Image
               src={"/images/header/cart-icon.svg"}
               alt="cart"
@@ -109,7 +109,8 @@ const Header = () => {
             {isAuth ? "Профиль" : "Войти"}
           </ProfileButton>
         </div>
-
+        <BasketModal
+        />
         <MobileNav isOpenNav={isOpenNav} setIsOpenNav={setIsOpenNav} />
       </div>
     </header>

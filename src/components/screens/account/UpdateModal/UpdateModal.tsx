@@ -27,6 +27,8 @@ interface User {
 
 const UpdateModal: FC<UpdateModalProps> = ({ user, visible, onClose }) => {
   const dispatch = useDispatch<AppDispatch>();
+  const [imageLink, setImageLink] = useState(user?.image);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [userData, setUserData] = useState<User>({
     email: "",
     first_name: "",
@@ -37,10 +39,10 @@ const UpdateModal: FC<UpdateModalProps> = ({ user, visible, onClose }) => {
     city: "",
     image: "",
   });
-  const [error, setError] = useState<string | null>(null);
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  console.log(user);
 
-  // Initialize state with user prop
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
     if (user) {
       setUserData({
@@ -53,6 +55,36 @@ const UpdateModal: FC<UpdateModalProps> = ({ user, visible, onClose }) => {
         city: user.city || "",
         image: user.image || "",
       });
+      setImageLink(user.image);
+
+      const imageUrl = `http://localhost:3000/_next/image?url=${encodeURIComponent(
+        user.image
+      )}&w=640&q=75`;
+
+      fetch(imageUrl)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.blob();
+        })
+        .then((blob) => {
+          const reader = new FileReader();
+
+          reader.onloadend = () => {
+            if (reader.result) {
+              setUserData((prevState) => ({
+                ...prevState,
+                image: reader.result as string,
+              }));
+            }
+          };
+          reader.readAsDataURL(blob);
+        })
+        .catch((error) => {
+          console.error("Error fetching image:", error);
+          setError("Ошибка загрузки изображения");
+        });
     }
   }, [user]);
 
@@ -63,10 +95,8 @@ const UpdateModal: FC<UpdateModalProps> = ({ user, visible, onClose }) => {
       [name]: value,
     }));
   };
-
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setSelectedImage(e.target.files[0]);
       const reader = new FileReader();
       reader.onloadend = () => {
         if (reader.result) {
@@ -74,6 +104,7 @@ const UpdateModal: FC<UpdateModalProps> = ({ user, visible, onClose }) => {
             ...prevState,
             image: reader.result as string,
           }));
+          setImageLink(reader.result as string);
         }
       };
       reader.readAsDataURL(e.target.files[0]);
@@ -83,16 +114,31 @@ const UpdateModal: FC<UpdateModalProps> = ({ user, visible, onClose }) => {
   const handleUpdate = async () => {
     try {
       const formData = new FormData();
-      for (const key in userData) {
-        if (userData.hasOwnProperty(key)) {
-          formData.append(key, userData[key as keyof User]);
-        }
-      }
+
+      // Append other fields
+      formData.append("email", userData.email);
+      formData.append("first_name", userData.first_name);
+      formData.append("second_name", userData.second_name);
+      formData.append("last_name", userData.last_name);
+      formData.append("birthday", userData.birthday);
+      formData.append("sex", userData.sex);
+      formData.append("city", userData.city);
+
+      // Handle image
       if (selectedImage) {
+        // If a new image file is selected
         formData.append("image", selectedImage);
+      } else if (userData.image) {
+        // If no new image file is selected, send the existing image
+        const response = await fetch(userData.image);
+        const blob = await response.blob();
+        const file = new File([blob], "image.jpg", { type: blob.type });
+        formData.append("image", file);
+      } else {
+        // If no image data is available
+        formData.append("image", new Blob());
       }
-      
-      formData.append('need_confirm_your_actions','3442')
+
       const response = await http.put("/users/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -134,9 +180,7 @@ const UpdateModal: FC<UpdateModalProps> = ({ user, visible, onClose }) => {
         <div className={styles.avatarWrapper}>
           <Image
             className={styles.rainBow}
-            src={
-              userData.image ? userData.image : "/images/profile/profile.png"
-            }
+            src={imageLink ? imageLink : "/images/profile/profile.png"}
             alt="profile"
             width={162}
             height={180}

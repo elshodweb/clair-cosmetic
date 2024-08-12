@@ -1,12 +1,13 @@
 import React from "react";
-import styles from "./AppointmentsPage.module.scss";
+import styles from "./HistoryPage.module.scss";
 import Loyaut from "@/components/loyaut/Loyaut";
 import BackBtn from "@/components/UI/backBtn/BackBtn";
 import Title from "@/components/UI/title/Title";
 import SmallTitle from "@/components/UI/smallTitle/SmallTitle";
 import { useRouter } from "next/router";
-import NoteFullCard from "./noteFullCard/NoteFullCard";
-const AppointmentsPage = () => {
+import ProductHistoryCard from "./productHistoryCard/ProductHistoryCard";
+
+const HistoryPage = () => {
   const router = useRouter();
 
   return (
@@ -18,21 +19,21 @@ const AppointmentsPage = () => {
               router.push("/account");
             }}
           />
-          <Title className={styles.title}>Все записи</Title>
+          <Title className={styles.title}>Мои заказы</Title>
           <div className={styles.column}>
-            <SmallTitle className={styles.smallTitle}>Будет</SmallTitle>
+            <SmallTitle className={styles.smallTitle}>Мои заказы</SmallTitle>
             <div className={styles.notes}>
-              <NoteFullCard />
-              <NoteFullCard />
-              <NoteFullCard />
+              <ProductHistoryCard />
+              <ProductHistoryCard />
+              <ProductHistoryCard />
             </div>
           </div>
           <div className={styles.column}>
             <SmallTitle className={styles.smallTitle}>Было</SmallTitle>
             <div className={styles.notes}>
-              <NoteFullCard />
-              <NoteFullCard />
-              <NoteFullCard />
+              <ProductHistoryCard />
+              <ProductHistoryCard />
+              <ProductHistoryCard />
             </div>
           </div>
         </div>
@@ -41,4 +42,4 @@ const AppointmentsPage = () => {
   );
 };
 
-export default AppointmentsPage;
+export default HistoryPage;

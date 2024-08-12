@@ -9,11 +9,13 @@ import SliderContainer from "./sliderContainer/SliderContainer";
 import NoteCard from "./noteCard/NoteCard";
 import { SwiperSlide } from "swiper/react";
 import ArrowLink from "@/components/UI/arrowLink/ArrowLink";
-import ProductCard from "./productCard/ProductCard";
+import ProductCard from "../history/productHistoryCard/ProductHistoryCard";
 import { http } from "@/utils/axiosInstance";
 import { useRouter } from "next/router";
 import LogoutModal from "./logoutModal/LogoutModal";
 import UpdateModal from "./UpdateModal/UpdateModal";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 interface User {
   id: string;
@@ -34,7 +36,7 @@ interface User {
 const AccountPage = () => {
   const [isOpenLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
   const [isOpenUpdateModal, setOpenUpdateModal] = useState<boolean>(false);
-  
+
   const [user, setUser] = useState<User>({
     id: "",
     phone_number: "",

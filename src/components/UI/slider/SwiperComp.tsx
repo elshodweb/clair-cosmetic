@@ -14,6 +14,7 @@ const SwiperComp = () => {
   const newsStatus = useSelector((state: RootState) => state.newsStoris.status);
   const error = useSelector((state: RootState) => state.newsStoris.error);
   const [isOpen, setOpen] = useState<boolean>(false);
+  const [initialSlideForModal, setInitialSlideForModal] = useState<number>(1);
   useEffect(() => {
     if (newsStatus === "idle") {
       dispatch(getNews());
@@ -27,7 +28,7 @@ const SwiperComp = () => {
   // if (newsStatus === "failed") {
   //   return <div>{error}</div>;
   // }
-  
+
   return (
     <Swiper
       spaceBetween={12}
@@ -50,13 +51,23 @@ const SwiperComp = () => {
         },
       }}
     >
-      {isOpen ? <OpdenedSlider setOpen={setOpen} /> : ""}
-      {news.map((i: any) => (
+      {isOpen ? (
+        <OpdenedSlider initialSlide={initialSlideForModal} setOpen={setOpen} />
+      ) : (
+        ""
+      )}
+      {news.map((i: any, index) => (
         <SwiperSlide className={style.slide} key={i.id}>
           <div className={style.sliderWrapper}>
             <div className={style.row}>
               <div className={style.name}>{i.title}</div>
-              <button onClick={() => setOpen(true)} className={style.btn}>
+              <button
+                onClick={() => {
+                  setOpen(true);
+                  setInitialSlideForModal(index);
+                }}
+                className={style.btn}
+              >
                 <Image
                   src={"/images/stories/right.svg"}
                   alt="right"

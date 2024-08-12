@@ -140,6 +140,10 @@
   display: none;
 }
 @media (max-width: 700px) {
+  
+.title {
+  margin-top: 30px;
+}
   .profileInfo {
     position: relative;
     padding: 20px;
