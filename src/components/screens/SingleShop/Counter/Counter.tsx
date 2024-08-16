@@ -1,13 +1,24 @@
-"use client";
-import React, { useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import styles from "./Counter.module.scss";
-const Counter = () => {
-  const [num, setNum] = useState<number>(1);
+import { ButtonProps } from "@/types/button.interface";
+
+interface CounterProps extends ButtonProps {
+  getQuantity: (quantity: number) => void;
+  count: number;
+}
+
+const Counter: FC<CounterProps> = ({ className, count, getQuantity }) => {
+  const [num, setNum] = useState<number>(count);
+
+  useEffect(() => {
+    getQuantity(num);
+  }, [num, getQuantity]);
+
   return (
-    <div className={styles.counter}>
+    <div className={`${styles.counter} ${className}`}>
       <button
         onClick={() => {
-          if (0 < num) {
+          if (num > 1) {
             setNum(num - 1);
           }
         }}

@@ -11,11 +11,8 @@ import { SwiperSlide } from "swiper/react";
 import ArrowLink from "@/components/UI/arrowLink/ArrowLink";
 import ProductCard from "../history/productHistoryCard/ProductHistoryCard";
 import { http } from "@/utils/axiosInstance";
-import { useRouter } from "next/router";
 import LogoutModal from "./logoutModal/LogoutModal";
 import UpdateModal from "./UpdateModal/UpdateModal";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
 
 interface User {
   id: string;
@@ -25,7 +22,7 @@ interface User {
   second_name: string | null;
   last_name: string | null;
   birthday: string;
-  sex: "not_selected" | "male" | "female"; // Adjust if other values are possible
+  sex: "not_selected" | "male" | "female";
   city: string;
   image: string | null;
   achievement: string;
@@ -33,9 +30,14 @@ interface User {
   date_joined: string;
 }
 
+interface Balance {
+  balance: number;
+}
+
 const AccountPage = () => {
   const [isOpenLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
   const [isOpenUpdateModal, setOpenUpdateModal] = useState<boolean>(false);
+  const [isOpenConfirmModal, setOpenConfirmModal] = useState<boolean>(false);
 
   const [user, setUser] = useState<User>({
     id: "",
@@ -52,6 +54,7 @@ const AccountPage = () => {
     last_login: "",
     date_joined: "",
   });
+  const [balance, setBalance] = useState<number>(0); // State for balance
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isDesktop, setIsDesktop] = useState(false);
@@ -59,16 +62,19 @@ const AccountPage = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await http.get<User>("/users/");
+        const userResponse = await http.get<User>("/users/");
+        setUser(userResponse.data);
+
+        const balanceResponse = await http.get("/users/deposits/");
+        // Assuming balance is in the first result
+        setBalance(balanceResponse?.data?.results?.[0]?.balance);
 
         setLoading(false);
-        setUser({ ...user, ...response.data });
       } catch (error: any) {
         if (error.response.status !== 200) {
           window.location.reload();
         }
         setError(error.message || "An error occurred");
-
         setLoading(false);
       }
     };
@@ -165,7 +171,7 @@ const AccountPage = () => {
           </div>
           <div className={styles.profileBalance}>
             <div className={styles.balance}>
-              <div className={styles.amount}>0₽</div>
+              <div className={styles.amount}>{balance}₽</div>
               <div className={styles.label}>Баланс</div>
               <OutlineButton>Как использовать бонусы?</OutlineButton>
             </div>

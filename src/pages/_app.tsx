@@ -1,7 +1,7 @@
 // src/pages/_app.tsx
 
-import { Provider } from "react-redux";
-import { persistor, store } from "@/store/store";
+import { Provider, useSelector } from "react-redux";
+import { persistor, RootState, store } from "@/store/store";
 import "@/styles/index.scss";
 import type { AppProps } from "next/app";
 import { Roboto } from "next/font/google";
@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "swiper/scss";
 import Auth from "@/components/screens/auth/Auth";
 import { PersistGate } from "redux-persist/integration/react";
+import CodeConfirm from "@/components/UI/codeConfirm/CodeConfirm";
 const roboto = Roboto({
   subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "700", "900"],
@@ -22,6 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <PersistGate loading={null} persistor={persistor}>
         <div className={roboto.className}>
           {<Auth />}
+          <CodeConfirm />
           <Component {...pageProps} />
         </div>
         <ToastContainer autoClose={3000} />

@@ -14,6 +14,7 @@ interface FilterMenuProps {
 const FilterMenu: FC<FilterMenuProps> = ({ tabs, onTabChange, currentTab }) => {
   const handleTabChange = (title: string) => {
     onTabChange(title);
+    console.log(title, currentTab);
   };
 
   return (
@@ -22,7 +23,8 @@ const FilterMenu: FC<FilterMenuProps> = ({ tabs, onTabChange, currentTab }) => {
         <div
           key={tab.title}
           style={{
-            backgroundColor: tab.title === currentTab ? "#1B1B1A" : "transparent",
+            backgroundColor:
+              tab.title === currentTab ? "#1B1B1A" : "transparent",
             color: tab.title === currentTab ? "#fff" : "#000",
           }}
           className={styles.filter_item}

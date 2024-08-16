@@ -25,6 +25,7 @@
   background: $white;
   margin-left: auto;
   padding: 60px 50px;
+  padding-top: 114px;
   transition: all 0.3s ease-in-out;
   transform: translate(100vw, 0);
 }
@@ -37,6 +38,7 @@
   align-items: center;
   margin-bottom: 40px;
 }
+
 .back {
   display: flex;
   align-items: center;
@@ -64,12 +66,11 @@
   line-height: 36px;
   text-align: left;
 }
-
-.blackBtn {
-  width: 100%;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 19.2px;
+.tabWrapper {
+  margin-bottom: 32px;
+  & > * {
+    justify-content: center !important;
+  }
 }
 
 @media (max-width: 500px) {

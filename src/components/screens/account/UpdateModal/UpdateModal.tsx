@@ -5,7 +5,7 @@ import Image from "next/image";
 import IconButton from "../../../UI/buttons/iconButton/IconButton";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
-import { setAuth } from "@/store/auth/authSlice";
+import { setAuth, setCodeConfirmVisible } from "@/store/auth/authSlice";
 import { http } from "@/utils/axiosInstance";
 
 interface UpdateModalProps {
@@ -39,7 +39,6 @@ const UpdateModal: FC<UpdateModalProps> = ({ user, visible, onClose }) => {
     city: "",
     image: "",
   });
-  console.log(user);
 
   const [error, setError] = useState<string | null>(null);
 
@@ -148,10 +147,17 @@ const UpdateModal: FC<UpdateModalProps> = ({ user, visible, onClose }) => {
       if (response.status === 200) {
         dispatch(setAuth(true));
         onClose();
+        
+        dispatch(setCodeConfirmVisible(true));
       }
     } catch (error: any) {
       setError(error.message || "An error occurred");
-      console.error("Update error:", error);
+      if (
+        error?.response?.data?.errors?.[0]?.code == "need_confirm_your_actions"
+      ) {
+        onClose();
+        dispatch(setCodeConfirmVisible(true));
+      }
     }
   };
 

@@ -1,5 +1,5 @@
 import styles from "./CardsTab.module.scss";
-import { FC, useState, useEffect } from "react";
+import { FC } from "react";
 interface TabProps {
   data: any;
   filterListener?: (id: string) => void;

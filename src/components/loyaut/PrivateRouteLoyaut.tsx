@@ -8,8 +8,10 @@ const PrivateRouteLoyaut: FC<PropsWithChildren> = ({ children }) => {
   const { isAuth } = useSelector((state: RootState) => state.auth);
   if (!isAuth) {
     router.push("/");
+    return "";
+  } else {
+    return <>{children}</>;
   }
-  return <>{children}</>;
 };
 
 export default PrivateRouteLoyaut;

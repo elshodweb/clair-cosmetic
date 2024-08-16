@@ -6,10 +6,13 @@ import IconButton from "../buttons/iconButton/IconButton";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { setBasketVisible } from "@/store/basket/basketSlice";
-import OutlineButton from "../buttons/outlineButton/OutlineButton";
+import FilterMenu from "@/components/screens/SingleShop/filterMenu/FilterMenu";
+import Goods from "./Goods/Goods";
+type basketTypeType = "Услуги" | "Товары";
+
 const BasketModal: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-
+  const [basketType, setBasketType] = useState<basketTypeType>("Товары");
   const { isBasketVisible } = useSelector((state: RootState) => state.basket);
 
   return (
@@ -32,10 +35,22 @@ const BasketModal: FC = () => {
             />
           </IconButton>
         </div>
+        <div className={styles.tabWrapper}>
+          <FilterMenu
+            currentTab={basketType}
+            onTabChange={(title: any) => setBasketType(title)}
+            tabs={[
+              {
+                title: "Товары",
+              },
+              {
+                title: "Услуги",
+              },
+            ]}
+          />
+        </div>
 
-        <OutlineButton className={styles.blackBtn} onClick={() => {}}>
-          Сохранить
-        </OutlineButton>
+        {basketType == "Товары" ? <Goods isBasketVisible={isBasketVisible} /> : ""}
       </div>
     </div>
   );
