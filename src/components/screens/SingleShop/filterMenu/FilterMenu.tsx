@@ -14,7 +14,6 @@ interface FilterMenuProps {
 const FilterMenu: FC<FilterMenuProps> = ({ tabs, onTabChange, currentTab }) => {
   const handleTabChange = (title: string) => {
     onTabChange(title);
-    console.log(title, currentTab);
   };
 
   return (

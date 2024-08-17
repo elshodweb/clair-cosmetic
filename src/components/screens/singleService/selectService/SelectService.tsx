@@ -2,7 +2,26 @@ import React, { FC } from "react";
 import styles from "./SelectService.module.scss";
 import MyInput from "@/components/UI/myInput/MyInput";
 import BlackArrowButton from "@/components/UI/buttons/blackArrowButton/BlackArrowButton";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store/store";
+import { http } from "@/utils/axiosInstance";
+
 const SelectService: FC<any> = ({ data }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const addToCart = async () => {
+    try {
+      const response = await http.post("/services/cart/", {
+        service: data.id, // Отправляем только id продукта
+      });
+      console.log("Product added to cart successfully:", response.data);
+      // Дополнительные действия после успешного добавления, если нужно
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+      // Обработка ошибки, если нужно
+    }
+  };
+
   return (
     <div className={styles.wrapper}>
       <p className={styles.descr}>{data.description}</p>
@@ -21,7 +40,9 @@ const SelectService: FC<any> = ({ data }) => {
                 />
               ))}
         </div>
-        <BlackArrowButton>Добавить в корзину</BlackArrowButton>
+        <BlackArrowButton onClick={addToCart}>
+          Добавить в корзину
+        </BlackArrowButton>
       </div>
     </div>
   );

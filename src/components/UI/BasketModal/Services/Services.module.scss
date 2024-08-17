@@ -1,0 +1,43 @@
+.service {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+.service:not(:last-child) {
+  border-bottom: 1px solid #a9a9a9;
+}
+.row {
+  display: flex;
+  gap: 10px;
+
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+.name {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+}
+.price {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+}
+.bottom {
+  display: flex;
+  justify-content: space-between;
+}
+.enlist {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.2px;
+  background: transparent;
+  color: #a9a9a9;
+  text-transform: uppercase;
+}
+.trash {
+  background: transparent;
+}
+.empty {
+  font-size: 26px;
+  text-align: center;
+}

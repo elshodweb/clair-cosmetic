@@ -86,7 +86,7 @@ const Auth = () => {
           cleanInputs();
         }}
       />
-
+      
       <RegisterModal
         registerData={registerData}
         setRegisterData={setRegisterData}

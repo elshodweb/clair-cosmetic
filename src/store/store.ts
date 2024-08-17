@@ -29,6 +29,8 @@ import servicesByFilterReducer from "./services/servicesSliceByFilters";
 import singleService from "./services/singleService";
 import productByServiceReducer from "./productByService/productsByServiceSlice";
 import basketSlice from "./basket/basketSlice";
+import bookingSlice from "./booking/bookingSlice";
+
 const authPersistConfig = {
   key: "auth",
   storage,
@@ -70,6 +72,7 @@ const rootReducer = combineReducers({
 
   specializations: specializationsReducer,
   basket: basketSlice,
+  booking: bookingSlice,
 });
 
 const store = configureStore({

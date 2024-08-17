@@ -68,6 +68,8 @@
 
     .removeBtn {
       cursor: pointer;
+      background: transparent;
+
       margin-top: auto; /* Это позволит кнопке удаления приклеиться к низу */
       img {
         transition: all 0.3s ease;

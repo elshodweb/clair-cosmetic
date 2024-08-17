@@ -23,7 +23,7 @@ const TakeAway: FC<any> = ({ services }) => {
       >
         {services.length > 0 &&
           services.map((i: any) => (
-            <SwiperSlide className={styles.slide}>
+            <SwiperSlide key={i.id} className={styles.slide}>
               <ServiceCard service={i} key={i.id} greenTitle={true} />
             </SwiperSlide>
           ))}

@@ -12,6 +12,7 @@ import "swiper/scss";
 import Auth from "@/components/screens/auth/Auth";
 import { PersistGate } from "redux-persist/integration/react";
 import CodeConfirm from "@/components/UI/codeConfirm/CodeConfirm";
+import BookingScreen from "@/components/screens/booking/bookingScreen";
 const roboto = Roboto({
   subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "700", "900"],
@@ -24,6 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <div className={roboto.className}>
           {<Auth />}
           <CodeConfirm />
+          <BookingScreen />
           <Component {...pageProps} />
         </div>
         <ToastContainer autoClose={3000} />

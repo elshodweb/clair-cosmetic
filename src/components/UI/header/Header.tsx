@@ -10,7 +10,7 @@ import MobileNav from "./mobileNav/MobileNav";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { useRouter } from "next/navigation";
-import {setLoginVisible } from "@/store/auth/authSlice";
+import { setLoginVisible } from "@/store/auth/authSlice";
 import BasketModal from "../BasketModal/BasketModal";
 import { setBasketVisible } from "@/store/basket/basketSlice";
 
@@ -69,25 +69,32 @@ const Header = () => {
               setIsOpenNav(true);
             }}
           />
-          <BlackButton className={style.blackBtn} onClick={() => {}}>
-            Запись
-          </BlackButton>
-          <IconButton className={style.callBtn} onClick={() => {}}>
-            <Image
-              src={"/images/header/date_icon.svg"}
-              alt="cart"
-              width={16}
-              height={19}
-            />
-          </IconButton>
-          <IconButton onClick={() => dispatch(setBasketVisible(true))}>
-            <Image
-              src={"/images/header/cart-icon.svg"}
-              alt="cart"
-              width={16}
-              height={19}
-            />
-          </IconButton>
+          {isAuth ? (
+            <>
+              {" "}
+              <BlackButton className={style.blackBtn} onClick={() => {}}>
+                Запись
+              </BlackButton>
+              <IconButton className={style.callBtn} onClick={() => {}}>
+                <Image
+                  src={"/images/header/date_icon.svg"}
+                  alt="cart"
+                  width={16}
+                  height={19}
+                />
+              </IconButton>
+              <IconButton onClick={() => dispatch(setBasketVisible(true))}>
+                <Image
+                  src={"/images/header/cart-icon.svg"}
+                  alt="cart"
+                  width={16}
+                  height={19}
+                />
+              </IconButton>
+            </>
+          ) : (
+            ""
+          )}
           <IconButton onClick={() => {}}>
             <Image
               src={"/images/header/search-icon.svg"}
@@ -109,8 +116,7 @@ const Header = () => {
             {isAuth ? "Профиль" : "Войти"}
           </ProfileButton>
         </div>
-        <BasketModal
-        />
+        <BasketModal />
         <MobileNav isOpenNav={isOpenNav} setIsOpenNav={setIsOpenNav} />
       </div>
     </header>

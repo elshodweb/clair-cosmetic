@@ -8,6 +8,7 @@ import { AppDispatch, RootState } from "@/store/store";
 import { setBasketVisible } from "@/store/basket/basketSlice";
 import FilterMenu from "@/components/screens/SingleShop/filterMenu/FilterMenu";
 import Goods from "./Goods/Goods";
+import Services from "./Services/Services";
 type basketTypeType = "Услуги" | "Товары";
 
 const BasketModal: FC = () => {
@@ -50,7 +51,11 @@ const BasketModal: FC = () => {
           />
         </div>
 
-        {basketType == "Товары" ? <Goods isBasketVisible={isBasketVisible} /> : ""}
+        {basketType == "Товары" ? (
+          <Goods isBasketVisible={isBasketVisible} />
+        ) : (
+          <Services isBasketVisible={isBasketVisible} />
+        )}
       </div>
     </div>
   );

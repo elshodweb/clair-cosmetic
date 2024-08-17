@@ -3,6 +3,8 @@ import styles from "./Goods.module.scss";
 import Product, { ProductProps } from "../Product/Product";
 import OutlineButton from "../../buttons/outlineButton/OutlineButton";
 import { http } from "@/utils/axiosInstance";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 interface ApiResponse {
   count: number;
@@ -29,7 +31,7 @@ const Goods: FC<{ isBasketVisible: boolean }> = ({ isBasketVisible }) => {
   const [products, setProducts] = useState<ProductProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
+  const { isAuth } = useSelector((state: RootState) => state.auth);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -51,6 +53,9 @@ const Goods: FC<{ isBasketVisible: boolean }> = ({ isBasketVisible }) => {
         setProducts(fetchedProducts);
         setLoading(false);
       } catch (error: any) {
+        if (error.response.status === 401 && isAuth) {
+          window.location.reload();
+        }
         setError(error.message || "An error occurred");
         setLoading(false);
       }
@@ -76,15 +81,6 @@ const Goods: FC<{ isBasketVisible: boolean }> = ({ isBasketVisible }) => {
         quantity: newQuantity,
         product: productId,
       });
-      console.log(123123);
-
-      // setProducts(
-      //   products.map((product) =>
-      //     product.id === productId
-      //       ? { ...product, quantity: newQuantity }
-      //       : product
-      //   )
-      // );
     } catch (error: any) {
       console.error("Error updating quantity:", error);
     }
