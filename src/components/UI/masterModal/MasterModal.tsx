@@ -15,6 +15,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { fetchSalon } from "@/store/salonSlice/salonSlice";
 import { fetchServicesByMaster } from "@/store/services/servicesSliceByMaster";
+import {
+  setMaster as setMasterRedux,
+  setConfirmMassterVisible,
+  setMasterId,
+  setSalon,
+  setSalonId,
+  setService,
+} from "@/store/booking/bookingSlice";
 
 interface MasterModalProps {
   id: string | null;
@@ -23,17 +31,16 @@ interface MasterModalProps {
 
 const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
-  const dispatch = useDispatch<AppDispatch>();
-
-  const salonData = useSelector((state: RootState) => state.salon.data);
-  const salonStatus = useSelector((state: RootState) => state.salon.status);
-
   const servicesData = useSelector(
     (state: RootState) => state.servicesByMaster.services
   );
   const servicesStatus = useSelector(
     (state: RootState) => state.servicesByMaster.status
   );
+  const dispatch = useDispatch<AppDispatch>();
+  const master = useSelector((state: RootState) => state.salon.data);
+  const salonStatus = useSelector((state: RootState) => state.salon.status);
+  const [selectedService, setSelectedService] = useState<string>("");
 
   useEffect(() => {
     if (id !== null) {
@@ -41,6 +48,11 @@ const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
       dispatch(fetchServicesByMaster(id));
     }
   }, [id, dispatch]);
+  useEffect(() => {
+    if (servicesData.length > 0) {
+      setSelectedService(servicesData[0].id);
+    }
+  }, [servicesData]);
 
   return (
     <div
@@ -75,8 +87,8 @@ const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
               <div className={styles.img}>
                 <Image
                   src={
-                    salonData?.avatar
-                      ? salonData.avatar
+                    master?.avatar
+                      ? master.avatar
                       : "/images/masters/master.png"
                   }
                   width={355}
@@ -90,10 +102,10 @@ const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
                   }}
                 ></button>
               </div>
-              <h3 className={styles.title}>{salonData.name}</h3>
-              <h4 className={styles.prof}>{salonData.specialization.title}</h4>
-              <p className={styles.descr}>{salonData.information}</p>
-              {salonData.salons.map((i: any) => (
+              <h3 className={styles.title}>{master.name}</h3>
+              <h4 className={styles.prof}>{master.specialization.title}</h4>
+              <p className={styles.descr}>{master.information}</p>
+              {master.salons.map((i: any) => (
                 <div key={i.id} className={styles.location}>
                   <div className={styles.locationImg}>
                     <Image
@@ -120,22 +132,24 @@ const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
                     {servicesData.map((service) => (
                       <MySmallInput
                         key={service.id}
+                        id={service.id}
                         small={true}
+                        isSelected={service.id === selectedService}
                         name={service.title}
                         price={`${service.price_max} ₽`}
-                        onChange={(e) => {}}
+                        onChange={setSelectedService}
                       />
                     ))}
                   </div>
                 </>
               )}
-              {salonData.qualifications.length > 0 && (
+              {master.qualifications.length > 0 && (
                 <>
                   <h3 className={styles.title} style={{ marginBottom: 16 }}>
                     Квалификация:
                   </h3>
 
-                  {salonData.qualifications.map((i: any) => (
+                  {master.qualifications.map((i: any) => (
                     <p key={i.id} className={styles.descr}>
                       {i.description}
                     </p>
@@ -148,7 +162,27 @@ const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
       </div>
       {salonStatus === "succeeded" && servicesStatus === "succeeded" && (
         <div onClick={(e) => e.stopPropagation()} className={styles.btn}>
-          <BlackButton>Записаться к мастеру</BlackButton>
+          <BlackButton
+            onClick={() => {
+              dispatch(setMasterRedux(master));
+              dispatch(setMasterId(master.id));
+              if (master?.salons?.length > 0) {
+                dispatch(setSalon(master?.salons?.[0]));
+                dispatch(setSalonId(master?.salons?.[0]?.id));
+              }
+              if (servicesData.length > 0) {
+                dispatch(
+                  setService(
+                    servicesData.filter((i) => i.id == selectedService)?.[0]
+                  )
+                );
+              }
+              dispatch(setConfirmMassterVisible(true));
+              setMaster(null);
+            }}
+          >
+            Записаться к мастеру
+          </BlackButton>
         </div>
       )}
     </div>

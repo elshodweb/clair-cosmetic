@@ -1,0 +1,144 @@
+import React, { FC, useEffect } from "react";
+import styles from "./ConfirmMaster.module.scss";
+import Image from "next/image";
+import IconButton from "../../../UI/buttons/iconButton/IconButton";
+
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import {
+  setChooseMassterVisible,
+  setConfirmMassterVisible,
+  setSalonChooseVisible,
+} from "@/store/booking/bookingSlice";
+import BlackButton from "@/components/UI/buttons/blackButton/BlackButton";
+import ChangeBtn from "@/components/UI/buttons/ChangeBtn/ChangeBtn";
+const ConfirmMaster: FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { isConfirmMassterVisible, service, time, salon, master } = useSelector(
+    (state: RootState) => state.booking
+  );
+
+
+  return (
+    <div
+      className={`${styles.wrapper} ${
+        isConfirmMassterVisible ? styles.opened : ""
+      }`}
+    >
+      <div className={styles.content}>
+        <div className={styles.top}>
+          <button
+            onClick={() => {
+              dispatch(setChooseMassterVisible(true));
+              dispatch(setConfirmMassterVisible(false));
+            }}
+            className={styles.back}
+          >
+            <Image
+              src={"/images/UI/arrow.svg"}
+              width={56}
+              height={10}
+              alt={"arrow"}
+            />
+          </button>
+          <IconButton
+            className={styles.btn}
+            onClick={() => {
+              dispatch(setConfirmMassterVisible(false));
+            }}
+          >
+            <Image
+              src={"/images/header/cross.svg"}
+              alt="cross"
+              width={16}
+              height={19}
+            />
+          </IconButton>
+        </div>
+        <h4 className={styles.title}>Онлайн-запись </h4>
+        <h5 className={styles.subtitle}>Проверьте себя</h5>
+        {service && (
+          <div className={styles.service}>
+            <div className={styles.serviceName}>{service.title}</div>
+            <div className={styles.servicePrice}>{service.price_max}₽</div>
+          </div>
+        )}
+        <div className={styles.timeWrapper}>
+          <div className={styles.time}>{time ? time : "Выбрать время"}</div>
+          {/* <button className={styles.removeBtn}>
+            <Image
+              width={20}
+              height={20}
+              alt="trash"
+              src={"/images/shop/trash.svg"}
+            />
+          </button> */}
+        </div>
+        <hr className={styles.hr} />
+        {master && (
+          <div className={styles.materWrapper}>
+            <div className={styles.masterImg}>
+              {master?.avatar && (
+                <Image
+                  src={master?.avatar}
+                  alt="option"
+                  width={80}
+                  height={110}
+                />
+              )}
+            </div>
+            <div className={styles.masterDetails}>
+              <div className={styles.masterName}>{master.name}</div>
+              <div className={styles.masterProf}>
+                {master?.specialization?.title}
+              </div>
+              <ChangeBtn
+                onClick={() => {
+                  dispatch(setConfirmMassterVisible(false));
+                  dispatch(setChooseMassterVisible(true));
+                }}
+              />
+              {/* <button className={styles.removeBtn}>
+                <Image
+                  width={20}
+                  height={20}
+                  alt="trash"
+                  src={"/images/shop/trash.svg"}
+                />
+              </button> */}
+            </div>
+          </div>
+        )}
+        <hr className={styles.hr} />
+        {salon && (
+          <div className={styles.materWrapper}>
+            <div className={styles.masterImg}>
+              {salon?.images?.[0] && (
+                <Image src={salon?.images[0]} alt="option" width={80} height={110} />
+              )}
+            </div>
+            <div className={styles.masterDetails}>
+              <div className={styles.masterName}>{salon.name}</div>
+              <div className={styles.masterProf}>{salon.city}</div>
+              <ChangeBtn
+                onClick={() => {
+                  dispatch(setConfirmMassterVisible(false));
+                  dispatch(setSalonChooseVisible(true));
+                }}
+              />
+            </div>
+          </div>
+        )}
+        <BlackButton className={styles.btnMain}>
+          Выбрать дату и время
+        </BlackButton>
+        <div className={styles.line}>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ConfirmMaster;

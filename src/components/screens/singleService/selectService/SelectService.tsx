@@ -5,21 +5,18 @@ import BlackArrowButton from "@/components/UI/buttons/blackArrowButton/BlackArro
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
 import { http } from "@/utils/axiosInstance";
+import {
+  setSalonChooseVisible,
+  setService,
+} from "@/store/booking/bookingSlice";
 
 const SelectService: FC<any> = ({ data }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const addToCart = async () => {
-    try {
-      const response = await http.post("/services/cart/", {
-        service: data.id, // Отправляем только id продукта
-      });
-      console.log("Product added to cart successfully:", response.data);
-      // Дополнительные действия после успешного добавления, если нужно
-    } catch (error) {
-      console.error("Error adding product to cart:", error);
-      // Обработка ошибки, если нужно
-    }
+    
+    dispatch(setService(data));
+    dispatch(setSalonChooseVisible(true));
   };
 
   return (

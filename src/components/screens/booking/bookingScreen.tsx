@@ -1,10 +1,14 @@
 import React from "react";
-import ChooseSalon from "./ChoseBasket/ChooseSalon";
+import ChooseSalon from "./ChooseSalon/ChooseSalon";
+import ChooseMaster from "./ChooseMaster/ChooseMaster";
+import ConfirmMaster from "./ConfirmMaster/ConfirmMaster";
 
 const BookingScreen = () => {
   return (
     <>
       <ChooseSalon />
+      <ChooseMaster />
+      <ConfirmMaster />
     </>
   );
 };

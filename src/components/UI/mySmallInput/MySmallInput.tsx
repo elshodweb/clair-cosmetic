@@ -1,5 +1,12 @@
 "use client";
-import React, { FC, useState, useEffect, useRef } from "react";
+import React, {
+  FC,
+  useState,
+  useEffect,
+  useRef,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import styles from "./MySmallInput.module.scss";
 import cn from "classnames";
 
@@ -7,11 +14,19 @@ interface InputRadioProps {
   small?: boolean;
   name: string;
   price: string;
-  onChange: (val: boolean) => void;
+  id: string;
+  isSelected:boolean;
+  onChange: Dispatch<SetStateAction<string>>;
 }
 
-const MySmallInput: FC<InputRadioProps> = ({ small, name, price, onChange }) => {
-  const [isSelected, setIsSelected] = useState<boolean>(false);
+const MySmallInput: FC<InputRadioProps> = ({
+  small,
+  name,
+  id,
+  price,
+  isSelected,
+  onChange,
+}) => {
   const [isOpenedInfo, setIsOpenedInfo] = useState<boolean>(false);
   const infoRef = useRef<HTMLParagraphElement>(null);
 
@@ -34,8 +49,7 @@ const MySmallInput: FC<InputRadioProps> = ({ small, name, price, onChange }) => 
   }, [isOpenedInfo]);
 
   function onClick(e: any) {
-    onChange(!isSelected);
-    setIsSelected(!isSelected);
+    onChange(id);
   }
 
   return (
