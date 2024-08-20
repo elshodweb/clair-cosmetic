@@ -16,6 +16,10 @@ import { fetchSalons } from "@/store/salons/salonSlice";
 import BlackButton from "@/components/UI/buttons/blackButton/BlackButton";
 const ChooseSalon: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+
+  const { isSalonChooseVisible, service, salonId } = useSelector(
+    (state: RootState) => state.booking
+  );
   const salons = useSelector((state: RootState) => state.salons.salons);
   const status = useSelector((state: RootState) => state.salons.status);
   function setSelectedOption(id: string | null) {
@@ -33,12 +37,6 @@ const ChooseSalon: FC = () => {
       )
     );
   }
-
-  const { isSalonChooseVisible, salon } = useSelector(
-    (state: RootState) => state.booking
-  );
-
-  const { service, salonId } = useSelector((state: RootState) => state.booking);
 
   useEffect(() => {
     if (status === "idle") {

@@ -136,7 +136,7 @@ const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
                         small={true}
                         isSelected={service.id === selectedService}
                         name={service.title}
-                        price={`${service.price_max} ₽`}
+                        price={`${service.price_min} ₽`}
                         onChange={setSelectedService}
                       />
                     ))}

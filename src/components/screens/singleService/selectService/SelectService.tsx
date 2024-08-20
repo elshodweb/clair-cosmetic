@@ -4,7 +4,6 @@ import MyInput from "@/components/UI/myInput/MyInput";
 import BlackArrowButton from "@/components/UI/buttons/blackArrowButton/BlackArrowButton";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
-import { http } from "@/utils/axiosInstance";
 import {
   setSalonChooseVisible,
   setService,

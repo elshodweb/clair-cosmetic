@@ -10,7 +10,7 @@ const Services: FC<any> = ({ isBasketVisible }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const { isAuth } = useSelector((state: RootState) => state.auth);
-  
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -29,7 +29,7 @@ const Services: FC<any> = ({ isBasketVisible }) => {
     if (isBasketVisible) {
       fetchProducts();
     } else {
-      setServicves([]); 
+      setServicves([]);
     }
   }, [isBasketVisible, isAuth]);
 
@@ -48,12 +48,12 @@ const Services: FC<any> = ({ isBasketVisible }) => {
 
   return (
     <div className={styles.wrapper}>
-      {servicves.length > 0 ?
+      {servicves.length > 0 ? (
         servicves.map((i: any) => (
           <div className={styles.service} key={i.service.id}>
             <div className={styles.row}>
               <div className={styles.name}>{i.service.title}</div>
-              <div className={styles.price}>{i.service.price_max}₽</div>
+              <div className={styles.price}>{i.service.price_min}₽</div>
             </div>
 
             <div className={styles.bottom}>
@@ -71,7 +71,10 @@ const Services: FC<any> = ({ isBasketVisible }) => {
               </button>
             </div>
           </div>
-        )):<h2 className={styles.empty}>Корзина пустая</h2>}
+        ))
+      ) : (
+        <h2 className={styles.empty}>Корзина пустая</h2>
+      )}
     </div>
   );
 };

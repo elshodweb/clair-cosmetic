@@ -1,16 +1,15 @@
 // src/store/auth/authSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type basketSwitchType = "product" | "service";
-
+export type basketTypeType = "Услуги" | "Товары";
 export interface AuthState {
   isBasketVisible: boolean;
-  basketSwitch: basketSwitchType;
+  basketSwitch: basketTypeType;
 }
 
 const initialState: AuthState = {
   isBasketVisible: false,
-  basketSwitch: "product",
+  basketSwitch: "Услуги",
 };
 
 const authSlice = createSlice({
@@ -20,7 +19,7 @@ const authSlice = createSlice({
     setBasketVisible(state, action: PayloadAction<boolean>) {
       state.isBasketVisible = action.payload;
     },
-    switchBasket(state, action: PayloadAction<basketSwitchType>) {
+    switchBasket(state, action: PayloadAction<basketTypeType>) {
       state.basketSwitch = action.payload;
     },
   },

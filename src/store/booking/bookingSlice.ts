@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface AuthState {
   service: any;
-  time: any;
+  time: string;
   salon: any;
   master: any;
   salonId: string | null;
@@ -18,7 +18,7 @@ export interface AuthState {
 
 const initialState: AuthState = {
   service: null,
-  time: null,
+  time: "",
   master: {
     id: null,
     name: "Любой мастер",
@@ -48,7 +48,7 @@ const authSlice = createSlice({
     setService(state, action: PayloadAction<any>) {
       state.service = action.payload;
     },
-    setTime(state, action: PayloadAction<any>) {
+    setTime(state, action: PayloadAction<string>) {
       state.time = action.payload;
     },
     setSalon(state, action: PayloadAction<any>) {
