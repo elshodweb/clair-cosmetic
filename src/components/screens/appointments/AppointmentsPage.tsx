@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import NoteFullCard from "./noteFullCard/NoteFullCard";
 const AppointmentsPage = () => {
   const router = useRouter();
-
+  
   return (
     <div className={styles.wrapper}>
       <Loyaut>

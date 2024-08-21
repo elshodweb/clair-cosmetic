@@ -72,7 +72,9 @@ const Header = () => {
           {isAuth ? (
             <>
               {" "}
-              <BlackButton className={style.blackBtn} onClick={() => {}}>
+              <BlackButton className={style.blackBtn} onClick={() => {
+                navigate.push('/appointments')
+              }}>
                 Запись
               </BlackButton>
               {/* <IconButton className={style.callBtn} onClick={() => {}}>

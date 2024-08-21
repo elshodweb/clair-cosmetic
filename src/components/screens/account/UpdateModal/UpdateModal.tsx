@@ -148,7 +148,7 @@ const UpdateModal: FC<UpdateModalProps> = ({ user, visible, onClose }) => {
         dispatch(setAuth(true));
         onClose();
         
-        dispatch(setCodeConfirmVisible(true));
+        window.location.reload();
       }
     } catch (error: any) {
       setError(error.message || "An error occurred");

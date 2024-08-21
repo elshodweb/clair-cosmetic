@@ -23,7 +23,7 @@ import {
 const Filters = () => {
   const dispatch = useDispatch<AppDispatch>();
   const specializations = useSelector(selectSpecializationsForService);
-  console.log(specializations);
+
   
 
   const specializationsStatus = useSelector(

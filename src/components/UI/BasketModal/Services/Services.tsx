@@ -49,7 +49,7 @@ const Services: FC<any> = ({ isBasketVisible }) => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
   console.log(servicves);
-
+  
   return (
     <div className={styles.wrapper}>
       {servicves.length > 0 ? (
@@ -123,7 +123,7 @@ const Services: FC<any> = ({ isBasketVisible }) => {
           {servicves.reduce((prev, cer) => prev + cer.service.price_min, 0)}₽
         </span>
       </h4>
-      <BlackButton className={styles.btnMain}>Подтвердить запись</BlackButton>
+      <BlackButton  className={styles.btnMain}>Подтвердить запись</BlackButton>
       <IconButton
         onClick={() => {
           window.location.href = "tel:+74732029777";
