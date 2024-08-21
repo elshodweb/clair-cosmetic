@@ -30,6 +30,7 @@ import singleService from "./services/singleService";
 import productByServiceReducer from "./productByService/productsByServiceSlice";
 import basketSlice from "./basket/basketSlice";
 import bookingSlice from "./booking/bookingSlice";
+import specializationsForServiceSlice from "./specializationsForService/specializationsForServiceSlice";
 
 const authPersistConfig = {
   key: "auth",
@@ -50,6 +51,7 @@ const rootReducer = combineReducers({
 
   service: singleService,
   services: servicesReducer,
+  specializationsForService:specializationsForServiceSlice,
   servicesByFilter: servicesByFilterReducer,
   servicesSubCategory: servicesSubCategoryReducer,
   servicesCategories: servicesCategoriesReducer,

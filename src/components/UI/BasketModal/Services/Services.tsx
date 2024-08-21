@@ -4,6 +4,9 @@ import { http } from "@/utils/axiosInstance";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import Image from "next/image";
+import { formatDateTime } from "@/utils/formatData";
+import BlackButton from "../../buttons/blackButton/BlackButton";
+import IconButton from "../../buttons/iconButton/IconButton";
 
 const Services: FC<any> = ({ isBasketVisible }) => {
   const [servicves, setServicves] = useState<any[]>([]);
@@ -45,19 +48,58 @@ const Services: FC<any> = ({ isBasketVisible }) => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
+  console.log(servicves);
 
   return (
     <div className={styles.wrapper}>
       {servicves.length > 0 ? (
-        servicves.map((i: any) => (
+        servicves.map((i: any, index) => (
           <div className={styles.service} key={i.service.id}>
             <div className={styles.row}>
-              <div className={styles.name}>{i.service.title}</div>
+              <div className={styles.name}>
+                {index + 1}.{i.service.title}
+              </div>
               <div className={styles.price}>{i.service.price_min}₽</div>
             </div>
-
+            <div className={styles.time}>{formatDateTime(i.datetime)}</div>
+            <div className={styles.details}>
+              {i.staff && (
+                <div className={styles.detail}>
+                  <div className={styles.detailImg}>
+                    <Image
+                      alt="avatar"
+                      width={48}
+                      height={48}
+                      src={i.staff.avatar}
+                    />
+                  </div>
+                  <div className={styles.detailInfo}>
+                    <div className={styles.detailName}>{i.staff.name}</div>
+                    <div className={styles.detailSubname}>
+                      {i.staff.specialization.title}
+                    </div>
+                  </div>
+                </div>
+              )}
+              {i.salon && (
+                <div className={styles.detail}>
+                  <div className={styles.detailImg}>
+                    <Image
+                      alt="avatar"
+                      width={48}
+                      height={48}
+                      src={i.salon.images[0]}
+                    />
+                  </div>
+                  <div className={styles.detailInfo}>
+                    <div className={styles.detailName}>{i.salon.name}</div>
+                    <div className={styles.detailSubname}>{i.salon.city}</div>
+                  </div>
+                </div>
+              )}
+            </div>
             <div className={styles.bottom}>
-              <button className={styles.enlist}>Записаться</button>
+              {/* <button className={styles.enlist}>Записаться</button> */}
               <button
                 className={styles.trash}
                 onClick={() => handleDelete(i.service.id)}
@@ -75,6 +117,21 @@ const Services: FC<any> = ({ isBasketVisible }) => {
       ) : (
         <h2 className={styles.empty}>Корзина пустая</h2>
       )}
+      <h4 className={styles.overall}>
+        <span>Итого:</span>
+        <span>
+          {servicves.reduce((prev, cer) => prev + cer.service.price_min, 0)}₽
+        </span>
+      </h4>
+      <BlackButton className={styles.btnMain}>Подтвердить запись</BlackButton>
+      <IconButton
+        onClick={() => {
+          window.location.href = "tel:+74732029777";
+        }}
+        className={styles.call}
+      >
+        <Image alt="icon" width={18} height={18} src={"/images/UI/phone.svg"} />
+      </IconButton>
     </div>
   );
 };

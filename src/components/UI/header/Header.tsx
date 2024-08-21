@@ -75,14 +75,14 @@ const Header = () => {
               <BlackButton className={style.blackBtn} onClick={() => {}}>
                 Запись
               </BlackButton>
-              <IconButton className={style.callBtn} onClick={() => {}}>
+              {/* <IconButton className={style.callBtn} onClick={() => {}}>
                 <Image
                   src={"/images/header/date_icon.svg"}
                   alt="cart"
                   width={16}
                   height={19}
                 />
-              </IconButton>
+              </IconButton> */}
               <IconButton onClick={() => dispatch(setBasketVisible(true))}>
                 <Image
                   src={"/images/header/cart-icon.svg"}
@@ -95,12 +95,16 @@ const Header = () => {
           ) : (
             ""
           )}
-          <IconButton onClick={() => {}}>
+          <IconButton
+            onClick={() => {
+              window.location.href = "tel:+74732029777";
+            }}
+          >
             <Image
-              src={"/images/header/search-icon.svg"}
-              alt="cart"
-              width={16}
-              height={19}
+              alt="icon"
+              width={18}
+              height={18}
+              src={"/images/UI/phone.svg"}
             />
           </IconButton>
           <ProfileButton

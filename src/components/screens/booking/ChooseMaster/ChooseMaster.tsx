@@ -16,22 +16,25 @@ import BlackButton from "@/components/UI/buttons/blackButton/BlackButton";
 import instance from "@/utils/axiosInstance";
 const ChooseMaster: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { isChooseMassterVisible, service, salonId, masterId } = useSelector(
+  const { isChooseMassterVisible, service, salonId,salon, masterId } = useSelector(
     (state: RootState) => state.booking
   );
+  
   const [masters, setMasters] = useState<any>();
   useEffect(() => {
     async function fetchMasters() {
-      if (salonId && salonId?.length > 0) {
-        const response = await instance.get("/staffs/?salon_ids=" + salonId);
-        if (response.data.results.length > 0) {
-          setMasters(response.data.results);
-        }
+      
+      let url = "/staffs/";
+      if (salonId) {
+        url += "?salon_ids=" + salonId;
+      }
+      const response = await instance.get(url);
+      if (response.data.results.length > 0) {
+        setMasters(response.data.results);
       }
     }
     fetchMasters();
-  }, [dispatch, salonId]);
-  
+  }, [dispatch, salonId, service]);
 
   function setSelectedOption(id: string | null) {
     dispatch(setMasterId(id));
@@ -127,6 +130,19 @@ const ChooseMaster: FC = () => {
         <div className={styles.line}>
           <span></span>
         </div>
+        <IconButton
+          onClick={() => {
+            window.location.href = "tel:+74732029777";
+          }}
+          className={styles.call}
+        >
+          <Image
+            alt="icon"
+            width={18}
+            height={18}
+            src={"/images/UI/phone.svg"}
+          />
+        </IconButton>
       </div>
     </div>
   );

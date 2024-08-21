@@ -5,6 +5,7 @@ import ConfirmMaster from "./ConfirmMaster/ConfirmMaster";
 import ChooseTime from "./ChooseTime/ChooseTime";
 import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
+import ConfirmTime from "./ConfirmTime/ConfirmTime";
 
 const BookingScreen = () => {
   const { service } = useSelector((state: RootState) => state.booking);
@@ -18,6 +19,7 @@ const BookingScreen = () => {
       <ChooseMaster />
       <ConfirmMaster />
       <ChooseTime />
+      <ConfirmTime />
     </>
   );
 };

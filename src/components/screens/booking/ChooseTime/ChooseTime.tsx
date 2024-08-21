@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import {
   setChooseTimeVisible,
+  setConfirmBookingTimeVisible,
   setConfirmMassterVisible,
   setTime,
 } from "@/store/booking/bookingSlice";
@@ -45,7 +46,7 @@ const ChooseTime: FC = () => {
 
       // Close the current modal and possibly open the next one
       dispatch(setChooseTimeVisible(false));
-      dispatch(setConfirmMassterVisible(true));
+      dispatch(setConfirmBookingTimeVisible(true));
     }
   };
 

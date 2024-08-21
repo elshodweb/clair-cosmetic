@@ -115,6 +115,14 @@ const ChooseSalon: FC = () => {
         <div className={styles.line}>
           <span></span>
         </div>
+        <IconButton
+        onClick={() => {
+          window.location.href = "tel:+74732029777";
+        }}
+        className={styles.call}
+      >
+        <Image alt="icon" width={18} height={18} src={"/images/UI/phone.svg"} />
+      </IconButton>
       </div>
     </div>
   );

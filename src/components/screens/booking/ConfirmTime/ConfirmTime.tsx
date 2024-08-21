@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import styles from "./ConfirmMaster.module.scss";
+import styles from "./ConfirmTime.module.scss";
 import Image from "next/image";
 import IconButton from "../../../UI/buttons/iconButton/IconButton";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import { AppDispatch, RootState } from "@/store/store";
 import {
   setChooseMassterVisible,
   setChooseTimeVisible,
+  setConfirmBookingTimeVisible,
   setConfirmMassterVisible,
   setMaster,
   setMasterId,
@@ -22,25 +23,53 @@ import { formatDateTime } from "@/utils/formatData";
 import { http } from "@/utils/axiosInstance";
 import { setBasketVisible, switchBasket } from "@/store/basket/basketSlice";
 
-const ConfirmMaster: FC = () => {
+const ConfirmTime: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const { isConfirmMassterVisible, service, salon, salonId, masterId, master } =
-    useSelector((state: RootState) => state.booking);
+  const {
+    isConfirmBookingTimeVisible,
+    service,
+    time,
+    salon,
+    salonId,
+    masterId,
+    master,
+  } = useSelector((state: RootState) => state.booking);
 
+  const submitBasket = async () => {
+    try {
+      await http.post("/services/cart/", {
+        service: service.id ? service.id : null,
+        salon: salonId ? salonId : null,
+        staff: masterId ? masterId : null,
+        datetime: time ? time : null,
+      });
+      dispatch(setTime(""));
+      dispatch(setSalon(null));
+      dispatch(setSalonId(null));
+
+      dispatch(setMaster(null));
+      dispatch(setMasterId(null));
+
+      dispatch(setService(null));
+
+      dispatch(setBasketVisible(true));
+      dispatch(switchBasket("Услуги"));
+    } catch (error) {}
+  };
   return (
     <div
       className={`${styles.wrapper} ${
-        isConfirmMassterVisible ? styles.opened : ""
+        isConfirmBookingTimeVisible ? styles.opened : ""
       }`}
     >
       <div className={styles.content}>
         <div className={styles.top}>
           <button
             onClick={() => {
-              dispatch(setConfirmMassterVisible(false));
+              dispatch(setConfirmBookingTimeVisible(false));
 
-              dispatch(setChooseMassterVisible(true));
+              dispatch(setChooseTimeVisible(true));
             }}
             className={styles.back}
           >
@@ -54,7 +83,7 @@ const ConfirmMaster: FC = () => {
           <IconButton
             className={styles.btn}
             onClick={() => {
-              dispatch(setConfirmMassterVisible(false));
+              dispatch(setConfirmBookingTimeVisible(false));
             }}
           >
             <Image
@@ -74,7 +103,9 @@ const ConfirmMaster: FC = () => {
           </div>
         )}
         <div className={styles.timeWrapper}>
-          <div className={styles.time}>Выбрать время</div>
+          <div className={styles.time}>
+            {time ? formatDateTime(time) : "Выбрать время"}
+          </div>
           {/* <button className={styles.removeBtn}>
             <Image
               width={20}
@@ -104,7 +135,7 @@ const ConfirmMaster: FC = () => {
               </div>
               <ChangeBtn
                 onClick={() => {
-                  dispatch(setConfirmMassterVisible(false));
+                  dispatch(setConfirmBookingTimeVisible(false));
                   dispatch(setChooseMassterVisible(true));
                 }}
               />
@@ -137,7 +168,7 @@ const ConfirmMaster: FC = () => {
               <div className={styles.masterProf}>{salon.city}</div>
               <ChangeBtn
                 onClick={() => {
-                  dispatch(setConfirmMassterVisible(false));
+                  dispatch(setConfirmBookingTimeVisible(false));
                   dispatch(setSalonChooseVisible(true));
                 }}
               />
@@ -151,8 +182,8 @@ const ConfirmMaster: FC = () => {
         </h4>
         <BlackButton
           onClick={() => {
-            dispatch(setConfirmMassterVisible(false));
-            dispatch(setChooseTimeVisible(true));
+            submitBasket();
+            dispatch(setConfirmBookingTimeVisible(false));
           }}
           className={styles.btnMain}
         >
@@ -179,4 +210,4 @@ const ConfirmMaster: FC = () => {
   );
 };
 
-export default ConfirmMaster;
+export default ConfirmTime;

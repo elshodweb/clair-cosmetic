@@ -33,10 +33,19 @@ const ServicesPage = () => {
           </div>
           <div className={style.list}>
             {status === "loading" && <p>Loading services...</p>}
+
             {status === "failed" && <p>Error: {error}</p>}
-            {status === "succeeded" &&
-              services.length > 0 &&
-              services.map((i: any) => <ServiceCard key={i?.id} service={i} />)}
+
+            {status === "succeeded" && services.length > 0
+              ? services.map((i: any) => (
+                  <ServiceCard key={i?.id} service={i} />
+                ))
+              : status === "succeeded" && (
+                  <div className={style.message}>
+                    По вашему запросу мастеров не найдено. Пожалуйста, измените
+                    поисковый запрос или параметры фильтрации.
+                  </div>
+                )}
           </div>
         </div>
       </Loyaut>

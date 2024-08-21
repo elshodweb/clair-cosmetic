@@ -5,24 +5,33 @@ import FilterMenu from "@/components/UI/filterMenu/FilterMenu";
 import CardsTab from "@/components/UI/cardsTab/CardsTab";
 import {
   fetchSpecializations,
-  selectSpecializations,
-  selectSpecializationsStatus,
-  selectSpecializationsError,
 } from "@/store/specializations/specializationsSlice";
 import {
-  fetchStaffs,
   selectStaffsStatus,
   selectStaffsError,
 } from "@/store/staffs/staffsSlice";
 import { AppDispatch, RootState } from "@/store/store";
 import { fetchServiceCategories } from "@/store/services/servicesCategoriesSlice";
 import { fetchServicesByFilter } from "@/store/services/servicesSliceByFilters";
+import {
+  fetchSpecializationsForService,
+  selectSpecializationsForService,
+  selectSpecializationsForServiceError,
+  selectSpecializationsForServiceStatus,
+} from "@/store/specializationsForService/specializationsForServiceSlice";
 
 const Filters = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const specializations = useSelector(selectSpecializations);
-  const specializationsStatus = useSelector(selectSpecializationsStatus);
-  const specializationsError = useSelector(selectSpecializationsError);
+  const specializations = useSelector(selectSpecializationsForService);
+  console.log(specializations);
+  
+
+  const specializationsStatus = useSelector(
+    selectSpecializationsForServiceStatus
+  );
+  const specializationsError = useSelector(
+    selectSpecializationsForServiceError
+  );
   const staffsStatus = useSelector(selectStaffsStatus);
   const staffsError = useSelector(selectStaffsError);
   const categories = useSelector(
@@ -58,7 +67,7 @@ const Filters = () => {
   useEffect(() => {
     if (filterData.specialization_category_slugs?.length > 0) {
       dispatch(
-        fetchSpecializations({
+        fetchSpecializationsForService({
           categorySlugs: filterData.specialization_category_slugs,
         })
       );

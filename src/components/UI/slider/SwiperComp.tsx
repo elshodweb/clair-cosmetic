@@ -57,17 +57,18 @@ const SwiperComp = () => {
         ""
       )}
       {news.map((i: any, index) => (
-        <SwiperSlide className={style.slide} key={i.id}>
+        <SwiperSlide
+          onClick={() => {
+            setOpen(true);
+            setInitialSlideForModal(index);
+          }}
+          className={style.slide}
+          key={i.id}
+        >
           <div className={style.sliderWrapper}>
             <div className={style.row}>
               <div className={style.name}>{i.title}</div>
-              <button
-                onClick={() => {
-                  setOpen(true);
-                  setInitialSlideForModal(index);
-                }}
-                className={style.btn}
-              >
+              <button className={style.btn}>
                 <Image
                   src={"/images/stories/right.svg"}
                   alt="right"
