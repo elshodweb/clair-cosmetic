@@ -6,11 +6,12 @@ import ChooseTime from "./ChooseTime/ChooseTime";
 import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
 import ConfirmTime from "./ConfirmTime/ConfirmTime";
+import FinishedBooking from "./FinishedBooking/FinishedBooking";
 
 const BookingScreen = () => {
   const { service } = useSelector((state: RootState) => state.booking);
   if (!service) {
-    return "";
+    return <FinishedBooking />;
   }
 
   return (

@@ -9,7 +9,6 @@ interface Service {
   title: string;
   description: string;
   price_min: number;
-  price_min: number;
   duration: string;
   // Добавьте другие поля, которые соответствуют данным из API
 }

@@ -126,7 +126,7 @@ const AccountData: FC<AccountDataProps> = ({
           <input
             className={`${styles.input} ${isWrong ? styles.errorInput : ""}`}
             type="text"
-            placeholder="Имя и фамилия"
+            placeholder="Фамилия, имя, отчество"
             value={registerData.full_name}
             onChange={(e) => {
               setRegisterData({

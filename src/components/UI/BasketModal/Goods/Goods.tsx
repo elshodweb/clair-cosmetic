@@ -3,8 +3,12 @@ import styles from "./Goods.module.scss";
 import Product, { ProductProps } from "../Product/Product";
 import OutlineButton from "../../buttons/outlineButton/OutlineButton";
 import { http } from "@/utils/axiosInstance";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import {
+  setBasketVisible,
+  setPaymentVisible,
+} from "@/store/basket/basketSlice";
 
 interface ApiResponse {
   count: number;
@@ -32,6 +36,8 @@ const Goods: FC<{ isBasketVisible: boolean }> = ({ isBasketVisible }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const { isAuth } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch<AppDispatch>();
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -133,7 +139,13 @@ const Goods: FC<{ isBasketVisible: boolean }> = ({ isBasketVisible }) => {
           </div>
         </div>
       )}
-      <OutlineButton className={styles.blackBtn} onClick={() => {}}>
+      <OutlineButton
+        className={styles.blackBtn}
+        onClick={() => {
+          dispatch(setBasketVisible(false));
+          dispatch(setPaymentVisible(true));
+        }}
+      >
         Оформить заказ
       </OutlineButton>
     </div>

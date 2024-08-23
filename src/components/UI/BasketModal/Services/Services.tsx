@@ -1,19 +1,21 @@
 import React, { FC, useEffect, useState } from "react";
 import styles from "./Services.module.scss";
 import { http } from "@/utils/axiosInstance";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
 import Image from "next/image";
 import { formatDateTime } from "@/utils/formatData";
 import BlackButton from "../../buttons/blackButton/BlackButton";
 import IconButton from "../../buttons/iconButton/IconButton";
+import { setFinishing } from "@/store/booking/bookingSlice";
+import { setBasketVisible } from "@/store/basket/basketSlice";
 
 const Services: FC<any> = ({ isBasketVisible }) => {
   const [servicves, setServicves] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const { isAuth } = useSelector((state: RootState) => state.auth);
-
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -48,8 +50,7 @@ const Services: FC<any> = ({ isBasketVisible }) => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
-  console.log(servicves);
-  
+
   return (
     <div className={styles.wrapper}>
       {servicves.length > 0 ? (
@@ -123,7 +124,15 @@ const Services: FC<any> = ({ isBasketVisible }) => {
           {servicves.reduce((prev, cer) => prev + cer.service.price_min, 0)}₽
         </span>
       </h4>
-      <BlackButton  className={styles.btnMain}>Подтвердить запись</BlackButton>
+      <BlackButton
+        onClick={() => {
+          dispatch(setBasketVisible(false));
+          dispatch(setFinishing(true));
+        }}
+        className={styles.btnMain}
+      >
+        Подтвердить запись
+      </BlackButton>
       <IconButton
         onClick={() => {
           window.location.href = "tel:+74732029777";

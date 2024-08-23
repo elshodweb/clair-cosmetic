@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { setLoginVisible } from "@/store/auth/authSlice";
 import BasketModal from "../BasketModal/BasketModal";
 import { setBasketVisible } from "@/store/basket/basketSlice";
+import PaymentModal from "../PaymentModal/PaymentModal";
 
 const navs = [
   { path: "/services", name: "Услуги" },
@@ -72,9 +73,12 @@ const Header = () => {
           {isAuth ? (
             <>
               {" "}
-              <BlackButton className={style.blackBtn} onClick={() => {
-                navigate.push('/appointments')
-              }}>
+              <BlackButton
+                className={style.blackBtn}
+                onClick={() => {
+                  navigate.push("/appointments");
+                }}
+              >
                 Запись
               </BlackButton>
               {/* <IconButton className={style.callBtn} onClick={() => {}}>
@@ -123,6 +127,7 @@ const Header = () => {
           </ProfileButton>
         </div>
         <BasketModal />
+        <PaymentModal />
         <MobileNav isOpenNav={isOpenNav} setIsOpenNav={setIsOpenNav} />
       </div>
     </header>

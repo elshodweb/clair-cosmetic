@@ -7,17 +7,23 @@ interface Tab {
 
 interface FilterMenuProps {
   currentTab: string;
+  className?: string;
   tabs: Tab[];
   onTabChange: (title: string) => void;
 }
 
-const FilterMenu: FC<FilterMenuProps> = ({ tabs, onTabChange, currentTab }) => {
+const FilterMenu: FC<FilterMenuProps> = ({
+  tabs,
+  className,
+  onTabChange,
+  currentTab,
+}) => {
   const handleTabChange = (title: string) => {
     onTabChange(title);
   };
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${className}`}>
       {tabs.map((tab) => (
         <div
           key={tab.title}

@@ -14,6 +14,7 @@ export interface AuthState {
   isChooseTimeVisible: boolean;
   isConfirmBookingVisible: boolean;
   isConfirmBookingTimeVisible: boolean;
+  finishing: boolean;
 }
 
 const initialState: AuthState = {
@@ -39,6 +40,7 @@ const initialState: AuthState = {
   isChooseTimeVisible: false,
   isConfirmBookingVisible: false,
   isConfirmBookingTimeVisible: false,
+  finishing: false,
 };
 
 const authSlice = createSlice({
@@ -82,6 +84,9 @@ const authSlice = createSlice({
     setConfirmBookingTimeVisible(state, action: PayloadAction<boolean>) {
       state.isConfirmBookingTimeVisible = action.payload;
     },
+    setFinishing(state, action: PayloadAction<boolean>) {
+      state.finishing = action.payload;
+    },
   },
 });
 
@@ -92,6 +97,7 @@ export const {
   setSalon,
   setMasterId,
   setSalonId,
+  setFinishing,
   setChooseMassterVisible,
   setSalonChooseVisible,
   setConfirmMassterVisible,
