@@ -33,10 +33,6 @@ interface User {
   date_joined: string;
 }
 
-interface Balance {
-  balance: number;
-}
-
 const AccountPage = () => {
   const [isOpenLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
   const [isOpenUpdateModal, setOpenUpdateModal] = useState<boolean>(false);
@@ -74,7 +70,6 @@ const AccountPage = () => {
 
         setLoading(false);
       } catch (error: any) {
-
         if (
           error?.response?.data?.errors?.[0]?.code ===
           "need_confirm_your_actions"

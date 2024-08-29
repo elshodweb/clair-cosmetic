@@ -127,7 +127,7 @@ const ServiceItem: FC<props> = ({
                 <ItemPrice key={el.id} data={el} />
               ))}
             <div className={styles.button_container}>
-              <Link href="/face">
+              <Link href="/services">
                 <button className={styles.showAll_button}>
                   Посмотреть все
                 </button>
