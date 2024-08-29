@@ -9,6 +9,7 @@ import OutlineButton from "@/components/UI/buttons/outlineButton/OutlineButton";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { setLoginVisible, setRegisterVisible } from "@/store/auth/authSlice";
+import { setBasketVisible } from "@/store/basket/basketSlice";
 
 interface MobileNavProps {
   isOpenNav: boolean;
@@ -20,7 +21,6 @@ const links = [
   { path: "/shop", name: "МАГАЗИН" },
   { path: "/services", name: "УСЛУГИ" },
   { path: "/basket", name: "КОРЗИНА" },
-  { path: "/salon", name: "САЛОНЫ" },
   { path: "/news", name: "НОВОСТИ" },
   { path: "/masters", name: "МАСТЕРА" },
 ];
@@ -73,11 +73,34 @@ const MobileNav: FC<MobileNavProps> = ({ isOpenNav, setIsOpenNav }) => {
             if (!isAuth && (i.path === "/account" || i.path === "/basket")) {
               return "";
             }
-            return (
-              <Link className={style.link} key={i.path} href={i.path}>
-                {i.name}
-              </Link>
-            );
+            if (i.path == "/basket") {
+              return (
+                <Link
+                  className={style.link}
+                  key={i.path}
+                  onClick={() => {
+                    dispatch(setBasketVisible(true));
+                    setIsOpenNav(false);
+                  }}
+                  href={""}
+                >
+                  {i.name}
+                </Link>
+              );
+            } else {
+              return (
+                <Link
+                  className={style.link}
+                  key={i.path}
+                  onClick={() => {
+                    setIsOpenNav(false);
+                  }}
+                  href={i.path}
+                >
+                  {i.name}
+                </Link>
+              );
+            }
           })}
         </nav>
         {!isAuth && (

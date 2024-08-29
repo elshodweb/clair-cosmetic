@@ -13,6 +13,9 @@ import ProductCard from "../history/productHistoryCard/ProductHistoryCard";
 import { http } from "@/utils/axiosInstance";
 import LogoutModal from "./logoutModal/LogoutModal";
 import UpdateModal from "./UpdateModal/UpdateModal";
+import { AppDispatch } from "@/store/store";
+import { useDispatch } from "react-redux";
+import { setCodeConfirmVisible } from "@/store/auth/authSlice";
 
 interface User {
   id: string;
@@ -37,7 +40,7 @@ interface Balance {
 const AccountPage = () => {
   const [isOpenLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
   const [isOpenUpdateModal, setOpenUpdateModal] = useState<boolean>(false);
-  const [isOpenConfirmModal, setOpenConfirmModal] = useState<boolean>(false);
+  const dispatch = useDispatch<AppDispatch>();
 
   const [user, setUser] = useState<User>({
     id: "",
@@ -71,7 +74,15 @@ const AccountPage = () => {
 
         setLoading(false);
       } catch (error: any) {
-        if (error.response.status !== 200) {
+
+        if (
+          error?.response?.data?.errors?.[0]?.code ===
+          "need_confirm_your_actions"
+        ) {
+          dispatch(setCodeConfirmVisible(true));
+        }
+
+        if (error.response.status == 401) {
           window.location.reload();
         }
         setError(error.message || "An error occurred");
@@ -92,14 +103,6 @@ const AccountPage = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
 
   if (!user) {
     return <p>No user data found.</p>;
@@ -171,7 +174,11 @@ const AccountPage = () => {
           </div>
           <div className={styles.profileBalance}>
             <div className={styles.balance}>
-              <div className={styles.amount}>{balance}₽</div>
+              {error && <p>Error: {error}</p>}
+              {loading && <p>Loading...</p>}
+              {balance.toString() && (
+                <div className={styles.amount}>{balance}₽</div>
+              )}
               <div className={styles.label}>Баланс</div>
               <OutlineButton>Как использовать бонусы?</OutlineButton>
             </div>
