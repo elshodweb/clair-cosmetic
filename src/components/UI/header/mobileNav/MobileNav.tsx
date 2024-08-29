@@ -6,7 +6,6 @@ import IconButton from "@/components/UI/buttons/iconButton/IconButton";
 import cn from "classnames";
 import BlackButton from "@/components/UI/buttons/blackButton/BlackButton";
 import OutlineButton from "@/components/UI/buttons/outlineButton/OutlineButton";
-import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { setLoginVisible, setRegisterVisible } from "@/store/auth/authSlice";
@@ -27,7 +26,6 @@ const links = [
 ];
 
 const MobileNav: FC<MobileNavProps> = ({ isOpenNav, setIsOpenNav }) => {
-  const navigate = useRouter();
   const dispatch = useDispatch<AppDispatch>();
 
   const { isAuth } = useSelector((state: RootState) => state.auth);
@@ -72,7 +70,7 @@ const MobileNav: FC<MobileNavProps> = ({ isOpenNav, setIsOpenNav }) => {
         </div>
         <nav className={style.nav}>
           {links.map((i) => {
-            if (!isAuth && i.path === "/account") {
+            if (!isAuth && (i.path === "/account" || i.path === "/basket")) {
               return "";
             }
             return (
