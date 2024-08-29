@@ -3,6 +3,7 @@ import styles from "./NewsCards.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { fetchNews } from "@/store/news/homeNewsSlice";
+import Link from "next/link";
 
 const NewsCards = ({ data }: any) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,17 +23,17 @@ const NewsCards = ({ data }: any) => {
   if (statusNews === "loading") return <div>Loading...</div>;
   return (
     <div className={styles.row}>
-      <div className={styles.bigCard}>
+      <Link href={"/news"} className={styles.bigCard}>
         <div className={styles.title}>{homeNews?.[0]?.title}</div>
         <div className={styles.text}>{homeNews?.[0]?.preview}</div>
-      </div>
+      </Link>
       <div className={styles.cards}>
-        <div className={styles.smallCard}>
+        <Link href={"/news"} className={styles.smallCard}>
           <div className={styles.title}> {homeNews?.[1]?.title}</div>
-        </div>
-        <div className={styles.smallCard}>
+        </Link>
+        <Link href={"/news"} className={styles.smallCard}>
           <div className={styles.title}> {homeNews?.[2]?.title}</div>
-        </div>
+        </Link>
       </div>
     </div>
   );

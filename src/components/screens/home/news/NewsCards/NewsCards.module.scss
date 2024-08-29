@@ -14,6 +14,7 @@
   width: 50%;
   min-width: 835px;
   flex: 0 0 auto;
+  color: $darkGray;
   background: url(./../../../../../../public/images/news/1.png) right bottom
       no-repeat,
     $white;
@@ -53,8 +54,10 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  
 }
 .smallCard {
+  color: $darkGray;
   padding: 30px;
   border-radius: 30px;
   height: 170px;
