@@ -55,35 +55,36 @@ const UpdateModal: FC<UpdateModalProps> = ({ user, visible, onClose }) => {
         image: user.image || "",
       });
       setImageLink(user.image);
+      if (user.image) {
+        const imageUrl = `http://localhost:3000/_next/image?url=${encodeURIComponent(
+          user.image
+        )}&w=640&q=75`;
 
-      const imageUrl = `http://localhost:3000/_next/image?url=${encodeURIComponent(
-        user.image
-      )}&w=640&q=75`;
-
-      fetch(imageUrl)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.blob();
-        })
-        .then((blob) => {
-          const reader = new FileReader();
-
-          reader.onloadend = () => {
-            if (reader.result) {
-              setUserData((prevState) => ({
-                ...prevState,
-                image: reader.result as string,
-              }));
+        fetch(imageUrl)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
             }
-          };
-          reader.readAsDataURL(blob);
-        })
-        .catch((error) => {
-          console.error("Error fetching image:", error);
-          setError("Ошибка загрузки изображения");
-        });
+            return response.blob();
+          })
+          .then((blob) => {
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+              if (reader.result) {
+                setUserData((prevState) => ({
+                  ...prevState,
+                  image: reader.result as string,
+                }));
+              }
+            };
+            reader.readAsDataURL(blob);
+          })
+          .catch((error) => {
+            console.error("Error fetching image:", error);
+            setError("Ошибка загрузки изображения");
+          });
+      }
     }
   }, [user]);
 
@@ -147,7 +148,7 @@ const UpdateModal: FC<UpdateModalProps> = ({ user, visible, onClose }) => {
       if (response.status === 200) {
         dispatch(setAuth(true));
         onClose();
-        
+
         window.location.reload();
       }
     } catch (error: any) {
