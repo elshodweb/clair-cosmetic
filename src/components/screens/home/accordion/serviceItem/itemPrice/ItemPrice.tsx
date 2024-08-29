@@ -1,5 +1,6 @@
 import { FC } from "react";
 import styles from "./Item.price.module.scss";
+import Link from "next/link";
 
 const ItemPrice: FC<any> = ({ data }) => {
   const { title, price_min, description } = data;
@@ -9,9 +10,9 @@ const ItemPrice: FC<any> = ({ data }) => {
         <div className={styles.title}>{title}</div>
         <div className={styles.text}>{description}</div>
       </div>
-      <button className={styles.price_button}>
+      <Link href={'/services'} className={styles.price_button}>
         <div>от {price_min}₽</div>
-      </button>
+      </Link>
     </div>
   );
 };

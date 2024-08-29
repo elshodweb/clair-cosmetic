@@ -8,11 +8,16 @@ const Footer = () => {
     <footer className={style.footer}>
       <div className={style.top}>
         <div className={style.info}>
-          <Link href={"+84732029777"} className={style.phone}>
-            8 473 202-97-77
-          </Link>
+          <div className={style.list}>
+            <Link href={"tel:+84732029777"} className={style.phone}>
+              8(473)202-9-777
+            </Link>
+            <Link href={"mailto:clair_krasota@mail.ru"} className={style.phone}>
+              clair_krasota@mail.ru
+            </Link>
+          </div>
           <div className={style.socials}>
-            <SocialButton href="/">
+            <SocialButton href="https://www.instagram.com/clairvrn?igsh=MXF4MnJ3NHAwY3R4Yw==">
               <Image
                 alt="instagram"
                 src={"/images/footer/inst.svg"}
@@ -20,12 +25,21 @@ const Footer = () => {
                 height={28}
               />
             </SocialButton>
-            <SocialButton href="/">
+            <SocialButton href="https://m.facebook.com/clairkrasota/">
               <Image
                 alt="instagram"
                 src={"/images/footer/facebook.svg"}
                 width={28}
                 height={28}
+              />
+            </SocialButton>
+            <SocialButton href="https://vk.com/clairvrn">
+              <Image
+                style={{ borderRadius: "50%" }}
+                alt="vk"
+                src={"/images/footer/vk.png"}
+                width={32}
+                height={32}
               />
             </SocialButton>
           </div>
