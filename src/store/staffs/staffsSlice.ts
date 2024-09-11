@@ -2,7 +2,7 @@
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import instance from "@/utils/axiosInstance";
+import instance, { http } from "@/utils/axiosInstance";
 
 interface Staff {
   id: string;
@@ -56,7 +56,12 @@ export const fetchStaffs = createAsyncThunk(
       url += "?" + queryParams.join("&");
     }
 
-    const response = await instance.get(url);
+    const token =
+      typeof window !== "undefined"
+        ? localStorage.getItem("accessToken")
+        : null;
+
+    const response = await http(token).get(url);
     return response.data;
   }
 );

@@ -139,7 +139,12 @@ const UpdateModal: FC<UpdateModalProps> = ({ user, visible, onClose }) => {
         formData.append("image", new Blob());
       }
 
-      const response = await http.put("/users/", formData, {
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("accessToken")
+          : null;
+
+      const response = await http(token).put("/users/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

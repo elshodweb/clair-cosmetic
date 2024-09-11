@@ -19,7 +19,12 @@ const Services: FC<any> = ({ isBasketVisible }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await http.get<any>("/services/cart/");
+        const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("accessToken")
+          : null;
+  
+        const response = await http(token).get<any>("/services/cart/");
         setServicves(response.data.results);
         setLoading(false);
       } catch (error: any) {
@@ -40,7 +45,12 @@ const Services: FC<any> = ({ isBasketVisible }) => {
 
   const handleDelete = async (productId: string) => {
     try {
-      await http.delete(`/services/cart/${productId}/`);
+      const token =
+      typeof window !== "undefined"
+        ? localStorage.getItem("accessToken")
+        : null;
+
+      await http(token).delete(`/services/cart/${productId}/`);
       setServicves(servicves.filter((item) => item.service.id !== productId));
     } catch (error: any) {
       console.error("Error deleting product:", error);

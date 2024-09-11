@@ -1,6 +1,6 @@
-import instance from "@/utils/axiosInstance";
+import instance, { http } from "@/utils/axiosInstance";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+
 
 interface ProductState {
   product: any | null;
@@ -18,7 +18,12 @@ const initialState: ProductState = {
 export const fetchSingleProduct = createAsyncThunk(
   "product/fetchSingleProduct",
   async (productId: string) => {
-    const response = await instance.get(`/products/${productId}/`);
+    const token =
+    typeof window !== "undefined"
+      ? localStorage.getItem("accessToken")
+      : null;
+
+    const response = await http(token).get(`/products/${productId}/`);
     return response.data;
   }
 );

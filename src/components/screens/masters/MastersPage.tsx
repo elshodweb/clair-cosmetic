@@ -14,7 +14,6 @@ import {
   selectStaffsError,
 } from "@/store/staffs/staffsSlice";
 import { AppDispatch, RootState } from "@/store/store";
-import SmallTitle from "@/components/UI/smallTitle/SmallTitle";
 
 const MastersPage = () => {
   const dispatch = useDispatch<AppDispatch>();

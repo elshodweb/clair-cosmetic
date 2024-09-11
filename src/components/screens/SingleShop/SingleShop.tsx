@@ -10,7 +10,7 @@ import Product from "./Product/Product";
 import { fetchSingleProduct } from "@/store/singleProduct/productSlice";
 import SmallCard from "@/components/UI/cards/smallCard/SmallCard";
 import { useRouter } from "next/router";
-import instance, { http } from "@/utils/axiosInstance";
+import { http } from "@/utils/axiosInstance";
 import { fetchViewedProducts } from "@/store/viewd/viewedProductsSlice";
 
 const SingleShop = () => {
@@ -36,13 +36,17 @@ const SingleShop = () => {
       dispatch(fetchViewedProducts());
 
       if (isAuth) {
+        const token =
+          typeof window !== "undefined"
+            ? localStorage.getItem("accessToken")
+            : null;
+
         try {
-          http.post("/products/viewed/", { product: id });
+          http(token).post("/products/viewed/", { product: id });
         } catch (error) {}
       }
     }
   }, [dispatch, id]);
-
   return (
     <div className={styles.wrapper}>
       <Loyaut>

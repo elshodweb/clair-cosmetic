@@ -1,12 +1,44 @@
 import Image from "next/image";
-import React, { Dispatch, FC, SetStateAction } from "react";
+import React, {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import styles from "./MasterItem.module.scss";
+import { http } from "@/utils/axiosInstance";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 interface MasterProps {
   data: any;
   setMaster: Dispatch<SetStateAction<string | null>>;
 }
 const MasterItem: FC<MasterProps> = ({ data, setMaster }) => {
+  const [isLiked, setLiked] = useState<boolean>(false);
+  const { isAuth } = useSelector((state: RootState) => state.auth);
+  useEffect(() => {
+    setLiked(data.is_favorite);
+  }, [data.is_favorite]);
+
+  const handlerLike = () => {
+    if (isAuth) {
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("accessToken")
+          : null;
+      if (!isLiked) {
+        http(token).post("/staffs/favorites/", {
+          staff: data.id,
+        });
+      } else {
+        http(token).delete("/staffs/favorites/" + data.id);
+      }
+      setLiked(!isLiked);
+    }
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.img}>
@@ -17,7 +49,10 @@ const MasterItem: FC<MasterProps> = ({ data, setMaster }) => {
           height={420}
         />
       </div>
-      <button className={styles.like}></button>
+      <button
+        onClick={handlerLike}
+        className={`${styles.like} ${isLiked ? styles.liked : ""}`}
+      ></button>
 
       <div className={styles.row}>
         <div className={styles.info}>

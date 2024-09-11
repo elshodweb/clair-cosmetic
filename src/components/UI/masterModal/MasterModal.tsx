@@ -23,6 +23,7 @@ import {
   setSalonId,
   setService,
 } from "@/store/booking/bookingSlice";
+import { http } from "@/utils/axiosInstance";
 
 interface MasterModalProps {
   id: string | null;
@@ -30,7 +31,31 @@ interface MasterModalProps {
 }
 
 const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
-  const [isLiked, setIsLiked] = useState<boolean>(false);
+  const master = useSelector((state: RootState) => state.salon.data);
+  const salonStatus = useSelector((state: RootState) => state.salon.status);
+  const [isLiked, setLiked] = useState<boolean>(false);
+  const { isAuth } = useSelector((state: RootState) => state.auth);
+
+  useEffect(() => {
+    setLiked(master?.is_favorite);
+  }, [master?.is_favorite]);
+
+  const handlerLike = () => {
+    if (isAuth) {
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("accessToken")
+          : null;
+      if (!isLiked) {
+        http(token).post("/staffs/favorites/", {
+          staff: master.id,
+        });
+      } else {
+        http(token).delete("/staffs/favorites/" + master.id);
+      }
+      setLiked(!isLiked);
+    }
+  };
   const servicesData = useSelector(
     (state: RootState) => state.servicesByMaster.services
   );
@@ -38,8 +63,6 @@ const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
     (state: RootState) => state.servicesByMaster.status
   );
   const dispatch = useDispatch<AppDispatch>();
-  const master = useSelector((state: RootState) => state.salon.data);
-  const salonStatus = useSelector((state: RootState) => state.salon.status);
   const [selectedService, setSelectedService] = useState<string>("");
 
   useEffect(() => {
@@ -97,9 +120,7 @@ const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
                 />
                 <button
                   className={cn(styles.like, isLiked ? styles.liked : "")}
-                  onClick={() => {
-                    setIsLiked(!isLiked);
-                  }}
+                  onClick={handlerLike}
                 ></button>
               </div>
               <h3 className={styles.title}>{master.name}</h3>

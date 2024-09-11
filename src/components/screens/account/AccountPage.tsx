@@ -61,10 +61,16 @@ const AccountPage = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const userResponse = await http.get<User>("/users/");
+        
+        const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("accessToken")
+          : null;
+
+        const userResponse = await http(token).get<User>("/users/");
         setUser(userResponse.data);
 
-        const balanceResponse = await http.get("/users/deposits/");
+        const balanceResponse = await http(token).get("/users/deposits/");
         // Assuming balance is in the first result
         setBalance(balanceResponse?.data?.results?.[0]?.balance);
 

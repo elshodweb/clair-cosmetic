@@ -41,7 +41,12 @@ const Goods: FC<{ isBasketVisible: boolean }> = ({ isBasketVisible }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await http.get<ApiResponse>("/products/cart/");
+        const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("accessToken")
+          : null;
+  
+        const response = await http(token).get<ApiResponse>("/products/cart/");
         const fetchedProducts: ProductProps[] = response.data.results.map(
           (item) => ({
             id: item.product?.id || "",
@@ -83,7 +88,12 @@ const Goods: FC<{ isBasketVisible: boolean }> = ({ isBasketVisible }) => {
     newQuantity: number
   ) => {
     try {
-      await http.post(`/products/cart/`, {
+      const token =
+      typeof window !== "undefined"
+        ? localStorage.getItem("accessToken")
+        : null;
+
+      await http(token).post(`/products/cart/`, {
         quantity: newQuantity,
         product: productId,
       });

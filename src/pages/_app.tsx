@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <div className={roboto.className}>
-          {<Auth />}
+          <Auth />
           <CodeConfirm />
           <BookingScreen />
           <Component {...pageProps} />

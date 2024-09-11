@@ -38,7 +38,12 @@ const ConfirmTime: FC = () => {
 
   const submitBasket = async () => {
     try {
-      await http.post("/services/cart/", {
+      const token =
+      typeof window !== "undefined"
+        ? localStorage.getItem("accessToken")
+        : null;
+
+      await http(token).post("/services/cart/", {
         service: service.id ? service.id : null,
         salon: salonId ? salonId : null,
         staff: masterId ? masterId : null,

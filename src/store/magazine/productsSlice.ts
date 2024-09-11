@@ -1,7 +1,7 @@
 // src/store/products/productsSlice.ts
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import instance from "@/utils/axiosInstance";
+import instance, { http } from "@/utils/axiosInstance";
 
 // Типы данных для `Product`
 interface Product {
@@ -39,7 +39,11 @@ export const fetchProducts = createAsyncThunk(
     page_size?: number;
     type?: string;
   }) => {
-    const response = await instance.get("/products/", {
+    const token =
+      typeof window !== "undefined"
+        ? localStorage.getItem("accessToken")
+        : null;
+    const response = await http(token).get("/products/", {
       params: {
         brand_ids: params.brand_ids?.length ? params.brand_ids : null,
         category_ids: params.category_ids?.length ? params.category_ids : null,

@@ -28,12 +28,6 @@ export interface IRegisterData {
   re_password: string;
 }
 
-// phone_number: "78212332224",
-//     email: "user@example.com",
-//     full_name: "string dasd",
-//     city: "s",
-//     password: "ssstring",
-//     re_password: "ssstring",
 const Auth = () => {
   const [registerData, setRegisterData] = useState<IRegisterData>({
     phone_number: "",

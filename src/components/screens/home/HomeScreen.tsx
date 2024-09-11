@@ -18,7 +18,6 @@ import { fetchProductCategories } from "@/store/product/productCategoriesSlice";
 import { fetchProductsInHome } from "@/store/productHomePage/productsSlice";
 import { fetchMasterCategories } from "@/store/masters/masterCategoriesSlice";
 import { fetchMasters } from "@/store/masters/mastersSlice";
-import { fetchNews } from "@/store/news/homeNewsSlice";
 
 const HomeScreen = () => {
   function filterListener(params: string) {

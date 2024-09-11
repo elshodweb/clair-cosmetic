@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Product.module.scss";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,6 +6,8 @@ import BlackArrowButton from "@/components/UI/buttons/blackArrowButton/BlackArro
 import Counter from "../Counter/Counter";
 import FilterMenu from "../filterMenu/FilterMenu";
 import { http } from "@/utils/axiosInstance";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 interface ProductProps {
   product: any;
@@ -14,9 +16,30 @@ interface ProductProps {
 const Product: React.FC<ProductProps> = ({ product }) => {
   const [activeTab, setActiveTab] = useState<string>("Состав");
   const [quantity, setQuantity] = useState<number>(1);
+  const [isLiked, setLiked] = useState<boolean>(false);
+  const { isAuth } = useSelector((state: RootState) => state.auth);
 
   const tabData = [{ title: "Состав" }, { title: "Применение" }];
+  useEffect(() => {
+    setLiked(product.is_favorite);
+  }, [product.is_favorite]);
 
+  const handlerLike = () => {
+    if (isAuth) {
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("accessToken")
+          : null;
+      if (!isLiked) {
+        http(token).post("/products/favorites/", {
+          product: product.id,
+        });
+      } else {
+        http(token).delete("/products/favorites/" + product.id);
+      }
+      setLiked(!isLiked);
+    }
+  };
   const tabContent =
     activeTab === "Состав" ? product.structure : product.application;
 
@@ -26,7 +49,12 @@ const Product: React.FC<ProductProps> = ({ product }) => {
 
   const handleAddToCart = async () => {
     try {
-      const response = await http.post("/products/cart/", {
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("accessToken")
+          : null;
+
+      const response = await http(token).post("/products/cart/", {
         product: product.id,
         quantity: quantity,
       });
@@ -48,7 +76,10 @@ const Product: React.FC<ProductProps> = ({ product }) => {
           <div className={styles.path}>
             Уход за волосами / Кудрявые волосы / Новинки
           </div>
-          <button onClick={() => {}} className={styles.like}></button>
+          <button
+            onClick={handlerLike}
+            className={`${styles.like} ${isLiked ? styles.liked : ""}`}
+          ></button>
         </div>
         <h1 className={styles.title}>{product.title}</h1>
         <p className={styles.descr}>{product.description}</p>

@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./SmallCard.module.scss";
 import Image from "next/image";
 import Like from "../../like/Like";
 import Link from "next/link";
+import { http } from "@/utils/axiosInstance";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 const SmallCard = ({ data }: any) => {
   const [isLiked, setIsLike] = useState<boolean>(false);
-
+  useEffect(() => {
+    setIsLike(data.is_favorite);
+  }, [data.is_favorite]);
+  const { isAuth } = useSelector((state: RootState) => state.auth);
   return (
     <div className={styles.wrapper}>
       <div className={styles.titles}>
@@ -32,7 +38,22 @@ const SmallCard = ({ data }: any) => {
         </div>
         <div
           onClick={() => {
-            setIsLike(!isLiked);
+            
+            const token =
+            typeof window !== "undefined"
+              ? localStorage.getItem("accessToken")
+              : null;
+
+            if (isAuth) {
+              if (isLiked) {
+                http(token).delete("/products/favorites/" + data.id);
+              } else {
+                http(token).post("/products/favorites/", {
+                  product: data.id,
+                });
+              }
+              setIsLike(!isLiked);
+            }
           }}
         >
           <Like isLiked={isLiked} />

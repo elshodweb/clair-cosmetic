@@ -1,6 +1,6 @@
 // src/store/products/productsSlice.ts
 
-import instance from "@/utils/axiosInstance";
+import instance, { http } from "@/utils/axiosInstance";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Типы данных для `products`
@@ -39,11 +39,14 @@ export const fetchMasters = createAsyncThunk(
   async ({ categoryId, page, pageSize }: FetchMastersParams) => {
     let url = `/staffs/?`;
     if (categoryId) {
-      
       url += `specialization_ids=${categoryId}&`;
     }
-    url += `page=${page}&page_size=${pageSize}`
-    const response = await instance.get(url);
+    url += `page=${page}&page_size=${pageSize}`;
+    const token =
+      typeof window !== "undefined"
+        ? localStorage.getItem("accessToken")
+        : null;
+    const response = await http(token).get(url);
     return response.data;
   }
 );

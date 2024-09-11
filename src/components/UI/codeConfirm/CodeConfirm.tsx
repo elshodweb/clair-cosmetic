@@ -20,7 +20,12 @@ const CodeConfirm: FC = () => {
 
   const handleVerification = async () => {
     try {
-      const response = await http.post("/users/confirm/", {
+      const token =
+      typeof window !== "undefined"
+        ? localStorage.getItem("accessToken")
+        : null;
+
+      const response = await http(token).post("/users/confirm/", {
         confirmation_code: verificationCode,
       });
       if (response.status < 300) {

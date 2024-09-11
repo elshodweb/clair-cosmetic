@@ -1,6 +1,6 @@
 // src/store/products/productsSlice.ts
 
-import instance from "@/utils/axiosInstance";
+import instance, { http } from "@/utils/axiosInstance";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Типы данных для `products`
@@ -41,7 +41,9 @@ export const fetchProductsInHome = createAsyncThunk(
       url += `category_ids=${categoryId}&`;
     }
     url += `page=${page}&page_size=${pageSize}`;
-    const response = await instance.get(url);
+    const response = await http(
+      typeof window !== "undefined" ? localStorage.getItem("accessToken") : null
+    ).get(url);
 
     return response.data;
   }

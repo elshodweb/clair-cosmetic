@@ -1,5 +1,5 @@
 // salonSlice.ts
-import instance from '@/utils/axiosInstance';
+import instance, { http } from '@/utils/axiosInstance';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 interface SalonState {
@@ -19,7 +19,11 @@ const initialState: SalonState = {
 export const fetchSalon = createAsyncThunk(
   'salon/fetchSalon',
   async (id: string) => {
-    const response = await instance.get(`/staffs/${id}/`);
+    const token =
+    typeof window !== "undefined"
+      ? localStorage.getItem("accessToken")
+      : null;
+    const response = await http(token).get(`/staffs/${id}/`);
     const data = await response.data;
     return data;
   }

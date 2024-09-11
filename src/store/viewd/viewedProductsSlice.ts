@@ -22,7 +22,12 @@ interface ViewedProductsState {
 export const fetchViewedProducts = createAsyncThunk(
   'viewedProducts/fetchViewed',
   async () => {
-    const response = await http.get('/products/viewed/');
+    const token =
+    typeof window !== "undefined"
+      ? localStorage.getItem("accessToken")
+      : null;
+
+    const response = await http(token).get('/products/viewed/');
     return response.data;
   }
 );

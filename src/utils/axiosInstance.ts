@@ -10,10 +10,7 @@ const instance = axios.create({
 export default instance;
 
 // Создаем экземпляр axios для запросов с авторизацией
-const createHttpInstance = () => {
-  const token =
-    typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
-
+export const http = (token: string | null) => {
   return axios.create({
     baseURL: "https://ba745807670a.vps.myjino.ru/api/v1/",
     headers: {
@@ -21,8 +18,6 @@ const createHttpInstance = () => {
     },
   });
 };
-
-export const http = createHttpInstance();
 
 // Функции для проверки и обновления токена
 export const verifyToken = async (): Promise<boolean> => {

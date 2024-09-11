@@ -34,7 +34,12 @@ const Product: FC<ProductProps> = ({
 
   const handleDelete = async () => {
     try {
-      await http.delete(`/products/cart/${id}/`);
+      const token =
+      typeof window !== "undefined"
+        ? localStorage.getItem("accessToken")
+        : null;
+
+      await http(token).delete(`/products/cart/${id}/`);
       onDelete(id); // Notify parent component about deletion
     } catch (error) {
       console.error("Error deleting product:", error);
