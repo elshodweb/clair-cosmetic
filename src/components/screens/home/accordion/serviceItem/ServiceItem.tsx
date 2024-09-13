@@ -67,7 +67,6 @@ const ServiceItem: FC<props> = ({
     return <div>{error}</div>;
   }
 
-
   return (
     <div
       className={`${styles.container} ${
@@ -80,7 +79,11 @@ const ServiceItem: FC<props> = ({
       }}
     >
       <div onClick={() => clickHandler(index)} className={styles.header}>
-        <div className={styles.header_inner}>
+        <div
+          className={`${styles.header_inner}   ${
+            index == isOpen ? styles.openedTitle : ""
+          }`}
+        >
           <h2 className={styles.title}>{title}</h2>
           <button>
             <img

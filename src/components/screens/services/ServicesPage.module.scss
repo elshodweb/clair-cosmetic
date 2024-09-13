@@ -1,24 +1,30 @@
 @import "./../../../styles/variables.scss";
 .wrapper {
   background: $green;
+  width: 100%;
 }
 .filters {
-  max-width: 663px;
   width: 100%;
+  max-width: max-content;
+}
+.filters * > * {
+  max-width: 740px !important;
 }
 .list {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 8px;
+  min-height: 1500px;
 }
 .title {
-  padding-top: 137px;
-  padding-bottom: 12px;
+  padding-top: 138px;
+  padding-bottom: 0px;
 }
 .row {
+  padding-top: 16px;
   display: flex;
-  gap: 14px;
+  gap: 10px;
   justify-content: space-between;
   align-items: stretch;
   padding-bottom: 56px;
@@ -30,7 +36,9 @@
   font-size: 25px;
   line-height: 150%;
   text-align: center;
-  text-shadow: 3px 3px 3px #fff;
+}
+.list > * {
+  max-width: 800px !important;
 }
 @media (max-width: 1320px) {
   .row {

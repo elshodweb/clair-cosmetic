@@ -33,7 +33,7 @@
   border-bottom: 2px solid transparent;
   &:hover {
     transition: all 0.1s ease-in-out;
-    border-bottom: 2px solid $darkGray;
+    transform: scale(1.2);
   }
 }
 .right {

@@ -45,10 +45,10 @@ const Salon = () => {
         },
 
         1400: {
-          slidesPerView: 2.2,
+          slidesPerView: 2,
         },
       }}
-    >
+    > 
       {salons.map((i) => (
         <SwiperSlide className={style.slide} key={i.id}>
           <div className={style.wrapper}>
@@ -56,7 +56,7 @@ const Salon = () => {
               className={style.img}
               src={i.images[0]}
               alt="salon"
-              width={660}
+              width={900}
               height={350}
             />
             <div className={style.name}>{i.name}</div>

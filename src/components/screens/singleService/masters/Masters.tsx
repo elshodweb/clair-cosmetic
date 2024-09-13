@@ -23,7 +23,7 @@ const Masters: FC<any> = ({ staffs }) => {
             slidesPerView: 3,
           },
           1440: {
-            slidesPerView: 4,
+            slidesPerView: 4.5,
           },
         }}
       >

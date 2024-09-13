@@ -2,4 +2,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  max-width: 970px;
+}
+
+@media (max-width: 840px) {
+  .row {
+    max-width: 658px;
+  }
 }

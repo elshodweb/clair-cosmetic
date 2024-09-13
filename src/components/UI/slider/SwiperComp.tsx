@@ -12,7 +12,7 @@ const SwiperComp = () => {
   const dispatch = useDispatch<AppDispatch>();
   const news = useSelector((state: RootState) => state.newsStoris.news);
   const newsStatus = useSelector((state: RootState) => state.newsStoris.status);
-  const error = useSelector((state: RootState) => state.newsStoris.error);
+
   const [isOpen, setOpen] = useState<boolean>(false);
   const [initialSlideForModal, setInitialSlideForModal] = useState<number>(1);
   useEffect(() => {
@@ -24,10 +24,6 @@ const SwiperComp = () => {
   if (newsStatus === "loading") {
     return <div>Loading...</div>;
   }
-
-  // if (newsStatus === "failed") {
-  //   return <div>{error}</div>;
-  // }
 
   return (
     <Swiper
@@ -47,7 +43,7 @@ const SwiperComp = () => {
           slidesPerView: 3.2,
         },
         1440: {
-          slidesPerView: 4.2,
+          slidesPerView: 4.5,
         },
       }}
     >

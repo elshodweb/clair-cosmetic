@@ -33,7 +33,7 @@ const MasterContainer: React.FC<MasterContainerProps> = ({ data }) => {
             slidesPerView: 3.2,
           },
           1440: {
-            slidesPerView: 4.2,
+            slidesPerView: 4.5,
           },
         }}
       >

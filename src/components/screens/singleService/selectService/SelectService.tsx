@@ -29,6 +29,7 @@ const SelectService: FC<any> = ({ data }) => {
               .map((i: any, index: number) => (
                 <MyInput
                   key={index}
+                  id={i.id}
                   name={i.title}
                   price={i.price}
                   description={i.description}

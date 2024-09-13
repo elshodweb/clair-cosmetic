@@ -45,8 +45,8 @@ const MasterItem: FC<MasterProps> = ({ data, setMaster }) => {
         <Image
           src={data?.avatar ? data.avatar : "/images/masters/master.png"}
           alt="trends"
-          width={324}
-          height={420}
+          width={480}
+          height={560}
         />
       </div>
       <button

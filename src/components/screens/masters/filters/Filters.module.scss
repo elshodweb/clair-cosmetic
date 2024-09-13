@@ -21,7 +21,6 @@
   outline: none;
   &:focus {
     transition: all 0.1s ease-in-out;
-    box-shadow: 5px 5px 10px $darkGray;
   }
 }
 .tabs {

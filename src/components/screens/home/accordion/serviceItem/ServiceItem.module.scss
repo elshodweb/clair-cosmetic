@@ -45,7 +45,7 @@
 }
 .body_inner {
   width: 100%;
-  padding: 30px 50px;
+  padding: 0 50px 30px;
   padding-bottom: 0;
 }
 .showAll_button {
@@ -54,18 +54,22 @@
 }
 .header_inner {
   cursor: pointer;
+  transition: all .1s;
 }
 .container {
   position: relative;
   &:hover .title {
     transition: all 0.1s ease-in-out;
-    border-bottom: 3px solid #000;
   }
 }
 .title {
   font-weight: 600;
   font-size: 50px;
   border-bottom: 3px solid transparent;
+}
+.openedTitle{
+  padding: 56px 50px 16px;
+  
 }
 .body_close {
   height: 0;
@@ -165,7 +169,6 @@
     border-radius: 30px;
   }
 
-  
   .header {
     max-height: 100px;
   }
@@ -271,8 +274,8 @@
   .container:last-of-type {
     min-height: 200px;
     position: relative;
-    &::after{
-      content: '';
+    &::after {
+      content: "";
       pointer-events: none;
       position: absolute;
       bottom: 0;
@@ -280,10 +283,11 @@
       display: block;
       width: 190px;
       height: 150px;
-      background:url(./../../../../../../public/images/home/headOfGirl.png) center / cover no-repeat;
+      background: url(./../../../../../../public/images/home/headOfGirl.png)
+        center / cover no-repeat;
     }
   }
-  .container:last-of-type.activeContainer::after{
+  .container:last-of-type.activeContainer::after {
     display: none;
   }
 }

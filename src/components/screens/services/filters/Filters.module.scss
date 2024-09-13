@@ -19,10 +19,7 @@
   min-width: auto;
   width: 100%;
   outline: none;
-  &:focus {
-    transition: all 0.1s ease-in-out;
-    box-shadow: 5px 5px 10px $darkGray;
-  }
+
 }
 .tabs {
   margin-top: 4px;
@@ -35,7 +32,6 @@
   font-size: 25px;
   line-height: 150%;
   text-align: center;
-  text-shadow: 0px 0px 10px   #fff;
 }
 @media (max-width: 730px) {
   .input {

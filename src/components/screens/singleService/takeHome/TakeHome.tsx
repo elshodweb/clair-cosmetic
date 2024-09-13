@@ -48,7 +48,7 @@ const TakeHome = () => {
           600: { slidesPerView: 2 },
           900: { slidesPerView: 3 },
           1150: { slidesPerView: 4 },
-          1400: { slidesPerView: 5 },
+          1400: { slidesPerView: 6 },
         }}
       >
         {products.map((product) => (

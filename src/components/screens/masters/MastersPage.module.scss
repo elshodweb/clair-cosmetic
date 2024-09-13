@@ -5,9 +5,16 @@
     $lightYellow;
 }
 .filters {
-  max-width: 663px;
+  max-width: 720px;
   width: 100%;
 }
+.filters > * {
+  width: 100%;
+}
+.filters  * > * {
+  max-width: 720px !important;
+}
+
 .list {
   display: flex;
   flex-direction: column;

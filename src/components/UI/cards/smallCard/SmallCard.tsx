@@ -12,6 +12,8 @@ const SmallCard = ({ data }: any) => {
     setIsLike(data.is_favorite);
   }, [data.is_favorite]);
   const { isAuth } = useSelector((state: RootState) => state.auth);
+  console.log(data?.brand?.title);
+  
   return (
     <div className={styles.wrapper}>
       <div className={styles.titles}>

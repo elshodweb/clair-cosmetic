@@ -78,6 +78,7 @@
   filter: invert(1);
   width: 32px;
   height: 32px;
+  box-shadow: 1px 1px 5px #fff;
 }
 
 .autoplayProgress {
@@ -87,7 +88,7 @@
   transform: translate(-50%, 0);
   bottom: 16px;
   z-index: 1;
-  width: 200px; /* Ширина прогресс-бара */
+  width: 200px; 
   height: 4px; /* Высота прогресс-бара */
   background: #ffffff; /* Фоновый цвет (белый) */
   border-radius: 2px; /* Закругление углов */

@@ -52,7 +52,12 @@ const OpdenedSlider: FC<OpdenedSliderProps> = ({ setOpen, initialSlide }) => {
   }
 
   return (
-    <div className={styles.relative}>
+    <div
+      className={styles.relative}
+      onClick={() => {
+        setOpen(false);
+      }}
+    >
       <div className={styles.wrapper} data-set={"slider-history"}>
         <Swiper
           ref={swiperRef}
@@ -75,10 +80,15 @@ const OpdenedSlider: FC<OpdenedSliderProps> = ({ setOpen, initialSlide }) => {
           }}
           onAutoplayTimeLeft={onAutoplayTimeLeft}
         >
-          {news.map((i: any,index) => (
-            <SwiperSlide key={i.id} className={styles.slide}
-            onClick={()=>{swiperRef.current.swiper.slideTo(index)}}>
-              <div className={styles.slideContent}>
+          {news.map((i: any, index) => (
+            <SwiperSlide key={i.id} className={styles.slide}>
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  swiperRef.current.swiper.slideTo(index);
+                }}
+                className={styles.slideContent}
+              >
                 <div className={styles.top}>
                   <div className={styles.left}>
                     <div className={styles.avatar}>
@@ -96,7 +106,7 @@ const OpdenedSlider: FC<OpdenedSliderProps> = ({ setOpen, initialSlide }) => {
                     onClick={() => setOpen(false)}
                   >
                     <Image
-                      src={"/images/header/cross.svg"}
+                      src={"/images/header/crossShadow.svg"}
                       alt="cart"
                       width={16}
                       height={19}

@@ -4,7 +4,7 @@
 }
 .hi {
   background: url(./../../../../public/images/mainBackground/rainbow.png)
-    calc(100% - 80px) 10px / auto 100% no-repeat;
+    calc(100% - 80px) 15px / auto 100% no-repeat;
   margin: 0;
   margin-top: 34px;
 }
@@ -24,16 +24,20 @@
   margin-bottom: 5px;
   width: 100%;
 }
+.trends {
+  margin-bottom: 54px;
+}
 .shop,
 .masters {
   margin-bottom: 56px;
 }
 
-@media (max-width: 500px) {
-  .hi {
-    margin-top: 17px;
+@media (max-width: 600px) {
+  .trends {
+    margin-bottom: 20px;
   }
 }
+
 @media (max-width: 420px) {
   .hi {
     background-position: calc(100% - 20px) 10px;

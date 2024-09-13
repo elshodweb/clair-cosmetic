@@ -1,20 +1,21 @@
 @import "./../../../../../styles/variables.scss";
 .decoration {
   background: url("./../../../../../../public/images/mainBackground/girl.png")
-    calc(100% - 30px) bottom  / 450px auto no-repeat;
+    calc(100% - 30px) calc(100% + 10px) / 500px auto no-repeat;
 }
 .decoration_title {
   font-size: 80px;
-  line-height: 96px;
-  font-weight: 600;
+  line-height: 80px;
+  font-weight: 500;
   margin-bottom: 150px;
 }
 .yellow,
 .blue {
   background: $yellow;
   border-radius: 430px;
-  padding: 0px 20px;
+  padding: 0px 30px 10px;
   display: inline-block;
+  margin-bottom: 10px;
 }
 .blue {
   background: $blue;

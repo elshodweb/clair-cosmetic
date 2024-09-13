@@ -25,7 +25,7 @@ const ShopPage = () => {
     <div className={styles.wrapper}>
       <Loyaut>
         <div className={styles.hero}>
-          <Title>магазин</Title>
+          <Title className={styles.title}>магазин</Title>
           <div className={styles.news}>
             <SwiperComp />
           </div>

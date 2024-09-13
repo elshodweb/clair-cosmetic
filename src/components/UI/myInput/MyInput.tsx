@@ -2,6 +2,7 @@
 import React, { FC, useState, useEffect, useRef } from "react";
 import styles from "./MyInput.module.scss";
 import cn from "classnames";
+import Link from "next/link";
 
 interface InputRadioProps {
   name: string;
@@ -9,7 +10,7 @@ interface InputRadioProps {
   onChange: (val: boolean) => void;
 }
 
-const MyInput: FC<any> = ({ name, price, onChange, description }) => {
+const MyInput: FC<any> = ({ name, id, price, onChange, description }) => {
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const [isOpenedInfo, setIsOpenedInfo] = useState<boolean>(false);
   const infoRef = useRef<HTMLParagraphElement>(null);
@@ -40,7 +41,9 @@ const MyInput: FC<any> = ({ name, price, onChange, description }) => {
   return (
     <div className={cn(styles.input, isSelected ? styles.checked : "")}>
       <input type="checkbox" checked={isSelected} onChange={onClick} />
-      <span className={styles.name}>{name}</span>
+      <Link href={"/services/" + id} className={styles.name}>
+        {name}
+      </Link>
       <span className={styles.price}>{price}</span>
       <button
         onClick={(e) => {

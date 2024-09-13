@@ -17,7 +17,7 @@ const TakeAway: FC<any> = ({ services }) => {
             slidesPerView: 1,
           },
           1200: {
-            slidesPerView: 2.1,
+            slidesPerView: 2.3,
           },
         }}
       >

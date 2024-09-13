@@ -5,7 +5,6 @@
   position: relative;
   padding-left: 55px;
   width: 100%;
-  max-width: 600px;
   input {
     appearance: none;
     cursor: pointer;
@@ -33,12 +32,13 @@
       width: 39px;
       height: 16px;
       background: #000;
-      transform: scale(0) rotate(90deg);
+      transform: scale(.7) ;
+      opacity: 0;
+      transform: scale(1) ;
       transition: all 0.2s ease-in-out;
+      opacity: 1;
     }
-    &:checked::after {
-      transform: scale(1) rotate(0deg);
-    }
+    
   }
 }
 
@@ -48,6 +48,7 @@
   font-weight: 400;
   line-height: 24px;
   margin-right: 10px;
+  color: $darkGray;
 }
 
 .price {
