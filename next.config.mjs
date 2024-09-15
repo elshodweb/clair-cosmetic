@@ -8,6 +8,11 @@ const nextConfig = {
         hostname: 'ba745807670a.vps.myjino.ru',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'clair-cosmetic.netlify.app',
+        pathname: '**',
+      },
     ],
   },
 };
