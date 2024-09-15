@@ -2,7 +2,18 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["ba745807670a.vps.myjino.ru", "clair-cosmetic.netlify.app"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ba745807670a.vps.myjino.ru",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "clair-cosmetic.netlify.app",
+        pathname: "/**",
+      },
+    ],
   },
 };
 
