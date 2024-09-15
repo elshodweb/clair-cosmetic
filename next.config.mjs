@@ -4,14 +4,9 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "ba745807670a.vps.myjino.ru",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "clair-cosmetic.netlify.app",
-        pathname: "/**",
+        protocol: 'http',
+        hostname: 'ba745807670a.vps.myjino.ru',
+        pathname: '**',
       },
     ],
   },

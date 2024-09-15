@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { getNews } from "@/store/newStories/storiesSlice";
 import OpdenedSlider from "./opdenedSlider/OpdenedSlider";
+import masters from "@/pages/masters";
 const SwiperComp = () => {
   const dispatch = useDispatch<AppDispatch>();
   const news = useSelector((state: RootState) => state.newsStoris.news);
@@ -24,6 +25,8 @@ const SwiperComp = () => {
   if (newsStatus === "loading") {
     return <div>Loading...</div>;
   }
+
+  console.log(news?.[0]?.images?.[0]);
 
   return (
     <Swiper
