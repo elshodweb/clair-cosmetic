@@ -48,7 +48,10 @@ const MastersPage = () => {
             {status === "succeeded" && staffs.length > 0 ? (
               <MastersCards data={staffs} />
             ) : (
-              <div className={style.message}>По вашему запросу мастеров не найдено. Пожалуйста, измените поисковый запрос или параметры фильтрации.</div>
+              <div className={style.message}>
+                По вашему запросу мастеров не найдено. Пожалуйста, измените
+                поисковый запрос или параметры фильтрации.
+              </div>
             )}
           </div>
         </div>

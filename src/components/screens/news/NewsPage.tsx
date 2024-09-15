@@ -94,7 +94,6 @@ const NewsPage = () => {
                           image={item.images[0]}
                           small={false}
                         />
-
                         {news[index + 1] && (
                           <NewsCard
                             setSelectedNews={setSelectedNews}

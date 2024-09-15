@@ -30,7 +30,7 @@ const HomeScreen = () => {
   }
 
   const dispatch = useDispatch<AppDispatch>();
-  
+
   const categories = useSelector(
     (state: RootState) => state.productCategories.categories
   );

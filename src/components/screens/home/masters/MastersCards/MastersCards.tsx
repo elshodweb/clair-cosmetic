@@ -5,7 +5,6 @@ import MasterModal from "@/components/UI/masterModal/MasterModal";
 
 const MastersCards: FC<{ data: any }> = ({ data }) => {
   const [id, setId] = useState<string | null>(null);
- 
 
   useEffect(() => {
     if (id !== null) {
@@ -19,7 +18,6 @@ const MastersCards: FC<{ data: any }> = ({ data }) => {
     };
   }, [id]);
 
-  
   return (
     <div className={styles.row}>
       {data.map((i: any) => (
