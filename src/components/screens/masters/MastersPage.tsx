@@ -35,7 +35,7 @@ const MastersPage = () => {
     <div className={style.wrapper}>
       <Loyaut>
         <div className={style.title}>
-          <Title>Мастера</Title>
+          <Title>Мас</Title>
         </div>
         <div className={style.row}>
           <div className={style.filters}>
