@@ -26,11 +26,25 @@ const MasterContainer: React.FC<MasterContainerProps> = ({ data }) => {
           460: {
             slidesPerView: 1.3,
           },
-          768: {
-            slidesPerView: 2.2,
+          540: {
+            slidesPerView: 1.8,
           },
-          1080: {
+          640: {
+            slidesPerView: 2,
+          },
+          868: {
+            slidesPerView: 2.8,
+          },
+          900: {
             slidesPerView: 3.2,
+          },
+
+          1180: {
+            slidesPerView: 3.4,
+          },
+
+          1280: {
+            slidesPerView: 3.8,
           },
           1440: {
             slidesPerView: 4.5,

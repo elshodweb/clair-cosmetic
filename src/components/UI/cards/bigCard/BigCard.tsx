@@ -3,7 +3,7 @@ import styles from "./BigCard.module.scss";
 import Image from "next/image";
 import Like from "../../like/Like";
 import Link from "next/link";
-import instance, { http } from "@/utils/axiosInstance";
+import { http } from "@/utils/axiosInstance";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 const BigCard = ({ data }: any) => {

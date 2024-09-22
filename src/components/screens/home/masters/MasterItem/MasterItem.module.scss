@@ -4,6 +4,7 @@
   position: relative;
   width: calc(50% - 5px);
   max-width: 480px;
+  width: 100%;
 }
 .like {
   position: absolute;
@@ -69,23 +70,4 @@
     color: $lightYellow;
   }
 }
-@media (max-width: 840px) {
-  .wrapper {
-    max-width: 324px;
-  }
-  .img img {
-    width: 324px;
-    height: 420px;
-  }
-}
 
-@media (max-width: 600px) {
-  .wrapper {
-    width: 100%;
-    max-width: 324px;
-    margin: 0 auto;
-  }
-  .img img {
-    width: 100%;
-  }
-}
