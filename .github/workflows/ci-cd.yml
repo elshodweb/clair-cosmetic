@@ -28,4 +28,4 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          ssh -o StrictHostKeyChecking=no root@80967ebae40b.vps.myjino.ru 'cd /root/clair-cosmetic && git pull origin master && npm install && npm run build && pm2 restart clair-cosmetic'
+          ssh -p 49172 -o StrictHostKeyChecking=no root@80967ebae40b.vps.myjino.ru 'cd /root/clair-cosmetic && git pull origin main && npm install && npm run build && pm2 restart clair-cosmetic'
