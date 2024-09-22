@@ -116,7 +116,7 @@ const ChooseTime: FC = () => {
             </div>
           </div>
         )}
-        <MyCalendar value={selectedDate} onChange={setSelectedDate} />{" "}
+        <MyCalendar serviceId={service.id}  value={selectedDate} onChange={setSelectedDate} />{" "}
         {/* Pass setSelectedDate to capture date */}
         <div className={styles.label}>Утро</div>
         {morning.map((i) => (
