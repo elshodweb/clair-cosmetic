@@ -1,12 +1,18 @@
 .row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Две колонки одинаковой ширины */
+  gap: 10px; /* Зазор между колонками */
   max-width: 970px;
 }
 
 @media (max-width: 840px) {
   .row {
     max-width: 658px;
+  }
+}
+@media (max-width: 600px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 }

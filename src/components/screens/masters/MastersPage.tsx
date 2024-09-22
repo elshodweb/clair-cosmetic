@@ -13,7 +13,7 @@ import {
   selectStaffsStatus,
   selectStaffsError,
 } from "@/store/staffs/staffsSlice";
-import { AppDispatch, RootState } from "@/store/store";
+import { AppDispatch } from "@/store/store";
 
 const MastersPage = () => {
   const dispatch = useDispatch<AppDispatch>();

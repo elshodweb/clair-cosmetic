@@ -26,8 +26,6 @@ const SwiperComp = () => {
     return <div>Loading...</div>;
   }
 
-  console.log(news?.[0]?.images?.[0]);
-
   return (
     <Swiper
       spaceBetween={12}
