@@ -24,7 +24,7 @@ const SmallCard = ({ data }: any) => {
         )}
       </div>
       <Link href={"/shop/" + data.id} className={styles.img}>
-        {data.images.length > 0 && (
+        {data?.images?.length > 0 && (
           <Image
             src={data.images[0]?.image || "/"}
             alt="product img"

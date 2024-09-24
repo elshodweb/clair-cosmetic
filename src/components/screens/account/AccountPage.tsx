@@ -7,15 +7,21 @@ import OutlineButton from "@/components/UI/buttons/outlineButton/OutlineButton";
 import SmallTitle from "@/components/UI/smallTitle/SmallTitle";
 import SliderContainer from "./sliderContainer/SliderContainer";
 import NoteCard from "./noteCard/NoteCard";
-import { SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import ArrowLink from "@/components/UI/arrowLink/ArrowLink";
 import ProductCard from "../history/productHistoryCard/ProductHistoryCard";
 import { http } from "@/utils/axiosInstance";
 import LogoutModal from "./logoutModal/LogoutModal";
 import UpdateModal from "./UpdateModal/UpdateModal";
-import { AppDispatch } from "@/store/store";
-import { useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import { useDispatch, useSelector } from "react-redux";
 import { setCodeConfirmVisible } from "@/store/auth/authSlice";
+import { FreeMode } from "swiper/modules";
+import SmallCard from "@/components/UI/cards/smallCard/SmallCard";
+import { fetchSelectedProducts } from "@/store/selected/selectedSlice";
+import FilterMenu from "../SingleShop/filterMenu/FilterMenu";
+import { fetchSelectedMasters } from "@/store/selected/selectedSliceMasters";
+import MasterContainer from "../home/masters/MasterContainer/MasterContainer";
 
 interface User {
   id: string;
@@ -37,7 +43,16 @@ const AccountPage = () => {
   const [isOpenLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
   const [isOpenUpdateModal, setOpenUpdateModal] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
-
+  const {
+    data: products,
+    status: productsStatus,
+    error: productsError,
+  } = useSelector((state: RootState) => state.selectedItems);
+  const {
+    data: masters,
+    status: mastersStatus,
+    error: mastersError,
+  } = useSelector((state: RootState) => state.selectedMasters);
   const [user, setUser] = useState<User>({
     id: "",
     phone_number: "",
@@ -53,19 +68,20 @@ const AccountPage = () => {
     last_login: "",
     date_joined: "",
   });
-  const [balance, setBalance] = useState<number>(0); // State for balance
+  const [balance, setBalance] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isDesktop, setIsDesktop] = useState(false);
-
+  const [selectedSwitch, setSelected] = useState<"Товары" | "Мастера">(
+    "Товары"
+  );
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        
         const token =
-        typeof window !== "undefined"
-          ? localStorage.getItem("accessToken")
-          : null;
+          typeof window !== "undefined"
+            ? localStorage.getItem("accessToken")
+            : null;
 
         const userResponse = await http(token).get<User>("/users/");
         setUser(userResponse.data);
@@ -104,10 +120,18 @@ const AccountPage = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  useEffect(() => {
+    if (selectedSwitch == "Товары" && productsStatus === "idle") {
+      dispatch(fetchSelectedProducts({ page: 1, page_size: 15 })); // Dispatch thunk to fetch selected products
+    } else if (selectedSwitch == "Мастера" && mastersStatus === "idle") {
+      dispatch(fetchSelectedMasters({ page: 1, page_size: 15 })); // Dispatch thunk to fetch selected products
+    }
+  }, [selectedSwitch]);
 
   if (!user) {
     return <p>No user data found.</p>;
   }
+  console.log(masters);
 
   return (
     <div className={styles.wrapper}>
@@ -232,7 +256,7 @@ const AccountPage = () => {
         </div>
 
         {isDesktop ? (
-          <SliderContainer>
+          <SliderContainer className="myProducts">
             <SwiperSlide>
               <ProductCard />
             </SwiperSlide>
@@ -264,6 +288,67 @@ const AccountPage = () => {
           href="/history"
           children="Все покупки"
         />
+
+        <div className={styles.row}>
+          <SmallTitle className={styles.select_title}>Избранное</SmallTitle>
+          <div className={styles.filterWrapper}>
+            <FilterMenu
+              className={styles.select_filter}
+              currentTab={selectedSwitch}
+              onTabChange={(title: any) => setSelected(title)}
+              tabs={[
+                {
+                  title: "Товары",
+                },
+                {
+                  title: "Мастера",
+                },
+              ]}
+            />
+          </div>
+        </div>
+        <div className={styles.rowforProducts}>
+          {selectedSwitch === "Товары"
+            ? productsStatus === "succeeded" && (
+                <Swiper
+                  spaceBetween={15}
+                  modules={[FreeMode]}
+                  freeMode={true}
+                  breakpoints={{
+                    0: {
+                      freeMode: false,
+                      slidesPerView: 1,
+                    },
+                    600: {
+                      slidesPerView: 2,
+                    },
+                    900: {
+                      slidesPerView: 3,
+                    },
+                    1150: {
+                      slidesPerView: 4,
+                    },
+                    1400: {
+                      slidesPerView: 5.3,
+                    },
+                  }}
+                >
+                  {products.length > 0
+                    ? products?.map((i: any) => (
+                        <SwiperSlide key={i.id} className={styles.slide}>
+                          <SmallCard data={i} />
+                        </SwiperSlide>
+                      ))
+                    : "нет выбраного продукта"}
+                </Swiper>
+              )
+            : mastersStatus === "succeeded" &&
+              (masters.length > 0 ? (
+                <MasterContainer data={masters} />
+              ) : (
+                "нет выбраных мастера"
+              ))}
+        </div>
       </Loyaut>
     </div>
   );

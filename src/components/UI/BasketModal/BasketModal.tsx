@@ -1,15 +1,10 @@
-import React, { FC, useState, useEffect, ChangeEvent } from "react";
+import React, { FC } from "react";
 import styles from "./BasketModal.module.scss";
-import BlackButton from "../buttons/blackButton/BlackButton";
 import Image from "next/image";
 import IconButton from "../buttons/iconButton/IconButton";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
-import {
-  basketTypeType,
-  setBasketVisible,
-  switchBasket,
-} from "@/store/basket/basketSlice";
+import { setBasketVisible, switchBasket } from "@/store/basket/basketSlice";
 import FilterMenu from "@/components/screens/SingleShop/filterMenu/FilterMenu";
 import Goods from "./Goods/Goods";
 import Services from "./Services/Services";

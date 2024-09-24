@@ -130,7 +130,7 @@ const MasterModal: FC<MasterModalProps> = ({ setMaster, id }) => {
                 <div key={i.id} className={styles.location}>
                   <div className={styles.locationImg}>
                     <Image
-                      src={"/images/masters/location.png"}
+                      src={master?.salons?.[0]?.images?.[0]}
                       alt="location img"
                       width={66}
                       height={66}

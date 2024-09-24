@@ -31,6 +31,8 @@ import productByServiceReducer from "./productByService/productsByServiceSlice";
 import basketSlice from "./basket/basketSlice";
 import bookingSlice from "./booking/bookingSlice";
 import specializationsForServiceSlice from "./specializationsForService/specializationsForServiceSlice";
+import selectedSlice from "./selected/selectedSlice";
+import selectedSliceMasters from "./selected/selectedSliceMasters";
 
 const authPersistConfig = {
   key: "auth",
@@ -51,7 +53,7 @@ const rootReducer = combineReducers({
 
   service: singleService,
   services: servicesReducer,
-  specializationsForService:specializationsForServiceSlice,
+  specializationsForService: specializationsForServiceSlice,
   servicesByFilter: servicesByFilterReducer,
   servicesSubCategory: servicesSubCategoryReducer,
   servicesCategories: servicesCategoriesReducer,
@@ -75,6 +77,8 @@ const rootReducer = combineReducers({
   specializations: specializationsReducer,
   basket: basketSlice,
   booking: bookingSlice,
+  selectedItems: selectedSlice,
+  selectedMasters: selectedSliceMasters,
 });
 
 const store = configureStore({

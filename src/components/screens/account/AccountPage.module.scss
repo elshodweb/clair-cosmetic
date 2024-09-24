@@ -25,6 +25,28 @@
     margin-bottom: 8px;
   }
 }
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.select_title {
+  display: inline-block;
+}
+.select_filter {
+  flex: 1 1 auto;
+  width: 100%;
+  justify-content: flex-end;
+  & > * {
+    max-width: none !important;
+    padding: 10px 60px !important;
+  }
+}
+.rowforProducts {
+  margin-top: 16px;
+  margin-bottom: 64px;
+  max-width: none;
+}
 .name {
   font-size: 50px;
   font-weight: 600;
@@ -106,7 +128,7 @@
     position: absolute;
     right: 10%;
     top: -35px;
-    z-index: 2;
+    z-index: 1;
     pointer-events: none;
     background: url(./../../../../public/images/account/stars-transformed.png)
       center/auto no-repeat;
@@ -140,13 +162,16 @@
   display: none;
 }
 @media (max-width: 700px) {
-  
-.title {
-  margin-top: 30px;
-}
+  .title {
+    margin-top: 30px;
+  }
   .profileInfo {
     position: relative;
     padding: 20px;
+  }
+  .row{
+    flex-direction: column;
+    gap: 10px;
   }
   .imgWrapperMob {
     display: block;

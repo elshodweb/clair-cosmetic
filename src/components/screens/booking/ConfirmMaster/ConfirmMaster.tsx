@@ -8,25 +8,32 @@ import {
   setChooseMassterVisible,
   setChooseTimeVisible,
   setConfirmMassterVisible,
-  setMaster,
-  setMasterId,
-  setSalon,
   setSalonChooseVisible,
-  setSalonId,
-  setService,
-  setTime,
 } from "@/store/booking/bookingSlice";
 import BlackButton from "@/components/UI/buttons/blackButton/BlackButton";
 import ChangeBtn from "@/components/UI/buttons/ChangeBtn/ChangeBtn";
-import { formatDateTime } from "@/utils/formatData";
 import { http } from "@/utils/axiosInstance";
-import { setBasketVisible, switchBasket } from "@/store/basket/basketSlice";
 
 const ConfirmMaster: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const { isConfirmMassterVisible, service, salon, salonId, masterId, master } =
     useSelector((state: RootState) => state.booking);
+
+  const submitBasket = async () => {
+    try {
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("accessToken")
+          : null;
+
+      await http(token).post("/services/cart/", {
+        service: service.id ? service.id : null,
+        salon: salonId ? salonId : null,
+        staff: masterId ? masterId : null,
+      });
+    } catch (error) {}
+  };
 
   return (
     <div
@@ -151,6 +158,7 @@ const ConfirmMaster: FC = () => {
         </h4>
         <BlackButton
           onClick={() => {
+            submitBasket();
             dispatch(setConfirmMassterVisible(false));
             dispatch(setChooseTimeVisible(true));
           }}

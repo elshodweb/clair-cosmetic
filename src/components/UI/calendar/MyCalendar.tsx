@@ -132,12 +132,6 @@ const MyCalendar: FC<any> = ({ value, onChange, serviceId }) => {
           />
         }
       />
-      {intervalMonth && (
-        <div>
-          <p>Начало месяца: {intervalMonth.start}</p>
-          <p>Конец месяца: {intervalMonth.end}</p>
-        </div>
-      )}
     </div>
   );
 };
