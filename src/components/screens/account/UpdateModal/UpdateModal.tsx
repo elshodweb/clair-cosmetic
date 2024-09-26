@@ -56,9 +56,10 @@ const UpdateModal: FC<UpdateModalProps> = ({ user, visible, onClose }) => {
       });
       setImageLink(user.image);
       if (user.image) {
-        const imageUrl = `http://localhost:3000/_next/image?url=${encodeURIComponent(
+        const imageUrl = `/_next/image?url=${encodeURIComponent(
           user.image
         )}&w=640&q=75`;
+
 
         fetch(imageUrl)
           .then((response) => {
