@@ -50,7 +50,7 @@ const Filters = () => {
           { title: "Старые изм.", id: "updated_at" },
         ]}
       />
-      <Btn children={"Скидки"} />
+      {/* <Btn children={"Скидки"} /> */}
       <Dropdown
         options={categories}
         lable={{ title: "Тип продукта", id: "" }}

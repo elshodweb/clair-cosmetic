@@ -23,7 +23,8 @@ interface AccountDataProps {
   setRegisterData: (a: IRegisterData) => void;
 }
 function validateName(input: string) {
-  const regex = /^[A-Za-z]+\s+[A-Za-z]+\s+[A-Za-z]+$/;
+  // Регулярное выражение для любого символа кроме пробелов
+  const regex = /^\S+\s+\S+\s+\S+$/;
 
   if (regex.test(input)) {
     return true;
@@ -31,6 +32,7 @@ function validateName(input: string) {
     return false;
   }
 }
+
 
 const AccountData: FC<AccountDataProps> = ({
   visible,

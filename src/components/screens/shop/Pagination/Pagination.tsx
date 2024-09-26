@@ -30,9 +30,27 @@ const Pagination = () => {
         className={styles.prev}
       ></button>
 
-      {page > 1 && <button className={`${styles.page}`}>{page - 1}</button>}
+      {page > 1 && (
+        <button
+          className={`${styles.page}`}
+          onClick={() => {
+            dispatch(setPage(page - 1));
+          }}
+        >
+          {page - 1}
+        </button>
+      )}
       <button className={`${styles.page} ${styles.selected}`}>{page}</button>
-      {pagesCount > page && <button className={styles.page}>{page + 1}</button>}
+      {pagesCount > page && (
+        <button
+          className={styles.page}
+          onClick={() => {
+            dispatch(setPage(page + 1));
+          }}
+        >
+          {page + 1}
+        </button>
+      )}
       <button
         disabled={pagesCount <= page}
         onClick={() => {

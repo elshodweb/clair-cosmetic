@@ -131,7 +131,6 @@ const AccountPage = () => {
   if (!user) {
     return <p>No user data found.</p>;
   }
-  console.log(masters);
 
   return (
     <div className={styles.wrapper}>
@@ -220,6 +219,12 @@ const AccountPage = () => {
         <SmallTitle>Мои записи</SmallTitle>
         {isDesktop ? (
           <SliderContainer>
+            <SwiperSlide>
+              <NoteCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <NoteCard />
+            </SwiperSlide>
             <SwiperSlide>
               <NoteCard />
             </SwiperSlide>

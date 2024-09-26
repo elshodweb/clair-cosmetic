@@ -15,10 +15,9 @@ import {
   setPhoneVerificationVisible,
   setAccountDataVisible,
   setFinishedModalVisible,
-  setCodeConfirmVisible,
 } from "@/store/auth/authSlice";
 import FinishedModal from "./finishedModal/FinishedModal";
-import CodeConfirm from "@/components/UI/codeConfirm/CodeConfirm";
+import { useRouter } from "next/router";
 export interface IRegisterData {
   phone_number: string;
   email: string;
@@ -47,6 +46,8 @@ const Auth = () => {
     isAuth,
   } = useSelector((state: RootState) => state.auth);
 
+  const route = useRouter();
+  const { pathname } = route;
   useEffect(() => {
     const authenticate = async () => {
       const refreshed = await verifyToken();
@@ -58,7 +59,7 @@ const Auth = () => {
       }
     };
     authenticate();
-  }, []);
+  }, [pathname]);
 
   if (isAuth === null || isAuth) return null;
   function cleanInputs() {
@@ -80,7 +81,7 @@ const Auth = () => {
           cleanInputs();
         }}
       />
-      
+
       <RegisterModal
         registerData={registerData}
         setRegisterData={setRegisterData}

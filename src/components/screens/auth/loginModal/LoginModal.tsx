@@ -84,12 +84,12 @@ const LoginModal: FC<LoginModalProps> = ({ visible, onClose }) => {
         <h2 className={styles.hi}>Привет!</h2>
         <div className={styles.mob}>
           <h5 className={`${styles.error} ${isWrong ? styles.show : ""}`}>
-            Такой почты нет
+            Нет такого пользователя
           </h5>
           <input
             className={`${styles.input} ${isWrong ? styles.errorInput : ""}`}
             type="text"
-            placeholder="Почта"
+            placeholder="Телефон"
             value={phoneNumber}
             onChange={(e) => {
               setPhoneNumber(e.target.value);
