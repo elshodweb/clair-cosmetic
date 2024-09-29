@@ -2,9 +2,7 @@
 
 .wrapper {
   position: relative;
-  width: calc(50% - 5px);
-  max-width: 480px;
-  width: 100%;
+  width: 324px;
 }
 .like {
   position: absolute;
@@ -70,4 +68,3 @@
     color: $lightYellow;
   }
 }
-

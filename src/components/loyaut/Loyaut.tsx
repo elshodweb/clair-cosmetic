@@ -10,7 +10,9 @@ const Loyaut: FC<OnlyChildrenProps> = ({ children }) => {
     <div className={style.wrapper}>
       <Container>
         <Header />
-        <main className={style.main}>{children}</main>
+      </Container>
+      <main className={style.main}>{children}</main>
+      <Container>
         <Footer />
       </Container>
     </div>

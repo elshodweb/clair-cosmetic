@@ -95,7 +95,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
           {tabContent || `${activeTab} не указано`}
         </p>
         <div className={styles.price}>
-          <strong>{product.sale} </strong>
+          <strong>{product.price} </strong>
           {product.previous_price && <span>{product.previous_price} </span>}
         </div>
         <div className={styles.btns}>

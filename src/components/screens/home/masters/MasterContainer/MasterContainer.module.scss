@@ -1,6 +1,25 @@
-.wrapper {
-  margin: 0 auto;
+.wrapperRow {
   margin-bottom: 24px;
+  width: 100%;
+  max-width: 1700px;
+  overflow-x: auto;
+  margin: 0 auto;
+}
+.wrapperRow::-webkit-scrollbar {
+  display: none;
+}
+.row {
+  display: flex;
+  max-width: max-content;
+  gap: 12px;
+  padding: 0 30px;
+  @media (max-width: 991px) {
+    padding-left: 15px;
+  }
+  @media (max-width: 460px) {
+    padding-left: 9px;
+  }
+  
 }
 @media (max-width: 600px) {
   .wrapper {

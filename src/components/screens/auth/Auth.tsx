@@ -56,6 +56,8 @@ const Auth = () => {
         dispatch(setAuth(true));
       } else {
         dispatch(setAuth(false));
+        localStorage.removeItem('refreshToken')
+        localStorage.removeItem('accessToken')
       }
     };
     authenticate();
@@ -72,6 +74,7 @@ const Auth = () => {
       re_password: "",
     });
   }
+  
   return (
     <div className={styles.wrapper}>
       <LoginModal

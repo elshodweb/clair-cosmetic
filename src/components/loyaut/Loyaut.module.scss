@@ -3,14 +3,8 @@
   min-height: 99.9vh;
   display: flex;
   flex-direction: column;
-  // padding-top: 106px;
 }
 .main {
   flex: 1 1 auto;
   height: 100%;
-}
-@media (max-width:940px) {
-  .wrapper{
-    // padding-top: 150px;
-  }
 }

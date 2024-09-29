@@ -1,10 +1,33 @@
 @import "./../../../styles/variables.scss";
-
-.slide {
+.wrapperrRow {
   display: flex;
-  justify-content: center;
+  width: max-content;
+  gap: 12px;
+  padding-left: 30px;
+  
+  @media (max-width: 991px) {
+    padding-left: 15px;
+  }
+  @media (max-width: 460px) {
+    padding-left: 9px;
+  }
+}
+.roww {
+  width: 100%;
+  max-width: 1700px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+.roww::-webkit-scrollbar {
+  display: none;
+}
+.slide {
+  width: 324px;
+  height: 420px;
 }
 .sliderWrapper {
+  width: 324px;
+  height: 420px;
   position: relative;
   border-radius: 30px;
   max-width: 324px;
@@ -20,6 +43,8 @@
   position: absolute;
   object-fit: contain;
   padding: 25px 21px;
+  z-index: 1;
+  background: transparent;
 }
 .name {
   font-weight: 500;
@@ -42,7 +67,7 @@
   position: absolute;
   display: block;
   object-fit: cover;
-  z-index: -1;
+  // z-index: -1;
   display: block;
   width: 100%;
   height: auto;

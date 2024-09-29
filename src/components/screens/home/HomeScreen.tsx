@@ -18,6 +18,7 @@ import { fetchProductCategories } from "@/store/product/productCategoriesSlice";
 import { fetchProductsInHome } from "@/store/productHomePage/productsSlice";
 import { fetchMasterCategories } from "@/store/masters/masterCategoriesSlice";
 import { fetchMasters } from "@/store/masters/mastersSlice";
+import Container from "@/components/container/Container";
 
 const HomeScreen = () => {
   function filterListener(params: string) {
@@ -84,59 +85,79 @@ const HomeScreen = () => {
   return (
     <div className={style.wrapper}>
       <Loyaut>
-        <div className={style.hi}>
-          <Title>
-            <span>СЕГОДНЯ ТЫ</span>
-            <span className={style.space}>ПРЕКРАСНА</span>
-          </Title>
-        </div>
+        <Container>
+          <div className={style.hi}>
+            <Title>
+              <span>СЕГОДНЯ ТЫ</span>
+              <span className={style.space}>ПРЕКРАСНА</span>
+            </Title>
+          </div>
+        </Container>
+
         <div className={style.trends}>
           <SwiperComp />
-          <DownloadApp />
+          <Container>
+            <DownloadApp />
+          </Container>
         </div>
-        <div className={style.services}>
-          <Title>Услуги</Title>
-          <AccordionUsage />
-          <ArrowLink href="/services">Все услуги</ArrowLink>
-        </div>
-        <div className={style.shop}>
-          <div className={style.row}>
-            <Title>магазин</Title>
-            {statusCategory === "loading" ? (
+        <Container>
+          <div className={style.services}>
+            <Title>Услуги</Title>
+            <AccordionUsage />
+            <ArrowLink href="/services">Все услуги</ArrowLink>
+          </div>
+
+          <div className={style.shop}>
+            <div className={style.row}>
+              <Title>магазин</Title>
+              {statusCategory === "loading" ? (
+                "loading..."
+              ) : (
+                <MyTabs filterListener={filterListener} data={categories} />
+              )}
+            </div>
+            {statusProducts === "loading" ? (
               "loading..."
             ) : (
-              <MyTabs filterListener={filterListener} data={categories} />
+              <ShopCards data={products} />
             )}
+            <ArrowLink href="/shop" children="Посмотреть магазин" />
           </div>
-          {statusProducts === "loading" ? (
-            "loading..."
-          ) : (
-            <ShopCards data={products} />
-          )}
-          <ArrowLink href="/shop" children="Посмотреть магазин" />
-        </div>
+        </Container>
+
         <div className={style.masters}>
-          <div className={style.row}>
-            <Title>мастера</Title>
-            <MyTabs
-              filterListener={filterListenerMaster}
-              data={mastersCategory}
-            />
-          </div>
+          <Container>
+            <div className={style.row}>
+              <Title>мастера</Title>
+              <MyTabs
+                filterListener={filterListenerMaster}
+                data={mastersCategory}
+              />
+            </div>
+          </Container>
+
           {statusMasters === "loading" ? (
             "loading  ..."
           ) : (
             <MasterContainer data={masters} />
           )}
-          <ArrowLink href="/masters" children="Все мастера" />
+          <Container>
+            <ArrowLink href="/masters" children="Все мастера" />
+          </Container>
         </div>
-        <div className={style.masters}>
-          <NewsDecor />
-          <NewsCards />
-          <ArrowLink href="/news" children="Все новости" />
-        </div>
+        <Container>
+          <div className={style.masters}>
+            <NewsDecor />
+            <NewsCards />
+            <ArrowLink href="/news" children="Все новости" />
+          </div>
+        </Container>
+
         <div className={style.salon}>
+        <Container>
           <Title>салоны</Title>
+        </Container>
+
           <Salon />
         </div>
       </Loyaut>

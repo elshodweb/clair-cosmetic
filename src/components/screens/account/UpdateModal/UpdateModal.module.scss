@@ -106,22 +106,22 @@
   }
 }
 .input[type="date"] {
-  -webkit-appearance: none; /* Убирает стандартный стиль Safari */
+  -webkit-appearance: none; 
   appearance: none;
   padding: 20px;
-  padding-left: 10px; /* Увеличиваем отступ слева */
+  padding-left: 10px; 
   border-radius: 40px;
   width: 100%;
   max-width: 324px;
   height: 50px;
   font-size: 12px;
-  color: #000; /* Устанавливает черный цвет текста */
-  text-align: left; /* Выравнивает текст по левому краю */
+  color: #000; 
+  text-align: left; 
 }
 
 .input[type="date"]::-webkit-datetime-edit {
-  text-align: left; /* Выравнивает сам текст в input[type="date"] в Safari */
-  padding-left: 10px; /* Добавляет отступ слева */
+  text-align: left; 
+  padding-left: 10px; 
 }
 
 .input[type="date"]::-webkit-calendar-picker-indicator {

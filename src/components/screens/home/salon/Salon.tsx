@@ -28,42 +28,24 @@ const Salon = () => {
   }
 
   return (
-    <Swiper
-      spaceBetween={20}
-      slidesPerView={"auto"}
-      modules={[FreeMode]}
-      freeMode={true}
-      breakpoints={{
-        0: {
-          slidesPerView: 1.1,
-        },
-        650: {
-          slidesPerView: 1.5,
-        },
-        1040: {
-          slidesPerView: 2,
-        },
-
-        1400: {
-          slidesPerView: 2,
-        },
-      }}
-    > 
-      {salons.map((i) => (
-        <SwiperSlide className={style.slide} key={i.id}>
-          <div className={style.wrapper}>
-            <Image
-              className={style.img}
-              src={i.images[0]}
-              alt="salon"
-              width={900}
-              height={350}
-            />
-            <div className={style.name}>{i.name}</div>
+    <div className={style.wrapperRow}>
+      <div className={style.row}>
+        {salons.map((i) => (
+          <div className={style.slide} key={i.id}>
+            <div className={style.wrapper}>
+              <Image
+                className={style.img}
+                src={i.images[0]}
+                alt="salon"
+                width={900}
+                height={350}
+              />
+              <div className={style.name}>{i.name}</div>
+            </div>
           </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+        ))}
+      </div>
+    </div>
   );
 };
 

@@ -13,52 +13,16 @@ const MasterContainer: React.FC<MasterContainerProps> = ({ data }) => {
   const [id, setId] = useState<string | null>(null);
 
   return (
-    <div className={styles.wrapper}>
-      <Swiper
-        spaceBetween={8}
-        slidesPerView={"auto"}
-        modules={[FreeMode]}
-        freeMode={true}
-        breakpoints={{
-          0: {
-            slidesPerView: 1.1,
-          },
-          460: {
-            slidesPerView: 1.3,
-          },
-          540: {
-            slidesPerView: 1.8,
-          },
-          640: {
-            slidesPerView: 2,
-          },
-          868: {
-            slidesPerView: 2.8,
-          },
-          900: {
-            slidesPerView: 3.2,
-          },
-
-          1180: {
-            slidesPerView: 3.4,
-          },
-
-          1280: {
-            slidesPerView: 3.8,
-          },
-          1440: {
-            slidesPerView: 4.5,
-          },
-        }}
-      >
+    <div className={styles.wrapperRow}>
+      <div className={styles.row}>
         {data.map((i) => (
-          <SwiperSlide className={styles.slide} key={i.id}>
+          <div className={styles.slide} key={i.id}>
             <MasterItem setMaster={setId} data={i} />
-          </SwiperSlide>
+          </div>
         ))}
 
         <MasterModal id={id} setMaster={setId} />
-      </Swiper>
+      </div>
     </div>
   );
 };
